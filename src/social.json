@@ -1,0 +1,10 @@
+{
+  "_comment": "Toriinthecat's accounts. An empty url shows as a placeholder. The same four as the app's links (Vault-ZIP src-tauri/src/links.rs). 'devlog' marks the one the site puts first: the development journal. 'support' is the tip / support page of a payment service (the app's SUPPORT_URL); empty until the service is chosen.",
+  "social": [
+    { "id": "note", "name": "note", "url": "https://note.com/tori_inthecat", "devlog": true },
+    { "id": "x", "name": "X", "url": "https://x.com/tori_inthecat" },
+    { "id": "reddit", "name": "Reddit", "url": "" },
+    { "id": "instagram", "name": "Instagram", "url": "https://www.instagram.com/tori_inthecat/" }
+  ],
+  "support": { "service": "", "url": "" }
+}

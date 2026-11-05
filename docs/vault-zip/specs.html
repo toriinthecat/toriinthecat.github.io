@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>機能と仕様 - Vault-ZIP - Toriinthecat</title>
+<meta name="description" content="Vault-ZIP の機能と仕様。暗号の方式、展開できる形式、ファイル名の扱い、通信、確かめた互換性と性能、組織向けの管理機能。">
+<link rel="canonical" href="https://toriinthecat.com/vault-zip/specs.html">
+<link rel="alternate" hreflang="en" href="https://toriinthecat.com/en/vault-zip/specs.html">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="logo" href="/">Tori<span>in</span>thecat</a>
+    <a class="lang" href="/en/vault-zip/specs.html" hreflang="en" lang="en">English</a>
+  </div>
+  <nav class="wrap topnav" aria-label="Toriinthecat"><ul><li><a href="/">トップ</a></li><li><a href="/software/" aria-current="page">ソフトウェア</a></li><li><a href="/privacy-policy.html">プライバシーポリシー</a></li><li><a href="/tokushoho.html">特定商取引法に基づく表記</a></li><li><a href="/security.html">セキュリティ</a></li><li><a href="/support.html">応援する</a></li></ul></nav>
+</header>
+<div class="wrap page with-sub">
+<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/vault-zip/">概要</a></li><li><a href="/vault-zip/specs.html" aria-current="page">機能と仕様</a></li><li><a href="/vault-zip/robust.html">安心の工夫</a></li><li><a href="/vault-zip/compare.html">くらべてみる</a></li><li><a href="/vault-zip/download.html">ダウンロード</a></li><li><a href="/vault-zip/guide.html">使い方</a></li><li><a href="/vault-zip/faq.html">よくある質問</a></li><li><a href="/vault-zip/history.html">更新履歴</a></li><li><a href="/vault-zip/license.html">ライセンス</a></li><li><a href="/vault-zip/privacy.html">プライバシー</a></li></ul></nav><main id="main">
+<h1>機能と仕様</h1>
+<p class="lead">Vault-ZIP が何をするか、どこまで確かめたかを、具体的に書いたページです。数値は作者の環境で測ったもので、環境によって変わります。</p>
+
+<h2>ZIP を作る</h2>
+<table>
+  <tbody>
+    <tr><th>暗号の方式</th><td>AES-256（WinZip AES 形式）。鍵はパスワードから PBKDF2 で作り、ファイルごとに改ざんの検出用の値（HMAC）を付けます。古い ZipCrypto 方式では作りません。</td></tr>
+    <tr><th>パスワード</th><td>新しく作る（長さと文字の種類を設定で決める）、決めておいたものを使う、毎回入力する、付けない、から選べます。作ったパスワードは台帳に記録します。</td></tr>
+    <tr><th>作った後の確認</th><td>書き終えた ZIP を最後まで読み直し、すべてのファイルが元と同じに取り出せることを確かめてから完成にします。完成した ZIP の SHA-256 も記録します。</td></tr>
+    <tr><th>ファイル名</th><td>UTF-8 で書きます（UTF-8 であることを示す印を付けます）。名前は NFC にそろえるので、Mac で作った名前も Windows で同じに見えます。</td></tr>
+    <tr><th>個別に圧縮</th><td>選んだファイルやフォルダーを 1 つずつ別の ZIP にします。</td></tr>
+    <tr><th>上書きしない</th><td>同じ名前のファイルがあるときは、名前に (2) を付けます。既存のファイルを上書きするのは、設定で選んだときだけです。</td></tr>
+  </tbody>
+</table>
+
+<h2>展開する</h2>
+<table>
+  <tbody>
+    <tr><th>形式</th><td>ZIP（Deflate、Deflate64、BZip2、LZMA、XZ、Zstandard、PPMd、古い PKZIP 1.x の方式、AES-256、ZipCrypto）、7z（暗号化したヘッダーを含む）、RAR（1.5〜7、RAR5、暗号化、ソリッド）、tar と tar.gz・tar.bz2・tar.xz・tar.zst、単体の gz・bz2・xz・zst、CAB、MSI、自己展開形式（7z、ZIP、RAR）。</td></tr>
+    <tr><th>形式の見分け方</th><td>拡張子ではなく、ファイルの中身で見分けます。拡張子が違っていても展開できます。</td></tr>
+    <tr><th>外部ツール</th><td>ISO、LZH、ARJ、NSIS、Inno Setup などは、7-Zip などを設定で有効にしたときだけ、そのツールで展開します（既定はオフ）。</td></tr>
+    <tr><th>台帳のパスワード</th><td>Vault-ZIP で作った ZIP は、台帳に記録したパスワードで開きます。</td></tr>
+    <tr><th>改ざんの検出</th><td>AES で暗号化した ZIP は、全ファイルの HMAC が合ったときだけ成功にします。合わなければ、途中のファイルを完成品として残しません。HMAC が合うことは「暗号化したデータが変わっていない」ことを示すもので、作った人を証明するものではありません。</td></tr>
+  </tbody>
+</table>
+
+<h2>ファイル名の扱い</h2>
+<p>どの OS で作った ZIP を、どの OS で展開しても、同じフォルダーの形になることを目指しています。</p>
+<ul>
+  <li><b>古い日本語の ZIP</b>：Shift_JIS で名前を書いた ZIP（古い Windows のソフトで作ったもの）を自動で見分け、正しい日本語の名前で展開します。「表」「ソ」のように 2 バイト目が <code>\</code> になる文字も正しく扱います。</li>
+  <li><b>Mac の名前</b>：Mac の分解された濁点（NFD）を NFC にそろえます。</li>
+  <li><b>Mac の付属ファイル</b>：<code>__MACOSX</code> フォルダーと <code>._</code> で始まるファイルは作りません（設定で作ることもできます）。作らなかった数を結果に出します。</li>
+  <li><b>Windows で使えない名前</b>：<code>CON</code> などの予約名、<code>?</code> や <code>:</code> を含む名前、末尾のピリオドは、使える名前に置き換えて展開し、どれを置き換えたかを一覧で知らせます。</li>
+  <li><b>見えない文字</b>：文字の向きを変える文字（<code>invoiceexe.pdf</code> と PDF に見せかけて、本当は .exe という手口に使われる）やゼロ幅の文字、制御文字は <code>_</code> に置き換え、画面では <code>\u{202E}</code> のような見える形で示します。</li>
+  <li><b>大文字と小文字だけが違う名前</b>：Windows では同じ名前になるため、片方に (2) を付けて両方残します。</li>
+</ul>
+
+<h2>悪意のある圧縮ファイルへの備え</h2>
+<p>次のものは、展開の前か途中で止めるか、無害な形にします。どれも自動テストで毎回確かめています。</p>
+<ul>
+  <li>フォルダーの外へ書き出そうとする名前（<code>../</code>、絶対パス、ドライブ指定）。何かを書く前に止めます。</li>
+  <li>シンボリックリンク、ジャンクション、デバイスなどの特殊なファイル。作りません。</li>
+  <li>展開すると巨大になるファイル（ZIP 爆弾）。ヘッダーの宣言を信じず、書いたバイト数を自分で数えて止めます。</li>
+  <li>10 万件を超えるファイル。続けるかを確かめます。</li>
+  <li>壊れたファイル。42,000 個の壊れた RAR、300 個の壊れた CAB、ファジング（無作為な入力を大量に与える試験）で、クラッシュしないことを確かめています。</li>
+  <li>展開中のディスク満杯や強制終了。途中のファイルを完成した名前で残さず、次の起動で片付けます。</li>
+</ul>
+
+<h2>パスワードの台帳</h2>
+<table>
+  <tbody>
+    <tr><th>保存</th><td>SQLCipher（AES-256）で暗号化したデータベース。鍵は Windows の資格情報マネージャーに保存します。ポータブル版は、利用者が決めたパスフレーズで守ります。</td></tr>
+    <tr><th>記録する内容</th><td>ZIP や PDF の名前、作った日時、パスワード、メモ、元のファイルの一覧。</td></tr>
+    <tr><th>表示とコピー</th><td>パスワードは、「表示」を押したときだけ画面に出します。表示の前に Windows Hello などの本人確認を求められます。コピーしたパスワードは、Windows のクリップボード履歴（Win+V）とほかのデバイスへの同期に入らないようにし、しばらくすると消えます。その間に別のものをコピーした場合は、そちらを消しません。</td></tr>
+    <tr><th>画面に写さない</th><td>設定で、パスワードを表示しているウィンドウを、画面共有・録画・スクリーンショットに写さないようにできます（既定はオフ。Windows 10 バージョン 2004 以降）。</td></tr>
+    <tr><th>備え</th><td>回復キー、暗号化したバックアップの書き出しと読み込み、自動バックアップ。読み込みに失敗したときは、今の台帳と鍵をそのまま残します。</td></tr>
+    <tr><th>版をまたいだ読み込み</th><td>台帳の形式を新しくするときは、先に写しを作ります。新しい版で作ったデータを古い版で開いたときは、書き換えずに止めて知らせます。</td></tr>
+  </tbody>
+</table>
+
+<h2>PDF の暗号化</h2>
+<table>
+  <tbody>
+    <tr><th>方式</th><td>AES-256（PDF 2.0 の方式、R6）。開くためのパスワードを付け、台帳に記録します。</td></tr>
+    <tr><th>確かめたビューアー</th><td>pdfium（Chrome、Edge、Android の表示の部品）、pdf.js（Firefox の表示の部品）、qpdf で、正しいパスワードで開けること、違うパスワードを拒むこと、日本語のテキストが元と同じに取れることを確かめています。</td></tr>
+    <tr><th>作った後の確認</th><td>暗号化した PDF を読み直し、中身が元と同じかを確かめます。</td></tr>
+  </tbody>
+</table>
+
+<h2>何のファイルか調べる</h2>
+<p>拡張子ではなく中身から、ファイルの種類と、ふつう何のアプリで開くかを調べます。ファイルを開いたり実行したりはしません。1 ファイルあたりおよそ 0.1 ミリ秒です（作者の PC、SSD）。結果は推定で、安全かどうかの判定ではありません。</p>
+
+<h2>通信</h2>
+<p><b>利用者が頼んだときだけ、外とつながります。</b>更新の自動確認、利用状況の送信、ライセンスの確認のための通信、アカウントはありません。</p>
+<ul>
+  <li>画面を描く Microsoft の部品（WebView2）は、何もしなくても Microsoft のサーバーへ接続することがあります。Vault-ZIP は、その自発的な通信を止める設定でウィンドウを作ります。作者の計測では、起動から 100 秒のあいだ、外への接続は 0 件でした。</li>
+  <li>外とつながるのは、案内のリンクを押してブラウザーが開くとき、共有で選んだアプリにファイルを渡すとき、WebView2 の入っていない PC でインストーラーがそれを取得するときだけです。</li>
+  <li>Windows 版には、インターネットにつなぐための部品を入れていません。</li>
+</ul>
+
+<h2>ほかのソフトとの互換性</h2>
+<p>Vault-ZIP で作った AES-256 の ZIP を、次のソフトで開けることを確かめています。</p>
+<table>
+  <thead><tr><th>ソフト</th><th>確かめたこと</th></tr></thead>
+  <tbody>
+    <tr><td>7-Zip 26.05</td><td>パスワードで開け、圧縮の強さ 3 通りで全ファイルが元と同じ（SHA-256 で比較）。日本語の名前と入れ子のフォルダーも正しく出る。</td></tr>
+    <tr><td>Windows 11 のエクスプローラー</td><td>パスワードを聞かれ、展開できる。日本語、全角かっこ、絵文字の名前とサイズが正しく見える。</td></tr>
+    <tr><td>Windows の <code>tar.exe</code></td><td>パスワードを渡して、全ファイルが正しいサイズで展開できる。</td></tr>
+  </tbody>
+</table>
+<p>逆に、7-Zip 26.05 で作った 7z（暗号化したヘッダーを含む）、自己展開形式、各種の方式の ZIP、tar を Vault-ZIP で展開し、全ファイルが元と同じことを確かめています。</p>
+<p class="note">Lhaplus、CubeICE などでの確認は、これから行います。</p>
+
+<h2>性能</h2>
+<p>作者の PC（Ryzen 5 5600X、メモリ 32 GB、NVMe SSD と 5,400 rpm の HDD）での測定です。圧縮の時間には、作った後の確認の読み直しを含みます。</p>
+<table>
+  <thead><tr><th>測ったもの</th><th>結果</th></tr></thead>
+  <tbody>
+    <tr><td>5 GB のファイル 1 つ（SSD、AES-256）</td><td>圧縮 約 116 MB/秒、展開 約 267 MB/秒</td></tr>
+    <tr><td>メモリの使用量（ファイル 1 つ、100 GB まで）</td><td>13 MB 前後で、大きさによって増えない</td></tr>
+    <tr><td>10 万件の小さなファイル</td><td>メモリ 100 MB 以下で完了</td></tr>
+    <tr><td>右クリックから開く小さな画面</td><td>約 0.4 秒で表示</td></tr>
+  </tbody>
+</table>
+
+<h2>コマンドライン版（RPA 向け）</h2>
+<ul>
+  <li><code>vault-zip-cli.exe</code>：圧縮、展開、PDF の暗号化、台帳の検索などを、Power Automate for desktop などから使えます。</li>
+  <li>結果を JSON で受け取れ、終了コードで成否と理由を判定できます。</li>
+  <li>パスワードはコマンドラインに書かず、標準入力で渡します（コマンドラインの文字列は、ほかのプログラムから見えることがあるため）。</li>
+  <li>起動は約 14 ミリ秒です。</li>
+</ul>
+
+<h2>組織向けの管理（ライセンスが必要）</h2>
+<ul>
+  <li>MSI で PC ごとにインストール。配布ツールでの一括インストールに使えます。</li>
+  <li>管理者が決めたルールを、利用者は変えられません：パスワードなしの ZIP を禁止、パスワードの方式と最短の桁数、作った後の確認を常にオン、パスワードの表示中は画面に写さない、台帳の自動バックアップ先の固定、外部ツールの禁止など。</li>
+  <li>ルールは、アプリの画面、組織の設定ファイル、グループポリシー（ADMX）、Intune で配れます。</li>
+  <li>ライセンスは PC の中だけで確かめます。ライセンスサーバーはありません。</li>
+</ul>
+
+<h2>配布物</h2>
+<ul>
+  <li>配布するファイルの SHA-256 をダウンロードのページに載せます。</li>
+  <li>使っている部品の一覧（SBOM、CycloneDX 形式）と、各部品のライセンスの全文を同梱します。</li>
+  <li>脆弱性の報告の窓口は<a href="/security.html">セキュリティ</a>のページにあります。</li>
+</ul>
+
+<h2>動作環境</h2>
+<table>
+  <tbody>
+    <tr><th>Windows</th><td>Windows 10 以上（64 ビット、x64）。Windows 11 では新しい右クリックメニューにも出ます。ARM 版 Windows では確かめていません。</td></tr>
+    <tr><th>Android</th><td>準備中</td></tr>
+    <tr><th>言語</th><td>日本語（英語は準備中）</td></tr>
+  </tbody>
+</table>
+</main>
+</div>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>個人事業主 Toriinthecat（トリインザキャット） ・ お問い合わせ: <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a></p>
+    <p class="sns-row"><a class="sns " href="https://note.com/tori_inthecat" rel="me noopener">note</a> <a class="sns " href="https://x.com/tori_inthecat" rel="me noopener">X</a> <span class="sns ph ">Reddit</span> <a class="sns " href="https://www.instagram.com/tori_inthecat/" rel="me noopener">Instagram</a></p>
+    <p>&copy; Toriinthecat</p>
+  </div>
+</footer>
+</body>
+</html>

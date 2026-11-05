@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使い方 - Vault-ZIP - Toriinthecat</title>
+<meta name="description" content="Vault-ZIP の使い方。圧縮、展開、台帳、右クリックメニュー、コマンドライン版。">
+<link rel="canonical" href="https://toriinthecat.com/vault-zip/guide.html">
+<link rel="alternate" hreflang="en" href="https://toriinthecat.com/en/vault-zip/guide.html">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="logo" href="/">Tori<span>in</span>thecat</a>
+    <a class="lang" href="/en/vault-zip/guide.html" hreflang="en" lang="en">English</a>
+  </div>
+  <nav class="wrap topnav" aria-label="Toriinthecat"><ul><li><a href="/">トップ</a></li><li><a href="/software/" aria-current="page">ソフトウェア</a></li><li><a href="/privacy-policy.html">プライバシーポリシー</a></li><li><a href="/tokushoho.html">特定商取引法に基づく表記</a></li><li><a href="/security.html">セキュリティ</a></li><li><a href="/support.html">応援する</a></li></ul></nav>
+</header>
+<div class="wrap page with-sub">
+<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/vault-zip/">概要</a></li><li><a href="/vault-zip/specs.html">機能と仕様</a></li><li><a href="/vault-zip/robust.html">安心の工夫</a></li><li><a href="/vault-zip/compare.html">くらべてみる</a></li><li><a href="/vault-zip/download.html">ダウンロード</a></li><li><a href="/vault-zip/guide.html" aria-current="page">使い方</a></li><li><a href="/vault-zip/faq.html">よくある質問</a></li><li><a href="/vault-zip/history.html">更新履歴</a></li><li><a href="/vault-zip/license.html">ライセンス</a></li><li><a href="/vault-zip/privacy.html">プライバシー</a></li></ul></nav><main id="main">
+<h1>使い方</h1>
+<p class="lead">よく使う操作を順に説明します。<span class="ph">各手順に画面の画像を入れる予定</span></p>
+
+<h2>ZIP を作る</h2>
+<ol>
+  <li>Vault-ZIP の画面に、ファイルやフォルダーをドラッグします。エクスプローラーで右クリックし、「Vault-ZIPで圧縮」を選んでもかまいません。</li>
+  <li>パスワードの付け方を選びます。新しく作る、決めておいたものを使う、毎回入力する、付けない、から選べます（既定は設定で決めます）。</li>
+  <li>「圧縮」を押すと ZIP ができ、パスワードが台帳に記録されます。</li>
+</ol>
+<p class="note">選んだものを 1 つずつ別の ZIP にしたいときは「個別に圧縮」を使います。</p>
+
+<h2>ZIP を開く（展開）</h2>
+<ol>
+  <li>展開したいファイルを画面にドラッグするか、右クリックで「Vault-ZIPで展開」を選びます。</li>
+  <li>Vault-ZIP で作った ZIP は、台帳のパスワードで自動的に開きます。ほかの ZIP はパスワードを入力します。</li>
+  <li>展開先に同じ名前のファイルがあるときは、設定にしたがって、新しいファイルの名前に (2) を付けます（既定）。</li>
+</ol>
+
+<h2>パスワードを確かめる（台帳）</h2>
+<p>「台帳」を開くと、作った ZIP の一覧が出ます。名前や日付で探せます。パスワードを見るときやコピーするときは、本人確認が求められることがあります。コピーしたパスワードは、しばらくするとクリップボードから消えます。</p>
+
+<h2>台帳の備え</h2>
+<p>「設定」から、回復キーの作成と、自動バックアップの保存先を決められます。PC を替えるときは、バックアップを新しい PC で読み込みます。</p>
+
+<h2>PDF にパスワードを付ける</h2>
+<p>PDF を画面にドラッグするか、右クリックで「Vault-ZIPでPDFを暗号化」を選びます。パスワードは台帳に記録されます。</p>
+
+<h2>何のファイルか調べる</h2>
+<p>右クリックで「Vault-ZIPで何のファイルか調べる」を選ぶと、結果だけの小さな画面が開きます。中身から推定した種類と、ふつう開くアプリが出ます。安全かどうかの判定ではありません。</p>
+
+<h2>コマンドライン版</h2>
+<p>インストール先に <code>vault-zip-cli.exe</code> があります。パスワードはコマンドラインに書かず、標準入力から渡します。</p>
+<pre><code>vault-zip-cli compress -i 資料フォルダ -o 資料.zip --json</code></pre>
+<p class="note"><span class="ph">コマンドの一覧と終了コードの説明ページを用意する予定</span></p>
+</main>
+</div>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>個人事業主 Toriinthecat（トリインザキャット） ・ お問い合わせ: <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a></p>
+    <p class="sns-row"><a class="sns " href="https://note.com/tori_inthecat" rel="me noopener">note</a> <a class="sns " href="https://x.com/tori_inthecat" rel="me noopener">X</a> <span class="sns ph ">Reddit</span> <a class="sns " href="https://www.instagram.com/tori_inthecat/" rel="me noopener">Instagram</a></p>
+    <p>&copy; Toriinthecat</p>
+  </div>
+</footer>
+</body>
+</html>

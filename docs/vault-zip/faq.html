@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>よくある質問 - Vault-ZIP - Toriinthecat</title>
+<meta name="description" content="Vault-ZIP についてよくある質問と答え。">
+<link rel="canonical" href="https://toriinthecat.com/vault-zip/faq.html">
+<link rel="alternate" hreflang="en" href="https://toriinthecat.com/en/vault-zip/faq.html">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="logo" href="/">Tori<span>in</span>thecat</a>
+    <a class="lang" href="/en/vault-zip/faq.html" hreflang="en" lang="en">English</a>
+  </div>
+  <nav class="wrap topnav" aria-label="Toriinthecat"><ul><li><a href="/">トップ</a></li><li><a href="/software/" aria-current="page">ソフトウェア</a></li><li><a href="/privacy-policy.html">プライバシーポリシー</a></li><li><a href="/tokushoho.html">特定商取引法に基づく表記</a></li><li><a href="/security.html">セキュリティ</a></li><li><a href="/support.html">応援する</a></li></ul></nav>
+</header>
+<div class="wrap page with-sub">
+<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/vault-zip/">概要</a></li><li><a href="/vault-zip/specs.html">機能と仕様</a></li><li><a href="/vault-zip/robust.html">安心の工夫</a></li><li><a href="/vault-zip/compare.html">くらべてみる</a></li><li><a href="/vault-zip/download.html">ダウンロード</a></li><li><a href="/vault-zip/guide.html">使い方</a></li><li><a href="/vault-zip/faq.html" aria-current="page">よくある質問</a></li><li><a href="/vault-zip/history.html">更新履歴</a></li><li><a href="/vault-zip/license.html">ライセンス</a></li><li><a href="/vault-zip/privacy.html">プライバシー</a></li></ul></nav><main id="main">
+<h1>よくある質問</h1>
+
+<dl class="faq">
+  <dt>無料で使えますか。</dt>
+  <dd>個人の方は無料です。仕事で使う場合（個人事業主、副業を含む）も無料です。学校などの教育機関と非営利団体も、申請なしで無料で使えます。企業・官公庁などの組織で使う場合は、1 台につき 1,000 円のライセンスが必要です（<a href="/vault-zip/license.html">ライセンス</a>）。</dd>
+
+  <dt>Vault-ZIP で作った ZIP は、Vault-ZIP が無い PC でも開けますか。</dt>
+  <dd>開けます。AES-256 で暗号化した ZIP（WinZip AES 形式）に対応したソフトなら、パスワードを入力して開けます。7-Zip と Windows 11 のエクスプローラーで開けることを確かめています。パスワードを付けずに作った ZIP は、どのソフトでも開けます。</dd>
+
+  <dt>パスワードを忘れました。</dt>
+  <dd>Vault-ZIP で作った ZIP なら、台帳にパスワードが記録されています。台帳を開いて、ファイル名や日付で探してください。台帳に無いパスワードは、作者にも調べられません。</dd>
+
+  <dt>PC を替えたら、台帳はどうなりますか。</dt>
+  <dd>台帳は PC の中にあり、その PC の鍵で暗号化しています。PC を替える前に、設定からバックアップを書き出し、新しい PC で読み込んでください。回復キーも作っておくと安心です。</dd>
+
+  <dt>ファイルやパスワードがインターネットに送られることはありますか。</dt>
+  <dd>ありません。Vault-ZIP は、ファイル・パスワード・台帳の内容を、利用者の操作なしに外部へ送信しません。アカウントの登録もありません。更新の自動確認もしません。画面の部品（Microsoft の WebView2）が自分で行う通信も止めています（<a href="/vault-zip/privacy.html">プライバシー</a>）。</dd>
+
+  <dt>ダウンロードや起動のときに警告が出ます。</dt>
+  <dd>Vault-ZIP にはまだコード署名をしていないため、Windows の警告が出ることがあります。手順は<a href="/vault-zip/download.html">ダウンロード</a>のページにあります。ダウンロードしたファイルの SHA-256 が、ページに載っている値と同じかを確かめてから実行してください。</dd>
+
+  <dt>どんな形式を展開できますか。</dt>
+  <dd>ZIP、7z、RAR、tar、gz、bz2、xz、zst、CAB、MSI です。形式は拡張子ではなく中身で見分けます。ほかの形式は、外部のツールを設定すると展開できるものもあります（<a href="/vault-zip/specs.html">機能と仕様</a>）。</dd>
+
+  <dt>古いソフトで作った ZIP のファイル名が文字化けします。</dt>
+  <dd>Vault-ZIP は、Shift_JIS で名前を書いた古い日本語の ZIP を自動で見分け、正しい名前で展開します。Mac で作った ZIP の濁点が分かれる名前もそろえ、<code>__MACOSX</code> フォルダーと <code>._</code> で始まるファイルは作りません（設定で変えられます）。</dd>
+
+  <dt>ファイル名が変わって展開されました。</dt>
+  <dd>Windows で使えない名前（<code>CON</code>、<code>?</code> や <code>:</code> を含む名前など）や、拡張子を偽るのに使われる見えない文字を含む名前は、使える名前に置き換えて展開します。どの名前を置き換えたかは、展開の結果に一覧で出ます。</dd>
+
+  <dt>Windows 10 で使えますか。</dt>
+  <dd>使えます。Windows 10 以上の 64 ビット版（x64）に対応しています。Windows 11 の新しい右クリックメニューは Windows 11 だけで、Windows 10 では従来の右クリックメニューに出ます。ARM 版 Windows では確かめていません。</dd>
+
+  <dt>画面共有中にパスワードを表示しても大丈夫ですか。</dt>
+  <dd>設定の「パスワードの表示中は画面共有や撮影に写さない」をオンにすると、パスワードを表示しているウィンドウは、画面共有・録画・スクリーンショットに写りません（Windows 10 バージョン 2004 以降）。既定はオフです。組織では、管理者がこれを常にオンにできます。</dd>
+
+  <dt>RPA から使えますか。</dt>
+  <dd>コマンドライン版 <code>vault-zip-cli.exe</code> が付いています。結果を JSON で受け取れ、終了コードで成否を判定できます。パスワードは標準入力で渡します。</dd>
+
+  <dt>不具合を見つけました／要望があります。</dt>
+  <dd><a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a> までメールでお知らせください。Windows の版、Vault-ZIP の版、操作の手順を書いていただけると助かります。パスワードやファイルそのものは送らないでください。</dd>
+</dl>
+</main>
+</div>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>個人事業主 Toriinthecat（トリインザキャット） ・ お問い合わせ: <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a></p>
+    <p class="sns-row"><a class="sns " href="https://note.com/tori_inthecat" rel="me noopener">note</a> <a class="sns " href="https://x.com/tori_inthecat" rel="me noopener">X</a> <span class="sns ph ">Reddit</span> <a class="sns " href="https://www.instagram.com/tori_inthecat/" rel="me noopener">Instagram</a></p>
+    <p>&copy; Toriinthecat</p>
+  </div>
+</footer>
+</body>
+</html>

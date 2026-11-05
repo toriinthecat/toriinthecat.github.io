@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プライバシー - Vault-ZIP - Toriinthecat</title>
+<meta name="description" content="Vault-ZIP での情報の取り扱い。">
+<link rel="canonical" href="https://toriinthecat.com/vault-zip/privacy.html">
+<link rel="alternate" hreflang="en" href="https://toriinthecat.com/en/vault-zip/privacy.html">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="logo" href="/">Tori<span>in</span>thecat</a>
+    <a class="lang" href="/en/vault-zip/privacy.html" hreflang="en" lang="en">English</a>
+  </div>
+  <nav class="wrap topnav" aria-label="Toriinthecat"><ul><li><a href="/">トップ</a></li><li><a href="/software/" aria-current="page">ソフトウェア</a></li><li><a href="/privacy-policy.html">プライバシーポリシー</a></li><li><a href="/tokushoho.html">特定商取引法に基づく表記</a></li><li><a href="/security.html">セキュリティ</a></li><li><a href="/support.html">応援する</a></li></ul></nav>
+</header>
+<div class="wrap page with-sub">
+<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/vault-zip/">概要</a></li><li><a href="/vault-zip/specs.html">機能と仕様</a></li><li><a href="/vault-zip/robust.html">安心の工夫</a></li><li><a href="/vault-zip/compare.html">くらべてみる</a></li><li><a href="/vault-zip/download.html">ダウンロード</a></li><li><a href="/vault-zip/guide.html">使い方</a></li><li><a href="/vault-zip/faq.html">よくある質問</a></li><li><a href="/vault-zip/history.html">更新履歴</a></li><li><a href="/vault-zip/license.html">ライセンス</a></li><li><a href="/vault-zip/privacy.html" aria-current="page">プライバシー</a></li></ul></nav><main id="main">
+<h1>Vault-ZIP のプライバシー</h1>
+<p class="updated">最終更新日: <span class="ph">公開日</span></p>
+<p class="ph-block">草案です。公開の前に内容をご確認ください。</p>
+
+<p>このページは、Vault-ZIP（Windows 版、Android 版、コマンドライン版）での情報の取り扱いを説明します。Toriinthecat の<a href="/privacy-policy.html">プライバシーポリシー</a>に定めるとおり、Vault-ZIP についてはこのページの記載が優先されます。</p>
+
+<h2>1. 送信しない情報</h2>
+<p>Vault-ZIP は、利用者のファイル、パスワード、台帳の内容を、利用者の操作なしに外部へ送信しません。当方はサーバーを運営しておらず、アカウントの登録もありません。利用状況の分析、広告、トラッキングのためのツールは組み込んでいません。更新の自動確認もしません。なお、当サイトとダウンロード用サーバーでの閲覧数・ダウンロード数の集計は、Cookie を使わず個人を追跡しない形で行っています（<a href="/privacy-policy.html">プライバシーポリシー</a>の第 6 項）。これは Vault-ZIP の中には入っていません。</p>
+<p>Windows 版の画面は、Microsoft の部品（WebView2）が描きます。WebView2 は、何もしなくても Microsoft のサーバーへ接続することがあるため、Vault-ZIP はその自発的な通信を止める設定で画面を開きます。WebView2 自体の更新は、ほかのアプリと同じく Windows と Microsoft Edge の更新に任せています。</p>
+
+<h2>2. PC・デバイスの中に保存する情報</h2>
+<ul>
+  <li>台帳：作った ZIP や PDF の名前、日時、パスワード、メモなど。暗号化して保存します。鍵は Windows の資格情報マネージャー（Android ではデバイスのキーストア）に保存します。ポータブル版では、利用者が決めたパスフレーズで守ります。</li>
+  <li>設定と作業の記録。</li>
+</ul>
+<p>保存場所は、インストール版では <code>%APPDATA%\VaultZip</code>、ポータブル版では展開したフォルダーの中です。</p>
+
+<h2>3. 利用者の操作で外部とやりとりするもの</h2>
+<ul>
+  <li>ファイルの開き方の案内などのリンクを押したとき、ブラウザーでそのページを開きます。</li>
+  <li>バックアップの保存先に、クラウドと同期するフォルダーを選んだ場合、暗号化したバックアップがそのサービスに送られます。</li>
+  <li>メールや共有の機能を使ったとき、選んだアプリに内容が渡ります。</li>
+  <li>設定で外部ツール（7-Zip など）を有効にした場合、そのツールにファイルを渡して展開させます。Vault-ZIP からは通信を求めません。</li>
+</ul>
+<p>このほか、WebView2 ランタイムが入っていない PC では、インストーラーが Microsoft からランタイムを取得します。</p>
+
+<h2>4. ライセンスの確認</h2>
+<p>組織向けのライセンスは、PC の中だけで確かめます。確認のための通信はしません。</p>
+
+<h2>5. お問い合わせ</h2>
+<p>Toriinthecat（トリインザキャット） <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a></p>
+</main>
+</div>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>個人事業主 Toriinthecat（トリインザキャット） ・ お問い合わせ: <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a></p>
+    <p class="sns-row"><a class="sns " href="https://note.com/tori_inthecat" rel="me noopener">note</a> <a class="sns " href="https://x.com/tori_inthecat" rel="me noopener">X</a> <span class="sns ph ">Reddit</span> <a class="sns " href="https://www.instagram.com/tori_inthecat/" rel="me noopener">Instagram</a></p>
+    <p>&copy; Toriinthecat</p>
+  </div>
+</footer>
+</body>
+</html>

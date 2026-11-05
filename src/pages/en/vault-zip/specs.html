@@ -1,0 +1,137 @@
+<!-- {"title": "Features and specs - Vault-ZIP", "description": "What Vault-ZIP does in detail: encryption, formats, file names, network behaviour, tested compatibility and performance, management for organisations.", "nav": "software", "section": "vault-zip", "page": "specs"} -->
+<h1>Features and specs</h1>
+<p class="lead">What Vault-ZIP does and how far it has been tested. Figures were measured on our own PC and will differ on yours.</p>
+
+<h2>Creating ZIP files</h2>
+<table>
+  <tbody>
+    <tr><th>Encryption</th><td>AES-256 (WinZip AES). The key is derived from the password with PBKDF2, and every file carries a value (HMAC) that reveals tampering. The old ZipCrypto method is never used for writing.</td></tr>
+    <tr><th>Passwords</th><td>Generate one (length and character types set in the settings), use a preset one, type one each time, or none. The password is recorded in the ledger.</td></tr>
+    <tr><th>Checked after writing</th><td>The finished ZIP is read back in full to make sure every file comes out as it went in. Its SHA-256 is recorded too.</td></tr>
+    <tr><th>File names</th><td>Written as UTF-8 (with the UTF-8 flag) and normalised to NFC, so names from a Mac look the same on Windows.</td></tr>
+    <tr><th>Compress separately</th><td>Turns each selected file or folder into its own ZIP.</td></tr>
+    <tr><th>No overwriting</th><td>If the name is taken, " (2)" is added. An existing file is replaced only if you chose that in the settings.</td></tr>
+  </tbody>
+</table>
+
+<h2>Extracting</h2>
+<table>
+  <tbody>
+    <tr><th>Formats</th><td>ZIP (Deflate, Deflate64, BZip2, LZMA, XZ, Zstandard, PPMd, the old PKZIP 1.x methods, AES-256, ZipCrypto), 7z (including encrypted headers), RAR (1.5 to 7, RAR5, encrypted, solid), tar and tar.gz/.bz2/.xz/.zst, single gz/bz2/xz/zst files, CAB, MSI, and self-extracting 7z, ZIP and RAR.</td></tr>
+    <tr><th>Recognition</th><td>By content, not extension. A file with the wrong extension still extracts.</td></tr>
+    <tr><th>External tools</th><td>ISO, LZH, ARJ, NSIS, Inno Setup and others are extracted by a tool such as 7-Zip, only if you enable it in the settings (off by default).</td></tr>
+    <tr><th>Ledger passwords</th><td>ZIP files made by Vault-ZIP open with the password recorded in the ledger.</td></tr>
+    <tr><th>Tampering</th><td>An AES-encrypted ZIP succeeds only when every file's HMAC matches; otherwise no partial file is left as if it were complete. A matching HMAC means the encrypted data has not changed; it does not prove who made the file.</td></tr>
+  </tbody>
+</table>
+
+<h2>File names</h2>
+<p>The aim: a ZIP made on any system extracts into the same folder structure on any system.</p>
+<ul>
+  <li><b>Old Japanese ZIP files</b>: names written in Shift_JIS by older Windows tools are recognised and extracted with the right Japanese names, including characters whose second byte is <code>\</code>.</li>
+  <li><b>macOS names</b>: decomposed (NFD) names are normalised to NFC.</li>
+  <li><b>macOS extra files</b>: the <code>__MACOSX</code> folder and <code>._</code> files are left out (can be changed in the settings), and the number left out is reported.</li>
+  <li><b>Names Windows cannot hold</b>: reserved names such as <code>CON</code>, names with <code>?</code> or <code>:</code>, and trailing dots are replaced with usable names, and the result lists every change.</li>
+  <li><b>Invisible characters</b>: characters that reverse text direction (used to disguise an extension, as in a name shown as <code>invoiceexe.pdf</code> that is really an .exe), zero-width characters and control characters become <code>_</code> and are shown in a visible form such as <code>\u{202E}</code>.</li>
+  <li><b>Names that differ only in case</b>: Windows treats them as one name, so one gets " (2)" and both are kept.</li>
+</ul>
+
+<h2>Hostile archives</h2>
+<p>Each of the following is stopped before or during extraction, or made harmless. Automated tests check every one on each build.</p>
+<ul>
+  <li>Names that would write outside the folder (<code>../</code>, absolute paths, drive letters): stopped before anything is written.</li>
+  <li>Symbolic links, junctions, devices and other special files: never created.</li>
+  <li>Archives that grow huge when extracted (ZIP bombs): Vault-ZIP counts the bytes it writes instead of trusting the headers.</li>
+  <li>More than 100,000 files: Vault-ZIP asks before going on.</li>
+  <li>Damaged files: 42,000 damaged RAR files, 300 damaged CAB files and fuzzing (large amounts of random input) cause no crash.</li>
+  <li>A full disk or a forced stop during extraction: no partial file is left under its final name, and the next start cleans up.</li>
+</ul>
+
+<h2>Password ledger</h2>
+<table>
+  <tbody>
+    <tr><th>Storage</th><td>A database encrypted with SQLCipher (AES-256). Its key is kept in Windows Credential Manager. The portable version uses a passphrase you choose.</td></tr>
+    <tr><th>Contents</th><td>Names of the ZIP and PDF files, dates, passwords, notes and the list of original files.</td></tr>
+    <tr><th>Showing and copying</th><td>A password appears only when you press "Show", after an identity check such as Windows Hello. A copied password is kept out of the Windows clipboard history (Win+V) and cloud clipboard and is cleared after a while, unless you have copied something else meanwhile.</td></tr>
+    <tr><th>Screen captures</th><td>An option keeps a window showing a password out of screen sharing, recordings and screenshots (off by default; Windows 10 version 2004 or later).</td></tr>
+    <tr><th>Safeguards</th><td>Recovery key, encrypted backup export and import, automatic backups. A failed import leaves the current ledger and key untouched.</td></tr>
+    <tr><th>Across versions</th><td>A copy is made before the ledger format is upgraded. Data written by a newer version is not changed by an older one, which stops and says so.</td></tr>
+  </tbody>
+</table>
+
+<h2>PDF encryption</h2>
+<table>
+  <tbody>
+    <tr><th>Method</th><td>AES-256 (the PDF 2.0 method, R6). An open password is added and recorded in the ledger.</td></tr>
+    <tr><th>Viewers tested</th><td>pdfium (the engine of Chrome, Edge and Android), pdf.js (Firefox's engine) and qpdf: they open the file with the right password, refuse a wrong one, and give the same Japanese text as the original.</td></tr>
+    <tr><th>Checked after writing</th><td>The encrypted PDF is read back and compared with the original.</td></tr>
+  </tbody>
+</table>
+
+<h2>What is this file?</h2>
+<p>Tells a file's type from its content, not its extension, and which apps usually open it. The file is never opened or run. About 0.1 ms per file (our PC, SSD). The result is an estimate, not a safety verdict.</p>
+
+<h2>Network</h2>
+<p><b>Vault-ZIP connects only when you ask it to.</b> There is no automatic update check, no usage reporting, no licence check over the network and no account.</p>
+<ul>
+  <li>The Microsoft component that draws the windows (WebView2) can connect to Microsoft's servers on its own. Vault-ZIP creates every window with that background traffic switched off. In our measurement, nothing left the PC in the first 100 seconds after start.</li>
+  <li>Connections happen only when you click a guide link (your browser opens it), when you share a file with an app you pick, and when the installer fetches WebView2 on a PC that lacks it.</li>
+  <li>The Windows version contains no internet client component.</li>
+</ul>
+
+<h2>Compatibility with other tools</h2>
+<p>AES-256 ZIP files made by Vault-ZIP have been tested with:</p>
+<table>
+  <thead><tr><th>Tool</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>7-Zip 26.05</td><td>Opens with the password; at three compression levels every file is identical to the original (compared by SHA-256). Japanese names and nested folders are correct.</td></tr>
+    <tr><td>Windows 11 File Explorer</td><td>Asks for the password and extracts. Names in Japanese, with full-width brackets or emoji, and sizes are shown correctly.</td></tr>
+    <tr><td>Windows <code>tar.exe</code></td><td>Extracts every file at the right size with the password.</td></tr>
+  </tbody>
+</table>
+<p>The other way round, 7z files made by 7-Zip 26.05 (including encrypted headers), self-extracting files, ZIP files with various methods, and tar files extract in Vault-ZIP with every file identical to the original.</p>
+<p class="note">Tests with Lhaplus, CubeICE and other tools are still to come.</p>
+
+<h2>Performance</h2>
+<p>Measured on our PC (Ryzen 5 5600X, 32 GB of memory, an NVMe SSD and a 5,400 rpm hard disk). Compression time includes reading the ZIP back to check it.</p>
+<table>
+  <thead><tr><th>Measured</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>One 5 GB file (SSD, AES-256)</td><td>Compress about 116 MB/s, extract about 267 MB/s</td></tr>
+    <tr><td>Memory, one file up to 100 GB</td><td>About 13 MB, not growing with the size</td></tr>
+    <tr><td>100,000 small files</td><td>Done in under 100 MB of memory</td></tr>
+    <tr><td>The small panel from the right-click menu</td><td>Shown in about 0.4 s</td></tr>
+  </tbody>
+</table>
+
+<h2>Command line (for RPA)</h2>
+<ul>
+  <li><code>vault-zip-cli.exe</code> compresses, extracts, encrypts PDFs and searches the ledger, from Power Automate for desktop and similar tools.</li>
+  <li>Results come as JSON; exit codes tell success and the reason for a failure.</li>
+  <li>Passwords go through standard input, never the command line (which other programs can read).</li>
+  <li>Starts in about 14 ms.</li>
+</ul>
+
+<h2>Management for organisations (licence required)</h2>
+<ul>
+  <li>Per-machine MSI for deployment tools.</li>
+  <li>Rules users cannot change: no ZIP without a password, password method and minimum length, checking always on, passwords kept out of screen captures, a fixed folder for automatic ledger backups, no external tools, and more.</li>
+  <li>Rules are deployed from the app, an organisation settings file, Group Policy (ADMX) or Intune.</li>
+  <li>Licences are checked on the PC only. There is no licence server.</li>
+</ul>
+
+<h2>Packages</h2>
+<ul>
+  <li>The SHA-256 of every package is listed on the download page.</li>
+  <li>Every package includes a list of its components (SBOM, CycloneDX) and the full licence text of each.</li>
+  <li>How to report a vulnerability: see <a href="/en/security.html">Security</a>.</li>
+</ul>
+
+<h2>System requirements</h2>
+<table>
+  <tbody>
+    <tr><th>Windows</th><td>Windows 10 or later (64-bit, x64). On Windows 11, Vault-ZIP also appears in the new right-click menu. Not tested on Windows on ARM.</td></tr>
+    <tr><th>Android</th><td>Coming</td></tr>
+    <tr><th>Language</th><td>Japanese (English is planned)</td></tr>
+  </tbody>
+</table>

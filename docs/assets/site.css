@@ -1,0 +1,173 @@
+/* Toriinthecat: a warm, soft site for the software of one maker. Always light (a soft cream and
+   rose palette; text colours keep a 4.5:1 contrast). No web fonts, no scripts. */
+:root {
+  color-scheme: light;
+  --bg: #fffaf6;
+  --surface: #ffffff;
+  --text: #3d3540;
+  --muted: #6e6573;
+  --line: #efe4e0;
+  --accent: #b54a5f;
+  --accent-soft: #fcecef;
+  --accent-2-soft: #f2eefa;
+  --link: #a8455a;
+  --shadow: 0 2px 10px rgba(181, 74, 95, 0.08);
+  --ph-bg: #fff6d6;
+  --ph-line: #e0b84a;
+  --ph-text: #6b5200;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.page { flex: 1 0 auto; width: 100%; }
+a { color: var(--link); text-underline-offset: 0.15em; }
+a:hover { text-decoration-thickness: 2px; }
+img { max-width: 100%; height: auto; }
+
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 12px; top: 12px; background: var(--surface); padding: 6px 10px; z-index: 10; }
+
+/* Header and top menu */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
+.header-row { display: flex; align-items: center; justify-content: space-between; padding-top: 18px; padding-bottom: 6px; }
+.logo { font-weight: 700; font-size: 1.35rem; letter-spacing: 0.03em; color: var(--text); text-decoration: none; }
+.logo span { color: var(--accent); }
+.lang { font-size: 0.85rem; border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; text-decoration: none; color: var(--text); background: var(--bg); }
+.topnav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 4px 0 10px; font-size: 0.92rem; }
+.topnav a { color: var(--muted); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+.topnav a:hover { color: var(--text); }
+.topnav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+
+/* Page with an optional product menu on the left */
+.page { padding-top: 28px; padding-bottom: 56px; }
+.page.with-sub { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 36px; }
+.subnav { font-size: 0.92rem; }
+.subnav-name { font-weight: 700; margin: 0 0 6px; }
+.subnav ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
+.subnav a { display: block; padding: 3px 12px; color: var(--muted); text-decoration: none; margin-left: -2px; border-left: 2px solid transparent; }
+.subnav a:hover { color: var(--text); }
+.subnav a[aria-current="page"] { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+@media (max-width: 720px) {
+  .page.with-sub { display: block; }
+  .subnav { margin-bottom: 20px; }
+  .subnav ul { display: flex; flex-wrap: wrap; gap: 2px 14px; border-left: 0; }
+  .subnav a { padding: 2px 0; margin: 0; border-left: 0; }
+  .subnav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+}
+
+/* Text */
+main { min-width: 0; }
+h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.4; margin: 0 0 6px; }
+h2 { font-size: 1.15rem; font-weight: 700; margin: 2.2em 0 0.7em; padding-left: 12px; border-left: 4px solid var(--accent-soft); border-radius: 2px; }
+h3 { font-size: 1rem; margin: 1.6em 0 0.4em; }
+p, ul, ol, dl, table { margin: 0 0 1em; }
+ul, ol { padding-left: 1.4em; }
+li + li { margin-top: 0.2em; }
+.lead { color: var(--muted); margin-bottom: 1.6em; }
+.updated { color: var(--muted); font-size: 0.85rem; }
+.note { font-size: 0.88rem; color: var(--muted); }
+small { font-size: 0.85em; }
+code, kbd { font-family: Consolas, "Cascadia Mono", monospace; font-size: 0.9em; background: var(--accent-2-soft); padding: 1px 6px; border-radius: 6px; }
+pre { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; overflow-x: auto; font-size: 0.88rem; line-height: 1.6; }
+pre code { background: none; padding: 0; }
+
+/* Tables (spec sheets, downloads, legal notices) */
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+th, td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+thead th { border-bottom: 1px solid var(--accent-soft); font-size: 0.88rem; color: var(--muted); }
+tbody th { width: 30%; font-weight: 600; }
+.table-scroll { overflow-x: auto; }
+
+/* The software list */
+.apps { list-style: none; padding: 0; display: grid; gap: 14px; }
+.apps li { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); }
+.apps .name { font-weight: 700; font-size: 1.05rem; }
+.apps .meta { color: var(--muted); font-size: 0.85rem; margin: 2px 0 6px; }
+.apps p { margin: 0 0 6px; }
+.apps li.featured { border-color: var(--accent-soft); }
+.apps-featured li { background: linear-gradient(135deg, var(--accent-soft), var(--accent-2-soft)); border: 0; padding: 22px 24px; }
+.apps-featured .name { font-size: 1.3rem; }
+.badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; vertical-align: 2px; border: 1px solid var(--line); color: var(--muted); }
+.badge-featured { border-color: var(--accent); color: var(--accent); }
+.badge-available { border-color: var(--accent); color: var(--text); }
+.badge-ended { opacity: 0.7; }
+
+/* Catchphrase, three pillars, comparison table */
+.catch { font-size: 1.45rem; font-weight: 700; line-height: 1.5; margin: 4px 0 6px; color: var(--accent); }
+.pillars { list-style: none; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin: 16px 0; }
+.pillars li { margin: 0; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); font-size: 0.92rem; }
+.pillars li:nth-child(even) { background: var(--accent-2-soft); border-color: transparent; }
+.pillars li:nth-child(odd) { background: var(--accent-soft); border-color: transparent; }
+.pillars b { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+table.compare td.yes { background: var(--accent-soft); font-weight: 600; }
+table.compare td.no { color: var(--muted); }
+table.compare th.group { background: var(--bg); text-align: left; font-size: 0.85rem; color: var(--muted); }
+table.compare thead th:nth-child(2) { color: var(--accent); }
+
+/* "Does this sound familiar?" and the maker's note */
+.worries { list-style: none; padding: 0; display: grid; gap: 8px; }
+.worries li { margin: 0; padding: 10px 16px 10px 40px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; position: relative; font-size: 0.95rem; }
+.worries li::before { content: "?"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 0.8rem; font-weight: 700; display: grid; place-items: center; }
+.maker-note { margin: 28px 0; padding: 20px 24px; background: var(--accent-2-soft); border-radius: 18px; }
+.maker-note-title { font-weight: 700; margin: 0 0 6px; }
+.maker-note p { margin: 0 0 8px; }
+
+/* Support */
+.support-card { margin: 24px 0; padding: 18px 22px; border-radius: 18px; background: linear-gradient(135deg, var(--accent-2-soft), var(--accent-soft)); }
+.support-title { font-weight: 700; margin: 0 0 4px; }
+.support-card p { margin: 0 0 6px; }
+.support-title::before { content: "♡ "; color: var(--accent); }
+
+/* Development journal and social links */
+.devlog { margin: 24px 0; padding: 20px 24px; border: 1px dashed var(--accent); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); }
+.devlog-title { font-weight: 700; font-size: 1.15rem; margin: 0 0 6px; }
+.devlog p { margin: 0 0 8px; }
+.sns-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; }
+.sns { display: inline-block; padding: 4px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 0.9rem; text-decoration: none; background: var(--surface); }
+.sns-devlog { border-color: var(--accent); background: var(--accent-soft); font-weight: 700; }
+.site-footer .sns { font-size: 0.8rem; padding: 2px 10px; }
+
+/* Feature list on a product page */
+.features { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 24px; }
+.features li { margin: 0; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.features b { display: block; }
+
+/* Q&A */
+dl.faq dt { font-weight: 700; margin-top: 1.4em; }
+dl.faq dt::before { content: "Q. "; color: var(--accent); }
+dl.faq dd { margin: 0.3em 0 0; }
+
+/* Screenshots */
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.shots figure { margin: 0; }
+.shots figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+.shot-ph { aspect-ratio: 16 / 10; display: grid; place-items: center; background: var(--surface); border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); font-size: 0.85rem; }
+
+/* A soft, rounded button */
+.button { display: inline-block; padding: 8px 22px; border: 0; border-radius: 999px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; box-shadow: var(--shadow); }
+.button:hover { background: var(--link); }
+.button[aria-disabled="true"] { border-color: var(--line); color: var(--muted); pointer-events: none; }
+
+/* Text still to be written or confirmed before publishing */
+.ph { background: var(--ph-bg); color: var(--ph-text); border: 1px dashed var(--ph-line); border-radius: 3px; padding: 0 5px; font-size: 0.9em; }
+.ph-block { background: var(--ph-bg); color: var(--ph-text); border: 1px dashed var(--ph-line); border-radius: 12px; padding: 10px 14px; font-size: 0.9rem; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); background: var(--surface); color: var(--muted); font-size: 0.85rem; padding: 18px 0 26px; }
+.site-footer p { margin: 0 0 4px; }
+
+/* Download table: keep the kind and the headings on one line */
+.downloads th, .downloads td:first-child, .downloads td:nth-child(3) { white-space: nowrap; }
+.downloads td:nth-child(2) { word-break: break-all; }

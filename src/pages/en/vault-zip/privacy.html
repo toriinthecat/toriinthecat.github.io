@@ -1,0 +1,32 @@
+<!-- {"title": "Privacy - Vault-ZIP", "description": "How Vault-ZIP handles information.", "nav": "software", "section": "vault-zip", "page": "privacy"} -->
+<h1>Vault-ZIP privacy</h1>
+<p class="updated">Last updated: <span class="ph">release date</span></p>
+<p class="ph-block">Draft. To be reviewed before publishing.</p>
+
+<p>This page explains how Vault-ZIP (Windows, Android and the command-line tool) handles information. As our <a href="/privacy-policy.html#en">privacy policy</a> provides, this page takes precedence for Vault-ZIP.</p>
+
+<h2>1. What is not sent</h2>
+<p>Vault-ZIP never sends your files, passwords or ledger anywhere without your action. We run no servers and there is no account. Vault-ZIP contains no analytics, advertising or tracking tools, and does not check for updates by itself. Page views and download counts on this website and the download server are counted without cookies and without tracking individuals (section 6 of the <a href="/privacy-policy.html">privacy policy</a>); none of this is inside Vault-ZIP.</p>
+<p>The Windows version draws its windows with a Microsoft component, WebView2, which can connect to Microsoft's servers on its own. Vault-ZIP opens its windows with that background traffic switched off. WebView2 itself is updated, as for other apps, through Windows and Microsoft Edge updates.</p>
+
+<h2>2. What is stored on your PC or device</h2>
+<ul>
+  <li>The ledger: names, dates, passwords and notes of the ZIP and PDF files you make, stored encrypted. Its key is kept in Windows Credential Manager (on Android, the device keystore). The portable version protects it with a passphrase you choose.</li>
+  <li>Settings and a record of the work done.</li>
+</ul>
+<p>Data is stored in <code>%APPDATA%\VaultZip</code> (installed version) or inside the portable version's folder.</p>
+
+<h2>3. What goes out only when you act</h2>
+<ul>
+  <li>Links, such as guides on how to open a file, open in your browser.</li>
+  <li>If you choose a cloud-synced folder for backups, the encrypted backups are sent to that service.</li>
+  <li>When you use mail or share, the app you pick receives the content.</li>
+  <li>If you enable an external tool (such as 7-Zip) in the settings, files are handed to that tool to extract. Vault-ZIP asks it for no connection.</li>
+</ul>
+<p>Besides this, on a PC without the WebView2 Runtime the installer downloads it from Microsoft.</p>
+
+<h2>4. Licence check</h2>
+<p>Licences for organisations are checked on the PC only; nothing is sent.</p>
+
+<h2>5. Contact</h2>
+<p>Toriinthecat <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a></p>

@@ -1,0 +1,60 @@
+<!-- {"title": "Built with care - Vault-ZIP", "description": "Six ways Vault-ZIP looks after your files and passwords in an age when AI hunts for software flaws.", "nav": "software", "section": "vault-zip", "page": "robust"} -->
+<h1>Built with care</h1>
+<p class="lead">You trust it with your files and passwords, so the parts you never see get the most care.</p>
+
+<p>With AI, finding a program's weak spots and crafting files that hit them has become faster and cheaper. Compressed files arrive by mail and download, and are hard to inspect before opening: they have long been a way in for attackers.</p>
+<p>Vault-ZIP follows six principles. None of them is "we were careful"; each is <b>a mechanism or a test you can check</b>.</p>
+
+<h2>1. A language that makes flaws hard to write (Rust)</h2>
+<p>Microsoft and Google have reported that about 70 % of the serious vulnerabilities in their products come from memory mistakes: reading or writing outside a buffer, using memory after it was freed, and so on. These mistakes are common in software written in C and C++.</p>
+<p>Vault-ZIP's own code is written in <b>Rust</b>, a language that finds and stops such memory mistakes when the program is built. Most of the code that touches data from outside (compression, extraction, cryptography, name checks, the ledger) is Rust.</p>
+<p class="note">To be honest, not everything is Rust. RAR extraction (the RAR author's library), the ledger's encrypted database (SQLCipher) and the window component (Microsoft WebView2) are written in C or C++. RAR extraction has been fed 42,000 damaged RAR files without a crash.</p>
+
+<h2>2. Every incoming file is treated as hostile</h2>
+<ul>
+  <li><b>Nothing outside the folder</b>: names with <code>../</code> or absolute paths are stopped before anything is written.</li>
+  <li><b>No links</b>: symbolic links and junctions that point elsewhere are never created.</li>
+  <li><b>No disguises</b>: names that hide their real extension with invisible characters, such as a name shown as <code>invoiceexe.pdf</code> that is really an .exe program because an invisible character (U+202E) reverses part of it, are replaced and reported.</li>
+  <li><b>Headers are not trusted</b>: Vault-ZIP counts the bytes it writes and stops files that swell abnormally (ZIP bombs), whatever the header claims.</li>
+  <li><b>No crash on damaged files</b>: a problem while reading stops with an error, and no partial file is left as if it were complete.</li>
+</ul>
+
+<h2>3. Testing the way attackers do (fuzzing)</h2>
+<p>Fuzzing feeds a program huge numbers of machine-made broken files and odd names, looking for crashes. It is how attackers and AI look for flaws; we do it before shipping.</p>
+<ul>
+  <li>Extraction: 35 minutes of damaged archives</li>
+  <li>File-name rules: 185,581 names in 300 seconds</li>
+  <li>PDF encryption: 31,581 PDFs in 900 seconds</li>
+  <li>File identification: 900 seconds</li>
+</ul>
+<p>No crash, hang or memory error has been found (run with a memory-error detector). Automated tests that recreate each known trick of hostile archives run on every change.</p>
+
+<h2>4. No network</h2>
+<p>Without a way onto the network, there is nothing to attack from outside and nothing to leak. Vault-ZIP has no automatic update check, no usage reporting, no licence check over the network and no account.</p>
+<p>The background traffic of the window component (Microsoft WebView2) is switched off too. In our measurement, nothing left the PC in the first 100 seconds after start.</p>
+
+<h2>5. Passwords that do not leak</h2>
+<ul>
+  <li><b>Never on the command line</b>: the command-line tool takes passwords only through standard input, because command lines can be read by other programs, logs, and the records of AI agents and RPA tools you hand work to.</li>
+  <li><b>Never in logs or errors</b>: passwords live in dedicated containers that are wiped from memory after use, and never appear in logs, error messages or JSON output.</li>
+  <li><b>An identity check before showing</b>: a ledger password appears only when you press "Show", after Windows Hello or a similar check.</li>
+  <li><b>Not left on the clipboard</b>: a copied password stays out of the clipboard history and cloud clipboard and is cleared after a while.</li>
+  <li><b>Not on screen captures</b>: an option keeps a window showing a password out of screen sharing, recordings and screenshots.</li>
+</ul>
+
+<h2>6. Nothing broken, tampering noticed</h2>
+<ul>
+  <li><b>No overwriting</b>: a taken name gets " (2)". Even when you choose to replace, the new file is finished under another name and swapped in one step, so a failure leaves the old one intact.</li>
+  <li><b>Checked before done</b>: the new ZIP is read back to make sure every file comes out as it went in. Originals go to the Recycle Bin only after that check, and only if they still match the ZIP.</li>
+  <li><b>Tampering noticed</b>: an AES ZIP fails if any file's check value (HMAC) does not match. This shows the encrypted data has not changed; it does not prove who made the file.</li>
+  <li><b>The ledger is not lost</b>: a failed backup import leaves the current ledger and key untouched, and a missing key is never replaced by a new one over an existing ledger.</li>
+</ul>
+
+<h2>What Vault-ZIP cannot do</h2>
+<ul>
+  <li>File names inside a ZIP are not encrypted; the ZIP format does not allow it. To hide names too, put the ZIP inside another ZIP.</li>
+  <li>Encryption is as strong as the password. Generated passwords are recommended.</li>
+  <li>If the PC itself is taken over (for example by malware with administrator rights), no software can protect you. Vault-ZIP is not a replacement for antivirus software.</li>
+  <li>It is not code-signed yet. Check downloads against the SHA-256 values (<a href="/en/vault-zip/download.html">download</a>).</li>
+</ul>
+<p>To report a vulnerability, see <a href="/en/security.html">Security</a>.</p>

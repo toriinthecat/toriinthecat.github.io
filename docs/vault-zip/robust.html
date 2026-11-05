@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>安心して使ってもらうための工夫 - Vault-ZIP - Toriinthecat</title>
+<meta name="description" content="AI でソフトの弱点が探される時代に、Vault-ZIP が大切なファイルとパスワードを守るためにしている 6 つの工夫。">
+<link rel="canonical" href="https://toriinthecat.com/vault-zip/robust.html">
+<link rel="alternate" hreflang="en" href="https://toriinthecat.com/en/vault-zip/robust.html">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="logo" href="/">Tori<span>in</span>thecat</a>
+    <a class="lang" href="/en/vault-zip/robust.html" hreflang="en" lang="en">English</a>
+  </div>
+  <nav class="wrap topnav" aria-label="Toriinthecat"><ul><li><a href="/">トップ</a></li><li><a href="/software/" aria-current="page">ソフトウェア</a></li><li><a href="/privacy-policy.html">プライバシーポリシー</a></li><li><a href="/tokushoho.html">特定商取引法に基づく表記</a></li><li><a href="/security.html">セキュリティ</a></li><li><a href="/support.html">応援する</a></li></ul></nav>
+</header>
+<div class="wrap page with-sub">
+<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/vault-zip/">概要</a></li><li><a href="/vault-zip/specs.html">機能と仕様</a></li><li><a href="/vault-zip/robust.html" aria-current="page">安心の工夫</a></li><li><a href="/vault-zip/compare.html">くらべてみる</a></li><li><a href="/vault-zip/download.html">ダウンロード</a></li><li><a href="/vault-zip/guide.html">使い方</a></li><li><a href="/vault-zip/faq.html">よくある質問</a></li><li><a href="/vault-zip/history.html">更新履歴</a></li><li><a href="/vault-zip/license.html">ライセンス</a></li><li><a href="/vault-zip/privacy.html">プライバシー</a></li></ul></nav><main id="main">
+<h1>安心して使ってもらうための工夫</h1>
+<p class="lead">大切なファイルとパスワードを預けてもらうソフトだから、見えないところこそ、ていねいに。</p>
+
+<p>最近は AI を使って、ソフトの弱いところを探したり、そこをねらうファイルを作ったりすることが、ずっと手軽になりました。メールやダウンロードで届く圧縮ファイルは、開く前に中身を確かめにくいので、昔からいたずらや攻撃に使われやすいものです。</p>
+<p>Vault-ZIP では、次の 6 つの工夫をしています。「気を付けて作りました」で終わらせず、<b>仕組みと試験で確かめられる形</b>にしているのがこだわりです。</p>
+
+<h2>1. ほころびにくい言葉で書いています（Rust）</h2>
+<p>Microsoft や Google は、自社の製品の深刻な弱点のおよそ 7 割が、メモリの扱い方のまちがい（決められた場所の外を読み書きしてしまう、など）から生まれていると報告しています。こうしたまちがいは、C や C++ という言葉で書かれたソフトで起きやすいものです。</p>
+<p>Vault-ZIP の本体は <b>Rust</b> で書いています。Rust は、こうしたまちがいを、プログラムを作る段階で見つけて止めてくれる言葉です。外から届いたファイルにふれる部分（圧縮、展開、暗号、名前のチェック、台帳）の大半が Rust です。</p>
+<p class="note">正直にお伝えすると、すべてが Rust というわけではありません。RAR の展開（RAR の作者のライブラリ）、台帳を暗号化して保存するデータベース（SQLCipher）、画面を描く部品（Microsoft の WebView2）は C や C++ の部品です。RAR の展開は、42,000 個の壊れた RAR を読ませても止まらないことを確かめています。</p>
+
+<h2>2. 届いたファイルは、まず疑ってみます</h2>
+<p>展開する前と、展開しているあいだに、こんなことを確かめています。</p>
+<ul>
+  <li><b>フォルダーの外には書かせません</b>：<code>../</code> などで外へ書き出そうとする名前は、何かを書く前に止めます。</li>
+  <li><b>ショートカットのような仕掛けは作りません</b>：別の場所を指すリンク（シンボリックリンクなど）は作りません。</li>
+  <li><b>見た目でだまされません</b>：画面では <code>invoiceexe.pdf</code> と PDF のように見えるのに、本当は .exe のプログラム、という名前があります。名前の途中に、文字の向きを逆にする見えない文字（U+202E）がまぎれているためです。こうした名前は置き換えて、お知らせします。</li>
+  <li><b>「小さいです」をうのみにしません</b>：書いた量を自分で数えて、開くと巨大にふくらむファイル（ZIP 爆弾）を止めます。</li>
+  <li><b>壊れたファイルでも慌てません</b>：途中でおかしなところが見つかったら、そこで止めます。作りかけのファイルを完成品として残しません。</li>
+</ul>
+
+<h2>3. 弱いところは、先に自分で探します（ファジング）</h2>
+<p>ファジングは、機械で壊れたファイルや変な名前をたくさん作って読ませ続け、止まってしまうところを探す試験です。弱いところを探す人や AI と同じ方法を、お届けする前に自分で試しています。</p>
+<ul>
+  <li>展開：35 分間、壊れた圧縮ファイルを読ませ続ける</li>
+  <li>ファイル名のルール：300 秒で 185,581 通りの名前</li>
+  <li>PDF の暗号化：900 秒で 31,581 通りの PDF</li>
+  <li>何のファイルか調べる機能：900 秒</li>
+</ul>
+<p>どれも、止まる、固まる、メモリがおかしくなる、といった問題は見つかっていません。さらに、いたずら目的の圧縮ファイルの手口を一つずつ再現した自動テストを、変更のたびに動かしています。</p>
+
+<h2>4. 外とはつながりません</h2>
+<p>インターネットにつながる入口がなければ、そこからねらわれることも、データがもれることもありません。Vault-ZIP には、更新の自動確認、使い方の送信、ライセンスの確認のための通信、アカウントがありません。</p>
+<p>画面を描く Microsoft の部品（WebView2）が自分で行う通信も止めています。わたしの計測では、起動してから 100 秒のあいだ、外への接続は 0 件でした。</p>
+
+<h2>5. パスワードは、人にも記録にも見せません</h2>
+<ul>
+  <li><b>コマンドに書かせません</b>：コマンドライン版は、パスワードを標準入力でだけ受け取ります。コマンドの文字列は、ほかのプログラムやログ、お仕事を任せた AI エージェントや RPA の記録から見えてしまうことがあるからです。</li>
+  <li><b>ログに残しません</b>：パスワードは専用の入れ物に入れて、使い終わったらメモリから消します。ログやエラーの文、JSON の出力にも出しません。</li>
+  <li><b>見る前に本人確認</b>：台帳のパスワードは「表示」を押したときだけ出します。その前に Windows Hello などで本人確認をします。</li>
+  <li><b>クリップボードに残しません</b>：コピーしたパスワードは、クリップボードの履歴やクラウドへの同期に入れず、しばらくすると消します。</li>
+  <li><b>画面に写しません</b>：設定で、パスワードを表示しているウィンドウを、画面共有や録画、スクリーンショットに写さないようにできます。</li>
+</ul>
+
+<h2>6. こわさない、変えられたら気づきます</h2>
+<ul>
+  <li><b>上書きしません</b>：同じ名前があれば (2) を付けます。上書きを選んだときも、別の名前で完成させてから一度に置き換えるので、途中で失敗しても元のファイルは残ります。</li>
+  <li><b>確かめてから完成</b>：作った ZIP を読み直して、全部のファイルが元どおり取り出せることを確かめます。元のファイルをごみ箱へ移すのは、その確認が済んで、元のファイルが ZIP と一致したときだけです。</li>
+  <li><b>書き換えに気づきます</b>：AES の ZIP は、ファイルごとの確認用の値（HMAC）が合わなければ失敗にします。これは「暗号化したデータが変わっていない」ことの確認で、作った人が誰かの証明ではありません。</li>
+  <li><b>台帳をなくしません</b>：バックアップの読み込みに失敗しても、今の台帳と鍵はそのまま残ります。台帳の鍵が見つからないときに、新しい鍵で上書きすることもありません。</li>
+</ul>
+
+<h2>できないことも、お伝えしておきます</h2>
+<ul>
+  <li>ZIP の中のファイル名は、ZIP の決まりで暗号化されません。名前も隠したいときは、ZIP をもう一つの ZIP に入れてください。</li>
+  <li>暗号の強さは、パスワードの強さで決まります。Vault-ZIP が自動で作るパスワードを使うのがおすすめです。</li>
+  <li>PC そのものが乗っ取られてしまった場合（管理者の権限を持つウイルスなど）は、どのソフトでも守れません。ウイルス対策ソフトの代わりにもなりません。</li>
+  <li>今はまだコード署名をしていません。ダウンロードしたファイルは、SHA-256 の値で確かめてください（<a href="/vault-zip/download.html">ダウンロード</a>）。</li>
+</ul>
+<p>弱いところを見つけたときの連絡先は、<a href="/security.html">セキュリティ</a>のページにあります。</p>
+</main>
+</div>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>個人事業主 Toriinthecat（トリインザキャット） ・ お問い合わせ: <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a></p>
+    <p class="sns-row"><a class="sns " href="https://note.com/tori_inthecat" rel="me noopener">note</a> <a class="sns " href="https://x.com/tori_inthecat" rel="me noopener">X</a> <span class="sns ph ">Reddit</span> <a class="sns " href="https://www.instagram.com/tori_inthecat/" rel="me noopener">Instagram</a></p>
+    <p>&copy; Toriinthecat</p>
+  </div>
+</footer>
+</body>
+</html>

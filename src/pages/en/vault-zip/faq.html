@@ -1,0 +1,43 @@
+<!-- {"title": "FAQ - Vault-ZIP", "description": "Frequently asked questions about Vault-ZIP.", "nav": "software", "section": "vault-zip", "page": "faq"} -->
+<h1>FAQ</h1>
+
+<dl class="faq">
+  <dt>Is it free?</dt>
+  <dd>Free for individuals, including work use (sole traders and side jobs). Schools and non-profits use it free without applying. Companies, government offices and other organisations need a licence: 1,000 yen per PC (<a href="/en/vault-zip/license.html">licence</a>).</dd>
+
+  <dt>Can a ZIP made by Vault-ZIP be opened on a PC without Vault-ZIP?</dt>
+  <dd>Yes. Any tool that supports AES-256 encrypted ZIP files (WinZip AES) opens it with the password. We have checked 7-Zip and Windows 11 File Explorer. A ZIP made without a password opens anywhere.</dd>
+
+  <dt>I forgot a password.</dt>
+  <dd>For a ZIP made by Vault-ZIP, the password is in the ledger; search it by file name or date. A password that is not in the ledger cannot be found by us either.</dd>
+
+  <dt>What happens to the ledger on a new PC?</dt>
+  <dd>The ledger lives on the PC and is encrypted with that PC's key. Before you switch, write a backup from the settings and import it on the new PC. A recovery key is a good idea too.</dd>
+
+  <dt>Are my files or passwords sent over the internet?</dt>
+  <dd>No. Vault-ZIP never sends your files, passwords or ledger anywhere without your action, and there is no account and no automatic update check. The background traffic of the window component (Microsoft WebView2) is switched off as well (<a href="/en/vault-zip/privacy.html">privacy</a>).</dd>
+
+  <dt>Windows warns me when I download or start it.</dt>
+  <dd>Vault-ZIP is not code-signed yet, so Windows may warn. The steps are on the <a href="/en/vault-zip/download.html">download</a> page. Check that the SHA-256 of the file matches the value listed there before running it.</dd>
+
+  <dt>Which formats can it extract?</dt>
+  <dd>ZIP, 7z, RAR, tar, gz, bz2, xz, zst, CAB and MSI, recognised by content rather than extension. Some other formats can be extracted with an external tool you set up (<a href="/en/vault-zip/specs.html">features and specs</a>).</dd>
+
+  <dt>File names from an old ZIP come out garbled.</dt>
+  <dd>Vault-ZIP recognises old Japanese ZIP files whose names are in Shift_JIS and extracts them with the right names. It also makes macOS's decomposed names consistent and leaves out the <code>__MACOSX</code> folder and <code>._</code> files (this can be changed in the settings).</dd>
+
+  <dt>Some files were extracted under a different name.</dt>
+  <dd>Names Windows cannot hold (<code>CON</code>, names with <code>?</code> or <code>:</code> and so on) and names with invisible characters used to disguise an extension are replaced with usable names. The result of the extraction lists every name that was changed.</dd>
+
+  <dt>Does it run on Windows 10?</dt>
+  <dd>Yes: Windows 10 or later, 64-bit (x64). The new right-click menu is Windows 11 only; on Windows 10 Vault-ZIP appears in the classic menu. Windows on ARM has not been tested.</dd>
+
+  <dt>Can I show a password while sharing my screen?</dt>
+  <dd>With "Keep passwords out of screen sharing and captures" turned on in the settings, a window showing a password does not appear in screen sharing, recordings or screenshots (Windows 10 version 2004 or later). It is off by default; an organisation's administrator can turn it on for good.</dd>
+
+  <dt>Can RPA tools use it?</dt>
+  <dd>Yes, with the command-line tool <code>vault-zip-cli.exe</code>. It reports results as JSON and success or failure through exit codes. Passwords go through standard input.</dd>
+
+  <dt>I found a bug or have a request.</dt>
+  <dd>Please email <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a> with your Windows version, the Vault-ZIP version and the steps. Please do not send passwords or the files themselves.</dd>
+</dl>

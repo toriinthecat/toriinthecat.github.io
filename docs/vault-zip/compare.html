@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ほかの方法とくらべてみると - Vault-ZIP - Toriinthecat</title>
+<meta name="description" content="Vault-ZIP と、Windows 標準の ZIP 機能、一般的な圧縮・展開ソフトをくらべた表。">
+<link rel="canonical" href="https://toriinthecat.com/vault-zip/compare.html">
+<link rel="alternate" hreflang="en" href="https://toriinthecat.com/en/vault-zip/compare.html">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="logo" href="/">Tori<span>in</span>thecat</a>
+    <a class="lang" href="/en/vault-zip/compare.html" hreflang="en" lang="en">English</a>
+  </div>
+  <nav class="wrap topnav" aria-label="Toriinthecat"><ul><li><a href="/">トップ</a></li><li><a href="/software/" aria-current="page">ソフトウェア</a></li><li><a href="/privacy-policy.html">プライバシーポリシー</a></li><li><a href="/tokushoho.html">特定商取引法に基づく表記</a></li><li><a href="/security.html">セキュリティ</a></li><li><a href="/support.html">応援する</a></li></ul></nav>
+</header>
+<div class="wrap page with-sub">
+<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/vault-zip/">概要</a></li><li><a href="/vault-zip/specs.html">機能と仕様</a></li><li><a href="/vault-zip/robust.html">安心の工夫</a></li><li><a href="/vault-zip/compare.html" aria-current="page">くらべてみる</a></li><li><a href="/vault-zip/download.html">ダウンロード</a></li><li><a href="/vault-zip/guide.html">使い方</a></li><li><a href="/vault-zip/faq.html">よくある質問</a></li><li><a href="/vault-zip/history.html">更新履歴</a></li><li><a href="/vault-zip/license.html">ライセンス</a></li><li><a href="/vault-zip/privacy.html">プライバシー</a></li></ul></nav><main id="main">
+<h1>ほかの方法とくらべてみると</h1>
+<p class="lead">「パスワード付きの ZIP を作って、あとでちゃんと開ける」ための方法を、表にまとめてみました。</p>
+
+<div class="table-scroll">
+<table class="compare">
+  <thead>
+    <tr><th></th><th>Vault-ZIP</th><th>Windows 標準の ZIP 機能</th><th>一般的な圧縮・展開ソフト</th></tr>
+  </thead>
+  <tbody>
+    <tr><th colspan="4" class="group">暗号化とパスワード</th></tr>
+    <tr><th>パスワード付きの ZIP を作る</th><td class="yes">AES-256 だけ</td><td class="no">作れない</td><td>多くは作れる。古い ZipCrypto 方式が既定のものもある</td></tr>
+    <tr><th>パスワードの記録</th><td class="yes">暗号化した台帳に自動で記録</td><td class="no">なし</td><td>多くはなし（自分で管理）</td></tr>
+    <tr><th>自分で作った ZIP を開く</th><td class="yes">台帳のパスワードで、入力なしに開く</td><td>毎回入力</td><td>毎回入力</td></tr>
+    <tr><th>パスワードの表示</th><td class="yes">本人確認のあとだけ。画面共有に写さない設定あり</td><td>—</td><td>ソフトによる</td></tr>
+    <tr><th>コマンドラインでのパスワード</th><td class="yes">標準入力だけ（ログやプロセス一覧に残らない）</td><td>—</td><td>引数で渡す方式のものが多い</td></tr>
+
+    <tr><th colspan="4" class="group">作るとき</th></tr>
+    <tr><th>作った後の確認</th><td class="yes">全ファイルを読み直して確かめる（既定でオン）</td><td class="no">なし</td><td>手動のテスト機能があるものが多い</td></tr>
+    <tr><th>既存のファイル</th><td class="yes">上書きしない（(2) を付ける）</td><td>確認して上書き</td><td>ソフトによる</td></tr>
+
+    <tr><th colspan="4" class="group">展開するとき</th></tr>
+    <tr><th>形式の見分け方</th><td class="yes">中身で見分ける</td><td>ZIP。新しい Windows 11 では 7z、RAR、tar も（拡張子で判断）</td><td>多くは拡張子と中身</td></tr>
+    <tr><th>フォルダーの外に書かせる名前</th><td class="yes">書く前に止める</td><td>（未確認）</td><td>多くは対策あり。版によって差がある</td></tr>
+    <tr><th>見えない文字で拡張子を偽る名前</th><td class="yes">置き換えて知らせる</td><td>そのまま</td><td>ソフトによる</td></tr>
+    <tr><th>ZIP 爆弾</th><td class="yes">書いた量を自分で数えて止める</td><td>（未確認）</td><td>ソフトによる</td></tr>
+    <tr><th>古い日本語（Shift_JIS）の名前</th><td class="yes">自動で見分ける</td><td>日本語の Windows なら読める</td><td>日本製のソフトは多くが対応</td></tr>
+    <tr><th>Mac の付属ファイル（__MACOSX）</th><td class="yes">作らない（設定で変更可）</td><td>そのまま出る</td><td>ソフトによる</td></tr>
+
+    <tr><th colspan="4" class="group">作りと通信</th></tr>
+    <tr><th>主な開発言語</th><td class="yes">Rust（一部の部品は C/C++）</td><td>—</td><td>C や C++ のものが多い</td></tr>
+    <tr><th>自動の通信（更新の確認、利用状況の送信）</th><td class="yes">なし</td><td>OS の一部として更新</td><td>自動で更新を確認するものが多い</td></tr>
+    <tr><th>壊れたファイルを大量に与える試験（ファジング）の公開</th><td class="yes">結果を公開</td><td>—</td><td>ソフトによる</td></tr>
+    <tr><th>部品の一覧（SBOM）</th><td class="yes">同梱</td><td>—</td><td>まだ少ない</td></tr>
+
+    <tr><th colspan="4" class="group">組織で使うとき</th></tr>
+    <tr><th>管理者のルール</th><td class="yes">パスワードなしの禁止、確認の強制など。グループポリシー、Intune</td><td>—</td><td>ソフトによる</td></tr>
+    <tr><th>料金</th><td>個人・教育機関・非営利は無料。組織は 1 台 1,000 円（買い切り）</td><td>OS に付属</td><td>無料から有料まで</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="note">「一般的な圧縮・展開ソフト」の欄は、よく使われるソフトに多い傾向を書いたもので、ソフトや版によって違います。お使いのソフトの説明をご確認ください。「Windows 標準の ZIP 機能」は Windows 11 のエクスプローラーで、「（未確認）」は作者がまだ試していない項目です。</p>
+
+<h2>Vault-ZIP が苦手なこと</h2>
+<ul>
+  <li>RAR や 7z の形式で<b>作る</b>こと（Vault-ZIP が作るのは ZIP だけです。展開はできます）。</li>
+  <li>ZIP の中のファイル名まで隠すこと（ZIP の決まりでできません。<a href="/vault-zip/robust.html">安心して使ってもらうための工夫</a>の最後を見てください）。</li>
+  <li>Mac と iPhone で使うこと（今は Windows だけです。Android は準備中です）。</li>
+</ul>
+<p>仕組みのくわしいお話は<a href="/vault-zip/robust.html">安心して使ってもらうための工夫</a>に、確かめた互換性と速さは<a href="/vault-zip/specs.html">機能と仕様</a>にあります。</p>
+</main>
+</div>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>個人事業主 Toriinthecat（トリインザキャット） ・ お問い合わせ: <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a></p>
+    <p class="sns-row"><a class="sns " href="https://note.com/tori_inthecat" rel="me noopener">note</a> <a class="sns " href="https://x.com/tori_inthecat" rel="me noopener">X</a> <span class="sns ph ">Reddit</span> <a class="sns " href="https://www.instagram.com/tori_inthecat/" rel="me noopener">Instagram</a></p>
+    <p>&copy; Toriinthecat</p>
+  </div>
+</footer>
+</body>
+</html>
