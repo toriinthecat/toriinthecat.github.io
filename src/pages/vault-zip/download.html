@@ -48,7 +48,7 @@ sh install.sh --user      # sudo なし。AppImage と CLI を ~/.local に</cod
   <tbody>
     <tr><th>OS</th><td>Windows 10 以上（64 ビット、x64）。ARM 版 Windows では確かめていません。Linux は x64 の Debian 系（Linux Mint 22 など）。</td></tr>
     <tr><th>必要なもの</th><td>Microsoft Edge WebView2 ランタイム。Windows 11 には入っています。Windows 10 でも、多くの場合は入っています。無い PC では、インストーラーが Microsoft から取得します（このときだけ通信が生じます）。</td></tr>
-    <tr><th>ディスク</th><td><span class="ph">要確認</span></td></tr>
+    <tr><th>ディスク</th><td>インストール後は約 55 MB です（インストーラー自体は約 15 MB）。台帳と設定は、使った分だけ増えます。</td></tr>
   </tbody>
 </table>
 
@@ -61,4 +61,4 @@ sh install.sh --user      # sudo なし。AppImage と CLI を ~/.local に</cod
 <p class="note">Windows 11 の「スマート アプリ コントロール」がオンの PC では、署名の無いアプリを起動できないことがあります。</p>
 
 <h2>アンインストール</h2>
-<p>「設定」→「アプリ」→「インストールされているアプリ」から Vault-ZIP をアンインストールします。台帳と設定の扱い：<span class="ph">要確認（残るか、消すかを選べるか）</span></p>
+<p>「設定」→「アプリ」→「インストールされているアプリ」から Vault-ZIP をアンインストールします。アンインストールしても、パスワードの台帳と設定は残ります（消すかどうかを選ぶ画面はありません）。入れ直せば、そのまま続けて使えます。台帳ごと消したいときは、アンインストールのあとに、台帳のフォルダ（<code>%APPDATA%\VaultZip</code>）を自分で削除してください。削除は元に戻せません。</p>

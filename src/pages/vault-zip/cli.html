@@ -1,0 +1,64 @@
+<!-- {"title": "コマンドライン版 - Vault-ZIP", "description": "vault-zip-cli の使い方、主なコマンド、終了コード。", "nav": "software", "section": "vault-zip", "page": "cli"} -->
+<h1>コマンドライン版</h1>
+<p class="lead">自動化（RPA など）で使うための <code>vault-zip-cli</code> の案内です。GUI と同じ台帳を使い、両方を同時に動かせます。</p>
+
+<h2>はじめに</h2>
+<ul>
+  <li><b>パスワードは引数に書きません。</b>標準入力から渡します（<code>--pass-stdin</code>）。<code>--password</code> のような指定はありません。</li>
+  <li>結果を機械で読むときは <code>--json</code> を付けます。1 回の実行で JSON が 1 つ出ます。</li>
+  <li>すでにあるファイルは上書きしません。</li>
+</ul>
+
+<h2>主なコマンド</h2>
+<pre><code>vault-zip-cli compress -i 資料フォルダ --json              # 作る（パスワードは自動で作り、台帳に記録）
+vault-zip-cli compress -i 資料フォルダ --each             # 中の項目ごとに 1 つずつ作る
+vault-zip-cli extract  -i 資料.zip -o 取り出し先 --json   # 台帳のパスワードで取り出す
+vault-zip-cli pdf encrypt -i 報告書.pdf --json            # PDF にパスワードをかける
+vault-zip-cli pdf decrypt -i 報告書_暗号化.pdf            # パスワードを外した複製を作る
+vault-zip-cli pdf check   -i 報告書.pdf --json            # PDF の状態を調べる（変更しません）
+vault-zip-cli identify ファイル... --json                 # 何のファイルか、中身から調べる
+vault-zip-cli search 検索語 --json                        # 台帳から探す
+vault-zip-cli reveal &lt;ID&gt;                                 # 台帳のパスワードを表示する
+vault-zip-cli status --json                               # 台帳とバックアップの状態</code></pre>
+<p>ほかに、バックアップ（<code>backup</code>）、回復キー（<code>recovery-key</code>）、設定（<code>settings</code>）、ライセンス（<code>license</code>）、管理者のポリシー（<code>policy</code>）のコマンドがあります。<code>vault-zip-cli --help</code> で一覧を見られます。</p>
+
+<h2>パスワードを自分で決めるとき</h2>
+<pre><code>echo 自分で決めたパスワード| vault-zip-cli compress -i memo.txt --pass-stdin --json</code></pre>
+<p>パスワードは 1〜128 文字の英数字と記号（ASCII）です。作ったパスワードを画面に出す <code>--print-password</code> は、実行の記録に残るので、自動処理では使わないでください。</p>
+
+<h2>元のファイルをごみ箱へ（<code>--purge</code>）</h2>
+<p>圧縮して中身を確かめたあとに、元のファイルをごみ箱へ移します（デスクトップ版のみ）。元のファイルが ZIP と同じ内容のままで、ごみ箱に入れられるときだけ動き、完全には削除しません。条件に合わないときは元のファイルを残し、終了コード 4 を返します。</p>
+
+<h2>終了コード</h2>
+<table>
+  <thead><tr><th>終了コード</th><th>意味</th></tr></thead>
+  <tbody>
+    <tr><td>0</td><td>成功</td></tr>
+    <tr><td>2</td><td>引数の誤り</td></tr>
+    <tr><td>3</td><td>一部だけ失敗（<code>--each</code> など）。ほかは成功</td></tr>
+    <tr><td>4</td><td><code>--purge</code>：ZIP は作れたが、元のファイルは残した</td></tr>
+    <tr><td>10</td><td>入力が見つからない</td></tr>
+    <tr><td>11</td><td>出力先がすでにある（上書きしていません）</td></tr>
+    <tr><td>12</td><td>空き容量が足りない</td></tr>
+    <tr><td>13</td><td>そのほかの読み書きの失敗</td></tr>
+    <tr><td>20</td><td>使えるパスワードがない</td></tr>
+    <tr><td>21</td><td>パスワードが違う</td></tr>
+    <tr><td>22</td><td>データが壊れている、または書き換えられている</td></tr>
+    <tr><td>23</td><td>安全のための確認で拒否した</td></tr>
+    <tr><td>24</td><td>アーカイブではない、または未対応の機能</td></tr>
+    <tr><td>25</td><td>アーカイブが壊れている</td></tr>
+    <tr><td>26</td><td>見分けはついたが、Vault-ZIP では読めない形式</td></tr>
+    <tr><td>29</td><td>項目が 10 万を超えた（<code>--allow-many-entries</code> が必要）</td></tr>
+    <tr><td>30</td><td>台帳のデータベースのエラー</td></tr>
+    <tr><td>31</td><td>台帳はあるが、鍵が見つからない</td></tr>
+    <tr><td>32</td><td>OS のキーストアのエラー</td></tr>
+    <tr><td>33</td><td>ポータブル版：パスフレーズが違う</td></tr>
+    <tr><td>40</td><td>バックアップのエラー</td></tr>
+    <tr><td>41</td><td>ライセンスファイルが正しくない</td></tr>
+    <tr><td>42</td><td>管理者のポリシーで許可されていない</td></tr>
+    <tr><td>50</td><td>中止された</td></tr>
+    <tr><td>60</td><td>PDF を拒否した（すでに暗号化済み、署名つきなど）</td></tr>
+    <tr><td>70</td><td>予期しない内部エラー</td></tr>
+  </tbody>
+</table>
+<p class="note">結果の JSON には、<code>ok</code>、エラーの <code>code</code>、警告の <code>warnings</code> などが入ります。ポータブル版は <code>--unlock-stdin</code> でパスフレーズを渡します。自動処理には、インストール版をおすすめします。</p>

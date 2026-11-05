@@ -1,0 +1,40 @@
+Vault-ZIP: notices for the file identification data
+=====================================================
+
+"Identify a file" (何のファイルか調べる) uses a table of byte signatures that was generated from
+the data below (crates/vault-core/src/identify/signatures.rs). The sources and the reasons for each
+entry are listed in docs/identify-sources.md of the Vault-ZIP source.
+
+
+1. Apache Tika
+--------------
+
+Signatures adapted from tika-mimetypes.xml of Apache Tika 4.2.0, licensed under the Apache License,
+Version 2.0 (the full text of the licence is in THIRD-PARTY-NOTICES.html, which ships in this folder).
+
+Apache Tika's NOTICE file states, in the part that concerns tika-mimetypes.xml:
+
+    Apache Tika
+    Copyright 2007-2026 The Apache Software Foundation
+
+    This product includes software developed at
+    The Apache Software Foundation (http://www.apache.org/).
+
+    Tika-mimetypes.xml includes mimetype definitions that were adapted from the PRONOM Technical
+    Registry by The National Archives (http://www.nationalarchives.gov.uk/PRONOM/Default.aspx).
+    PRONOM is published under the Open Government License 3.0
+    (http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+
+Vault-ZIP converted the selected definitions into its own table format; it does not ship
+tika-mimetypes.xml itself.
+
+
+2. PRONOM (The National Archives)
+---------------------------------
+
+Contains public sector information licensed under the Open Government Licence v3.0.
+https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+
+The signatures were checked against the PRONOM DROID signature file V125 and container signature
+file 20260907 (https://pronom.nationalarchives.gov.uk/). The National Archives does not endorse
+Vault-ZIP, and this use does not imply any official status.

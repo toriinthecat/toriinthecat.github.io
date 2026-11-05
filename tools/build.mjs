@@ -25,6 +25,7 @@ const T = {
       ["tokushoho", "/tokushoho.html", "特定商取引法に基づく表記"],
       ["security", "/security.html", "セキュリティ"],
       ["support", "/support.html", "応援する"],
+      ["about", "/about.html", "運営について"],
     ],
     other: "English",
     skip: "本文へ移動",
@@ -40,7 +41,7 @@ const T = {
     supportButton: "応援する",
     supportPending: "準備中",
     supportNav: "応援する",
-    footer: "個人事業主 Toriinthecat（トリインザキャット）",
+    footer: "Toriinthecat",
     contact: "お問い合わせ",
   },
   en: {
@@ -52,6 +53,7 @@ const T = {
       ["tokushoho", "/tokushoho.html", "Legal notice (Japanese)"],
       ["security", "/en/security.html", "Security"],
       ["support", "/en/support.html", "Support"],
+      ["about", "/en/about.html", "About"],
     ],
     other: "日本語",
     skip: "Skip to content",
@@ -67,7 +69,7 @@ const T = {
     supportButton: "Support",
     supportPending: "coming soon",
     supportNav: "Support",
-    footer: "Toriinthecat, a sole proprietorship in Japan",
+    footer: "Toriinthecat",
     contact: "Contact",
   },
 };

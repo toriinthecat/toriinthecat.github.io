@@ -23,6 +23,7 @@
         ["compare", "くらべてみる", "Comparison"],
         ["download", "ダウンロード", "Download"],
         ["guide", "使い方", "How to use"],
+        ["cli", "コマンドライン版", "Command line"],
         ["faq", "よくある質問", "FAQ"],
         ["history", "更新履歴", "Release notes"],
         ["license", "ライセンス", "Licence"],

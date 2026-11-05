@@ -1,0 +1,64 @@
+<!-- {"title": "Command line - Vault-ZIP", "description": "How to use vault-zip-cli, its main commands and exit codes.", "nav": "software", "section": "vault-zip", "page": "cli"} -->
+<h1>Command line</h1>
+<p class="lead">A guide to <code>vault-zip-cli</code>, made for automation (RPA and the like). It uses the same ledger as the app, and both can run at the same time.</p>
+
+<h2>Before you start</h2>
+<ul>
+  <li><b>Passwords are never passed as arguments.</b> Pass them through standard input (<code>--pass-stdin</code>). There is no <code>--password</code> option.</li>
+  <li>Add <code>--json</code> when a program reads the result: each run prints one JSON object.</li>
+  <li>Existing files are never overwritten.</li>
+</ul>
+
+<h2>Main commands</h2>
+<pre><code>vault-zip-cli compress -i folder --json                  # create (a password is generated and kept in the ledger)
+vault-zip-cli compress -i folder --each                  # one ZIP per item inside
+vault-zip-cli extract  -i archive.zip -o dest --json     # extract, using the ledger's password
+vault-zip-cli pdf encrypt -i report.pdf --json           # password-protect a PDF
+vault-zip-cli pdf decrypt -i report_encrypted.pdf        # make a copy without the password
+vault-zip-cli pdf check   -i report.pdf --json           # look at a PDF (changes nothing)
+vault-zip-cli identify file... --json                    # what a file is, from its content
+vault-zip-cli search term --json                         # search the ledger
+vault-zip-cli reveal &lt;ID&gt;                                # show a password from the ledger
+vault-zip-cli status --json                              # state of the ledger and backups</code></pre>
+<p>There are also commands for backups (<code>backup</code>), the recovery key (<code>recovery-key</code>), settings (<code>settings</code>), licences (<code>license</code>) and administrator policies (<code>policy</code>). <code>vault-zip-cli --help</code> lists them all.</p>
+
+<h2>Choosing the password yourself</h2>
+<pre><code>echo your-password| vault-zip-cli compress -i memo.txt --pass-stdin --json</code></pre>
+<p>A password is 1–128 printable ASCII characters. <code>--print-password</code> shows a generated password on screen; keep it out of automated flows, because it would end up in run logs.</p>
+
+<h2>Moving the originals to the Recycle Bin (<code>--purge</code>)</h2>
+<p>After compressing and verifying, the originals are moved to the Recycle Bin (desktop only). It acts only when the originals still match the ZIP and the Recycle Bin can take them, and it never deletes outright. Otherwise the originals stay and the exit code is 4.</p>
+
+<h2>Exit codes</h2>
+<table>
+  <thead><tr><th>Exit code</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td>0</td><td>Success</td></tr>
+    <tr><td>2</td><td>Usage error</td></tr>
+    <tr><td>3</td><td>Partly failed (e.g. <code>--each</code>); the rest succeeded</td></tr>
+    <tr><td>4</td><td><code>--purge</code>: the ZIP was made but the originals were kept</td></tr>
+    <tr><td>10</td><td>Input not found</td></tr>
+    <tr><td>11</td><td>Output already exists (nothing overwritten)</td></tr>
+    <tr><td>12</td><td>Not enough free space</td></tr>
+    <tr><td>13</td><td>Other I/O error</td></tr>
+    <tr><td>20</td><td>No usable password</td></tr>
+    <tr><td>21</td><td>Wrong password</td></tr>
+    <tr><td>22</td><td>Data failed authentication: damaged or altered</td></tr>
+    <tr><td>23</td><td>Rejected by the safety checks</td></tr>
+    <tr><td>24</td><td>Not an archive, or an unsupported feature</td></tr>
+    <tr><td>25</td><td>The archive is damaged</td></tr>
+    <tr><td>26</td><td>A recognised format that Vault-ZIP does not read</td></tr>
+    <tr><td>29</td><td>More than 100,000 entries (needs <code>--allow-many-entries</code>)</td></tr>
+    <tr><td>30</td><td>Ledger database error</td></tr>
+    <tr><td>31</td><td>The ledger exists but its key is missing</td></tr>
+    <tr><td>32</td><td>OS keystore error</td></tr>
+    <tr><td>33</td><td>Portable copy: wrong passphrase</td></tr>
+    <tr><td>40</td><td>Backup error</td></tr>
+    <tr><td>41</td><td>Not a valid licence file</td></tr>
+    <tr><td>42</td><td>Not allowed by an administrator policy</td></tr>
+    <tr><td>50</td><td>Cancelled</td></tr>
+    <tr><td>60</td><td>A PDF was refused (already encrypted, signed, and so on)</td></tr>
+    <tr><td>70</td><td>Unexpected internal error</td></tr>
+  </tbody>
+</table>
+<p class="note">The JSON result carries <code>ok</code>, the error <code>code</code>, <code>warnings</code> and more. Portable copies take the passphrase through <code>--unlock-stdin</code>; for automation, an installed copy is the better choice.</p>

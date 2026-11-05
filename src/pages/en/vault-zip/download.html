@@ -48,7 +48,7 @@ sh install.sh --user      # no sudo: AppImage and CLI under ~/.local</code></pre
   <tbody>
     <tr><th>System</th><td>Windows 10 or later (64-bit, x64). Not tested on Windows on ARM. Linux: x64, Debian-family (such as Linux Mint 22).</td></tr>
     <tr><th>Also needed</th><td>Microsoft Edge WebView2 Runtime. Part of Windows 11 and present on most Windows 10 PCs. Where it is missing, the installer downloads it from Microsoft (the installer connects only in that case).</td></tr>
-    <tr><th>Disk</th><td><span class="ph">to confirm</span></td></tr>
+    <tr><th>Disk</th><td>About 55 MB once installed (the installer itself is about 15 MB). The ledger and settings grow only as you use them.</td></tr>
   </tbody>
 </table>
 
@@ -61,4 +61,4 @@ sh install.sh --user      # no sudo: AppImage and CLI under ~/.local</code></pre
 <p class="note">On a PC with Windows 11 Smart App Control turned on, unsigned apps may not start.</p>
 
 <h2>Uninstalling</h2>
-<p>Uninstall Vault-ZIP from Settings → Apps → Installed apps. What happens to the ledger and settings: <span class="ph">to confirm</span></p>
+<p>Uninstall Vault-ZIP from Settings → Apps → Installed apps. Uninstalling keeps your password ledger and settings (there is no screen asking whether to delete them), so a reinstall carries on where you left off. To remove the ledger too, delete its folder (<code>%APPDATA%\VaultZip</code>) yourself after uninstalling. This cannot be undone.</p>

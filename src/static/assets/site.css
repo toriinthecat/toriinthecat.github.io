@@ -153,6 +153,8 @@ dl.faq dd { margin: 0.3em 0 0; }
 .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .shots figure { margin: 0; }
 .shots figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+.shots-phone { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.shots-phone img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
 .shot-ph { aspect-ratio: 16 / 10; display: grid; place-items: center; background: var(--surface); border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); font-size: 0.85rem; }
 
 /* A soft, rounded button */
