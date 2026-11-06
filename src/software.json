@@ -9,12 +9,12 @@
       "status": "coming",
       "platforms": { "ja": "Windows ・ Android（準備中） ・ 個人は無料", "en": "Windows · Android (coming) · free for individuals" },
       "tagline": {
-        "ja": "パスワードを忘れても、Vault-ZIP は覚えている。大切なファイルにそっと鍵をかけるソフトです。",
-        "en": "Creates password-protected ZIP files and keeps each password in an encrypted ledger."
+        "ja": "AI 時代に対応する、Rust で書かれたセキュアな圧縮・解凍ソフト。パスワードを忘れても、Vault-ZIP は覚えている。",
+        "en": "A secure compression and extraction tool written in Rust, built for the AI era. It keeps each ZIP password in an encrypted ledger."
       },
       "summary": {
-        "ja": "パスワードを忘れても、Vault-ZIP は覚えている。大切なファイルにそっと鍵をかけて、そのパスワードを暗号化した台帳に記録しておくソフトです。Rust でていねいに作り、勝手に通信もしません。ZIP・7z・RAR などを開いたり、PDF にパスワードを付けたりもできます。",
-        "en": "Forget the password; Vault-ZIP won't. A robust encrypting archiver for the AI era, written in Rust, with no connection you did not ask for. It makes AES-256 ZIP files and records each password in a ledger, extracts ZIP, 7z, RAR and more, and encrypts PDFs."
+        "ja": "AI 時代に対応する、Rust で書かれたセキュアな圧縮・解凍ソフトです。パスワードを忘れても、Vault-ZIP は覚えている。大切なファイルにそっと鍵をかけて、そのパスワードを暗号化した台帳に記録しておけます。勝手に通信もしません。ZIP・7z・RAR などを開いたり、PDF にパスワードを付けたりもできます。",
+        "en": "Forget the password; Vault-ZIP won't. A secure compression and extraction tool written in Rust, built for the AI era, with no connection you did not ask for. It makes AES-256 ZIP files and records each password in a ledger, extracts ZIP, 7z, RAR and more, and encrypts PDFs."
       },
       "links": [["index", "概要", "Overview"], ["robust", "安心の工夫", "Built with care"], ["compare", "くらべてみる", "Comparison"], ["download", "ダウンロード", "Download"]],
       "menu": [
