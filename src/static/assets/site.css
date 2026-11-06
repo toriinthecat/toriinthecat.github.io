@@ -202,3 +202,9 @@ a.zoom:hover img, a.zoom:focus-visible img { box-shadow: var(--shadow); }
 .lightbox { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(40, 28, 36, 0.82); align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
 .lightbox:target { display: flex; }
 .lightbox img { max-width: 100%; max-height: 100%; width: auto; height: auto; border-radius: 10px; border: 0; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); background: #fff; }
+
+/* The warning for an unsigned download: stronger than the notice for a test version */
+.sign-warning { border: 2px solid #d9534f; background: #fff1f0; border-radius: 12px; padding: 14px 18px; margin: 16px 0; }
+.sign-warning-title { font-size: 1.05rem; font-weight: 700; color: #b02a25; margin: 0 0 6px; }
+.sign-warning p { margin: 0 0 8px; }
+.sign-warning ol { margin: 0 0 8px; padding-left: 1.4em; }

@@ -8,8 +8,9 @@
 <link rel="canonical" href="https://toriinthecat.com/en/vault-zip/download.html">
 <link rel="alternate" hreflang="ja" href="https://toriinthecat.com/vault-zip/download.html">
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/assets/icons/favicon-32.png" type="image/png" sizes="32x32">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/icons/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 </head>
 <body>
@@ -27,6 +28,18 @@
 <p class="lead">An installer and a portable version. Both contain the same program.</p>
 
 <p class="beta-notice"><b>0.1.0 is a test version.</b> You may run into all kinds of problems. If you use it on important files, please keep a backup of the originals first. If you find a problem, please tell us at <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a>.</p>
+
+
+<div class="sign-warning" role="note">
+  <p class="sign-warning-title">⚠ Expect a warning: this software is not code-signed yet</p>
+  <p>When you download it (your browser says "may be dangerous" or "isn't commonly downloaded") and when you start it (Windows says "Windows protected your PC"), <b>a warning screen appears</b>. It shows up because there is no signature; it is not the result of anyone examining this software.</p>
+  <p>If you are unsure, check these two things before going on:</p>
+  <ol>
+    <li>The file came from this site (<code>dl.toriinthecat.com</code>).</li>
+    <li>The file's SHA-256 matches the value in the table below (how to check is under "First start").</li>
+  </ol>
+  <p>If both match and you choose to go on, pick "Keep" in the browser and "More info" then "Run anyway" in Windows. If you cannot check, please do not go on, and do not use it.</p>
+</div>
 
 <p class="note">Current release: 0.1.0 (Windows, Linux).</p>
 
@@ -86,7 +99,7 @@ sh install.sh --user      # no sudo: AppImage and CLI under ~/.local</code></pre
 </table>
 
 <h2>First start</h2>
-<p>Vault-ZIP is not code-signed yet, so Windows may warn when you download or start it.</p>
+<p>Vault-ZIP is not code-signed yet, so <b>Windows and your browser will warn you</b> when you download or start it.</p>
 <ol>
   <li>If "Windows protected your PC" appears, click "More info", then "Run anyway".</li>
   <li>Check that the file's SHA-256 matches the value above before running it.</li>
