@@ -183,7 +183,10 @@ function expand(body, lang) {
     .replace(/<!--\s*social:links\s*-->/g, () => socialLinks(lang))
     .replace(/<!--\s*social:devlog\s*-->/g, () => devlogBlock(lang))
     .replace(/<!--\s*support:button\s*-->/g, () => supportButton(lang))
-    .replace(/<!--\s*support:card\s*-->/g, () => supportCard(lang));
+    .replace(/<!--\s*support:card\s*-->/g, () => supportCard(lang))
+    // A screenshot opens at full size in a new tab (no script needed).
+    .replace(/<img src="(\/assets\/vault-zip\/[^"]+)"([^>]*)>/g, (_, src, rest) =>
+      `<a class="zoom" href="${src}" target="_blank" rel="noopener" title="${lang === "en" ? "Open at full size" : "クリックで拡大"}"><img src="${src}"${rest}></a>`);
 }
 
 function walk(dir) {

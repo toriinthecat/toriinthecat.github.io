@@ -192,3 +192,8 @@ h1.with-icon { display: flex; align-items: center; gap: 14px; }
 
 /* Notice for a test version */
 .beta-notice { border: 1px solid #ecd0a4; background: #fff7ea; border-radius: 12px; padding: 12px 16px; font-size: 0.95rem; margin: 14px 0; }
+
+/* Screenshots open at full size */
+a.zoom { display: block; cursor: zoom-in; }
+a.zoom img { transition: box-shadow 0.15s; }
+a.zoom:hover img, a.zoom:focus-visible img { box-shadow: var(--shadow); }
