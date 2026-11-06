@@ -14,6 +14,7 @@
     <li>ファイルの SHA-256 の値が、下の表の値と同じであること（確かめ方は、下の「はじめて起動するとき」）。</li>
   </ol>
   <p>確かめたうえで、先へ進む場合は、ブラウザーでは「保持する」、Windows では「詳細情報」→「実行」を選びます。確かめられないときは、無理に進まず、使わないでください。</p>
+  <p class="sign-warning-note">多くの方にダウンロードされ、使われるにつれて、この警告は出にくくなることがあります（Windows の SmartScreen は、ダウンロードされた実績も見ています）。ただし、新しい版では、また出ることがあります。</p>
 </div>
 
 <p class="note">いま公開している版：0.1.0（Windows、Linux）。</p>
@@ -76,9 +77,12 @@ sh install.sh --user      # sudo なし。AppImage と CLI を ~/.local に</cod
 <h2>はじめて起動するとき</h2>
 <p>Vault-ZIP には、まだコード署名をしていません。そのため、ダウンロードや起動のときに、<b>Windows とブラウザーの警告が出ます</b>。</p>
 <ol>
-  <li>「Windows によって PC が保護されました」と出たら、「詳細情報」を押し、「実行」を押します。</li>
+  <li>「Windows によって PC が保護されました」と出たら、「詳細情報」を押し、「実行」を押します（下の画面）。</li>
   <li>ダウンロードしたファイルは、上の SHA-256 と同じかを確かめてから実行してください。</li>
 </ol>
+
+<figure class="shot"><img src="/assets/vault-zip/smartscreen1.png" alt="1. はじめに出る画面。「詳細情報」を押します" loading="lazy"><figcaption>1. はじめに出る画面。「詳細情報」を押します</figcaption></figure>
+<figure class="shot"><img src="/assets/vault-zip/smartscreen2.png" alt="2.「詳細情報」を押すと、「実行」が出ます。発行元が「不明」と出るのは、署名がないためです" loading="lazy"><figcaption>2.「詳細情報」を押すと、「実行」が出ます。発行元が「不明」と出るのは、署名がないためです</figcaption></figure>
 <p class="note">Windows 11 の「スマート アプリ コントロール」がオンの PC では、署名の無いアプリを起動できないことがあります。</p>
 
 <h2>アンインストール</h2>

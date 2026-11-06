@@ -14,6 +14,7 @@
     <li>The file's SHA-256 matches the value in the table below (how to check is under "First start").</li>
   </ol>
   <p>If both match and you choose to go on, pick "Keep" in the browser and "More info" then "Run anyway" in Windows. If you cannot check, please do not go on, and do not use it.</p>
+  <p class="sign-warning-note">As more people download and use it, the warning may appear less often (Windows SmartScreen also looks at how widely a file has been downloaded). A new version can bring it back.</p>
 </div>
 
 <p class="note">Current release: 0.1.0 (Windows, Linux).</p>
@@ -76,9 +77,12 @@ sh install.sh --user      # no sudo: AppImage and CLI under ~/.local</code></pre
 <h2>First start</h2>
 <p>Vault-ZIP is not code-signed yet, so <b>Windows and your browser will warn you</b> when you download or start it.</p>
 <ol>
-  <li>If "Windows protected your PC" appears, click "More info", then "Run anyway".</li>
+  <li>If "Windows protected your PC" appears, click "More info", then "Run anyway" (screens below; the Windows here is in Japanese).</li>
   <li>Check that the file's SHA-256 matches the value above before running it.</li>
 </ol>
+
+<figure class="shot"><img src="/assets/vault-zip/smartscreen1.png" alt="1. The first screen. Click "詳細情報" (More info)" loading="lazy"><figcaption>1. The first screen. Click "詳細情報" (More info)</figcaption></figure>
+<figure class="shot"><img src="/assets/vault-zip/smartscreen2.png" alt="2. After "More info", the Run button appears. The publisher shows as unknown because there is no signature" loading="lazy"><figcaption>2. After "More info", the Run button appears. The publisher shows as unknown because there is no signature</figcaption></figure>
 <p class="note">On a PC with Windows 11 Smart App Control turned on, unsigned apps may not start.</p>
 
 <h2>Uninstalling</h2>
