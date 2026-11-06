@@ -69,6 +69,13 @@ sudo apt update &amp;&amp; sudo apt install vault-zip</code></pre>
 <pre><code>curl -fsSLO https://dl.toriinthecat.com/install/install.sh
 sh install.sh --user      # no sudo: AppImage and CLI under ~/.local</code></pre>
 
+<h3>The right-click menu on Linux</h3>
+<p>Items such as "Vault-ZIPで圧縮" (compress) appear in the file manager's right-click menu. Nemo (Linux Mint Cinnamon), Dolphin (KDE), Nautilus (GNOME) and Thunar (Xfce) are supported. Caja (MATE) is not supported yet.</p>
+<ul>
+  <li>With the deb, the package installs the Nemo and Dolphin items. The Thunar and Nautilus items are written to your own settings folder when Vault-ZIP starts. They stay after the package is removed; delete them from the settings file if you no longer want them.</li>
+  <li><b>On Xfce, the items do not appear when you right-click icons on the desktop (over the wallpaper).</b> The Xfce desktop has no way to add items. Right-click files inside a Thunar window instead.</li>
+</ul>
+
 <h2>System requirements</h2>
 <table>
   <tbody>

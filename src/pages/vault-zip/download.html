@@ -45,6 +45,13 @@ sudo apt update &amp;&amp; sudo apt install vault-zip</code></pre>
 <pre><code>curl -fsSLO https://dl.toriinthecat.com/install/install.sh
 sh install.sh --user      # sudo なし。AppImage と CLI を ~/.local に</code></pre>
 
+<h3>Linux の右クリックメニュー</h3>
+<p>ファイルマネージャーの右クリックに、「Vault-ZIPで圧縮」などの項目が出ます。対応しているのは、Nemo（Linux Mint の Cinnamon）、Dolphin（KDE）、Nautilus（GNOME）、Thunar（Xfce）です。Caja（MATE）には、まだ対応していません。</p>
+<ul>
+  <li>deb で入れると、Nemo と Dolphin の項目はパッケージが入れます。Thunar と Nautilus の項目は、Vault-ZIP を起動したときに、お使いの設定フォルダーへ書き込まれます。パッケージを削除しても残るので、不要になったら設定ファイルから消してください。</li>
+  <li><b>Xfce では、デスクトップ（壁紙の上のアイコン）の右クリックには出ません。</b>Xfce のデスクトップの仕様で、項目を足せないためです。Thunar のウィンドウの中でファイルを右クリックしてください。</li>
+</ul>
+
 <h2>動作環境</h2>
 <table>
   <tbody>
