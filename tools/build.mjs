@@ -177,6 +177,8 @@ function devlogBlock(lang) {
 }
 
 function expand(body, lang) {
+  let zoomCount = 0;
+  const zoomLayers = [];
   return body
     .replace(/<!--\s*software:list\s*-->/g, () => softwareCards(lang, false))
     .replace(/<!--\s*software:featured\s*-->/g, () => softwareCards(lang, true))
@@ -184,9 +186,16 @@ function expand(body, lang) {
     .replace(/<!--\s*social:devlog\s*-->/g, () => devlogBlock(lang))
     .replace(/<!--\s*support:button\s*-->/g, () => supportButton(lang))
     .replace(/<!--\s*support:card\s*-->/g, () => supportCard(lang))
-    // A screenshot opens at full size in a new tab (no script needed).
-    .replace(/<img src="(\/assets\/vault-zip\/[^"]+)"([^>]*)>/g, (_, src, rest) =>
-      `<a class="zoom" href="${src}" target="_blank" rel="noopener" title="${lang === "en" ? "Open at full size" : "クリックで拡大"}"><img src="${src}"${rest}></a>`);
+    // A screenshot opens at full size on the same page (a CSS :target overlay, no script).
+    .replace(/<img src="(\/assets\/vault-zip\/[^"]+)"([^>]*)>/g, (_, src, rest) => {
+      const id = `zoom-${++zoomCount}`;
+      zoomLayers.push(`<a class="lightbox" id="${id}" href="#_" aria-label="${lang === "en" ? "Close" : "閉じる"}"><img src="${src}"${rest}></a>`);
+      return `<a class="zoom" href="#${id}" title="${lang === "en" ? "Click to enlarge" : "クリックで拡大"}"><img src="${src}"${rest}></a>`;
+    })
+    // Esc closes the enlarged screenshot (the overlay itself works without the script).
+    + (zoomLayers.length
+      ? "\n" + zoomLayers.join("\n") + "\n<script>document.addEventListener(\"keydown\",function(e){if(e.key===\"Escape\"&&location.hash.indexOf(\"#zoom-\")===0){location.hash=\"_\";}});</script>\n"
+      : "");
 }
 
 function walk(dir) {

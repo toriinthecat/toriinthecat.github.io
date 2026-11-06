@@ -53,7 +53,7 @@ img { max-width: 100%; height: auto; }
 /* Page with an optional product menu on the left */
 .page { padding-top: 28px; padding-bottom: 56px; }
 .page.with-sub { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 36px; }
-.subnav { font-size: 0.92rem; }
+.subnav { font-size: 0.92rem; position: sticky; top: 16px; align-self: start; max-height: calc(100vh - 32px); overflow-y: auto; }
 .subnav-name { font-weight: 700; margin: 0 0 6px; }
 .subnav ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
 .subnav a { display: block; padding: 3px 12px; color: var(--muted); text-decoration: none; margin-left: -2px; border-left: 2px solid transparent; }
@@ -61,7 +61,7 @@ img { max-width: 100%; height: auto; }
 .subnav a[aria-current="page"] { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
 @media (max-width: 720px) {
   .page.with-sub { display: block; }
-  .subnav { margin-bottom: 20px; }
+  .subnav { margin-bottom: 20px; position: static; max-height: none; overflow: visible; }
   .subnav ul { display: flex; flex-wrap: wrap; gap: 2px 14px; border-left: 0; }
   .subnav a { padding: 2px 0; margin: 0; border-left: 0; }
   .subnav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
@@ -197,3 +197,8 @@ h1.with-icon { display: flex; align-items: center; gap: 14px; }
 a.zoom { display: block; cursor: zoom-in; }
 a.zoom img { transition: box-shadow 0.15s; }
 a.zoom:hover img, a.zoom:focus-visible img { box-shadow: var(--shadow); }
+
+/* Enlarge a screenshot in place (CSS only: the overlay is shown by :target) */
+.lightbox { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(40, 28, 36, 0.82); align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+.lightbox:target { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; width: auto; height: auto; border-radius: 10px; border: 0; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); background: #fff; }

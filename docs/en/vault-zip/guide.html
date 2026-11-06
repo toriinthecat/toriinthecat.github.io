@@ -33,8 +33,8 @@
   <li>Press compress. The ZIP is written and its password is recorded in the ledger.</li>
 </ol>
 <p class="note">To make one ZIP per item, use "個別に圧縮" (compress each).</p>
-<figure class="shot"><a class="zoom" href="/assets/vault-zip/main.png" target="_blank" rel="noopener" title="Open at full size"><img src="/assets/vault-zip/main.png" alt="Main window: drag onto the left card, "圧縮" (compress), or use the buttons" loading="lazy"></a><figcaption>Main window: drag onto the left card, "圧縮" (compress), or use the buttons</figcaption></figure>
-<figure class="shot"><a class="zoom" href="/assets/vault-zip/quick.png" target="_blank" rel="noopener" title="Open at full size"><img src="/assets/vault-zip/quick.png" alt="The small panel after compressing from a right-click. The password is copied and cleared after a while" loading="lazy"></a><figcaption>The small panel after compressing from a right-click. The password is copied and cleared after a while</figcaption></figure>
+<figure class="shot"><a class="zoom" href="#zoom-1" title="Click to enlarge"><img src="/assets/vault-zip/main.png" alt="Main window: drag onto the left card, "圧縮" (compress), or use the buttons" loading="lazy"></a><figcaption>Main window: drag onto the left card, "圧縮" (compress), or use the buttons</figcaption></figure>
+<figure class="shot"><a class="zoom" href="#zoom-2" title="Click to enlarge"><img src="/assets/vault-zip/quick.png" alt="The small panel after compressing from a right-click. The password is copied and cleared after a while" loading="lazy"></a><figcaption>The small panel after compressing from a right-click. The password is copied and cleared after a while</figcaption></figure>
 
 <h2>Open a ZIP (extract)</h2>
 <ol>
@@ -42,28 +42,37 @@
   <li>ZIP files made by Vault-ZIP open with the ledger's password. For other archives, type the password.</li>
   <li>If a file with the same name already exists, the new file gets " (2)" added by default (this is a setting).</li>
 </ol>
-<figure class="shot"><a class="zoom" href="/assets/vault-zip/main.png" target="_blank" rel="noopener" title="Open at full size"><img src="/assets/vault-zip/main.png" alt="The right card, "展開" (extract). "何のファイルか調べる" (what is this file) is here too" loading="lazy"></a><figcaption>The right card, "展開" (extract). "何のファイルか調べる" (what is this file) is here too</figcaption></figure>
+<figure class="shot"><a class="zoom" href="#zoom-3" title="Click to enlarge"><img src="/assets/vault-zip/main.png" alt="The right card, "展開" (extract). "何のファイルか調べる" (what is this file) is here too" loading="lazy"></a><figcaption>The right card, "展開" (extract). "何のファイルか調べる" (what is this file) is here too</figcaption></figure>
 
 <h2>Look up a password (the ledger)</h2>
 <p>The ledger lists the ZIP files you made; search by name or date. You may be asked to confirm it is you before a password is shown or copied. A copied password is cleared from the clipboard after a while.</p>
-<figure class="shot"><a class="zoom" href="/assets/vault-zip/ledger.png" target="_blank" rel="noopener" title="Open at full size"><img src="/assets/vault-zip/ledger.png" alt="The password ledger. Passwords stay hidden until you reveal one" loading="lazy"></a><figcaption>The password ledger. Passwords stay hidden until you reveal one</figcaption></figure>
+<figure class="shot"><a class="zoom" href="#zoom-4" title="Click to enlarge"><img src="/assets/vault-zip/ledger.png" alt="The password ledger. Passwords stay hidden until you reveal one" loading="lazy"></a><figcaption>The password ledger. Passwords stay hidden until you reveal one</figcaption></figure>
 
 <h2>Keep the ledger safe</h2>
 <p>In the settings, make a recovery key and choose a folder for automatic backups. On a new PC, import a backup.</p>
-<figure class="shot"><a class="zoom" href="/assets/vault-zip/backup.png" target="_blank" rel="noopener" title="Open at full size"><img src="/assets/vault-zip/backup.png" alt="Getting ready not to lose passwords: a recovery key and automatic backups" loading="lazy"></a><figcaption>Getting ready not to lose passwords: a recovery key and automatic backups</figcaption></figure>
+<figure class="shot"><a class="zoom" href="#zoom-5" title="Click to enlarge"><img src="/assets/vault-zip/backup.png" alt="Getting ready not to lose passwords: a recovery key and automatic backups" loading="lazy"></a><figcaption>Getting ready not to lose passwords: a recovery key and automatic backups</figcaption></figure>
 
 <h2>Add a password to a PDF</h2>
 <p>Drag a PDF onto the window, or right-click it and choose "Vault-ZIPでPDFを暗号化". The password is recorded in the ledger.</p>
-<figure class="shot"><a class="zoom" href="/assets/vault-zip/pdf.png" target="_blank" rel="noopener" title="Open at full size"><img src="/assets/vault-zip/pdf.png" alt="The PDF screen: drop a PDF here or use the button" loading="lazy"></a><figcaption>The PDF screen: drop a PDF here or use the button</figcaption></figure>
+<figure class="shot"><a class="zoom" href="#zoom-6" title="Click to enlarge"><img src="/assets/vault-zip/pdf.png" alt="The PDF screen: drop a PDF here or use the button" loading="lazy"></a><figcaption>The PDF screen: drop a PDF here or use the button</figcaption></figure>
 
 <h2>What is this file?</h2>
 <p>Right-click a file and choose "Vault-ZIPで何のファイルか調べる". A small window shows the type guessed from the content and which apps usually open it. It is not a safety verdict.</p>
-<figure class="shot"><a class="zoom" href="/assets/vault-zip/identify.png" target="_blank" rel="noopener" title="Open at full size"><img src="/assets/vault-zip/identify.png" alt="The small result window. The file is named .dat, but its content says PNG" loading="lazy"></a><figcaption>The small result window. The file is named .dat, but its content says PNG</figcaption></figure>
+<figure class="shot"><a class="zoom" href="#zoom-7" title="Click to enlarge"><img src="/assets/vault-zip/identify.png" alt="The small result window. The file is named .dat, but its content says PNG" loading="lazy"></a><figcaption>The small result window. The file is named .dat, but its content says PNG</figcaption></figure>
 
 <h2>Command line</h2>
 <p><code>vault-zip-cli.exe</code> is in the install folder. Passwords are never written on the command line; pass them through standard input.</p>
 <pre><code>vault-zip-cli compress -i folder -o archive.zip --json</code></pre>
 <p><a href="/en/vault-zip/cli.html">Commands and exit codes →</a></p>
+
+<a class="lightbox" id="zoom-1" href="#_" aria-label="Close"><img src="/assets/vault-zip/main.png" alt="Main window: drag onto the left card, "圧縮" (compress), or use the buttons" loading="lazy"></a>
+<a class="lightbox" id="zoom-2" href="#_" aria-label="Close"><img src="/assets/vault-zip/quick.png" alt="The small panel after compressing from a right-click. The password is copied and cleared after a while" loading="lazy"></a>
+<a class="lightbox" id="zoom-3" href="#_" aria-label="Close"><img src="/assets/vault-zip/main.png" alt="The right card, "展開" (extract). "何のファイルか調べる" (what is this file) is here too" loading="lazy"></a>
+<a class="lightbox" id="zoom-4" href="#_" aria-label="Close"><img src="/assets/vault-zip/ledger.png" alt="The password ledger. Passwords stay hidden until you reveal one" loading="lazy"></a>
+<a class="lightbox" id="zoom-5" href="#_" aria-label="Close"><img src="/assets/vault-zip/backup.png" alt="Getting ready not to lose passwords: a recovery key and automatic backups" loading="lazy"></a>
+<a class="lightbox" id="zoom-6" href="#_" aria-label="Close"><img src="/assets/vault-zip/pdf.png" alt="The PDF screen: drop a PDF here or use the button" loading="lazy"></a>
+<a class="lightbox" id="zoom-7" href="#_" aria-label="Close"><img src="/assets/vault-zip/identify.png" alt="The small result window. The file is named .dat, but its content says PNG" loading="lazy"></a>
+<script>document.addEventListener("keydown",function(e){if(e.key==="Escape"&&location.hash.indexOf("#zoom-")===0){location.hash="_";}});</script>
 </main>
 </div>
 <footer class="site-footer">

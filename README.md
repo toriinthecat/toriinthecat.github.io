@@ -2,7 +2,7 @@
 
 The site of Toriinthecat: one site for every program the trade name has published, publishes and
 will publish. The trade name, the software list, and one section per program. Japanese at `/`,
-English at `/en/`. Plain HTML and one CSS file; no scripts on the pages.
+English at `/en/`. Plain HTML and one CSS file. A script is allowed (decision 2026-11-06); today only the enlarged screenshots use one (Esc closes them).
 
 - Pages: `src/pages/` (one file per page; the first line is a comment with its settings, see `tools/build.mjs`).
 - The software list: `src/software.json` (see below).
