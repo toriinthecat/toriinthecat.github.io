@@ -189,3 +189,6 @@ dl.faq dd { margin: 0.3em 0 0; }
 h1.with-icon { display: flex; align-items: center; gap: 14px; }
 .app-icon-lg { width: 56px; height: 56px; border-radius: 14px; flex: none; }
 .maker-logo { display: block; width: 220px; max-width: 60%; height: auto; border-radius: 16px; margin: 8px 0 16px; }
+
+/* Notice for a test version */
+.beta-notice { border: 1px solid #ecd0a4; background: #fff7ea; border-radius: 12px; padding: 12px 16px; font-size: 0.95rem; margin: 14px 0; }
