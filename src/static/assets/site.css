@@ -173,3 +173,8 @@ dl.faq dd { margin: 0.3em 0 0; }
 /* Download table: keep the kind and the headings on one line */
 .downloads th, .downloads td:first-child, .downloads td:nth-child(3) { white-space: nowrap; }
 .downloads td:nth-child(2) { word-break: break-all; }
+
+/* Screenshots of the app (images in /assets/vault-zip/) */
+.shots img, .shot img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
+.shot { margin: 12px 0 20px; max-width: 640px; }
+.shot figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }

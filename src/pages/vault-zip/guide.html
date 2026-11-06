@@ -1,6 +1,6 @@
 <!-- {"title": "使い方 - Vault-ZIP", "description": "Vault-ZIP の使い方。圧縮、展開、台帳、右クリックメニュー、コマンドライン版。", "nav": "software", "section": "vault-zip", "page": "guide"} -->
 <h1>使い方</h1>
-<p class="lead">よく使う操作を順に説明します。<span class="ph">各手順に画面の画像を入れる予定</span></p>
+<p class="lead">よく使う操作を順に説明します。</p>
 
 <h2>ZIP を作る</h2>
 <ol>
@@ -9,6 +9,8 @@
   <li>「圧縮」を押すと ZIP ができ、パスワードが台帳に記録されます。</li>
 </ol>
 <p class="note">選んだものを 1 つずつ別の ZIP にしたいときは「個別に圧縮」を使います。</p>
+<figure class="shot"><img src="/assets/vault-zip/main.png" alt="メイン画面。左の「圧縮」にドラッグするか、ボタンで選びます" loading="lazy"><figcaption>メイン画面。左の「圧縮」にドラッグするか、ボタンで選びます</figcaption></figure>
+<figure class="shot"><img src="/assets/vault-zip/quick.png" alt="右クリックから圧縮したあとの小さな画面。パスワードはコピーされ、しばらくすると消えます" loading="lazy"><figcaption>右クリックから圧縮したあとの小さな画面。パスワードはコピーされ、しばらくすると消えます</figcaption></figure>
 
 <h2>ZIP を開く（展開）</h2>
 <ol>
@@ -16,18 +18,23 @@
   <li>Vault-ZIP で作った ZIP は、台帳のパスワードで自動的に開きます。ほかの ZIP はパスワードを入力します。</li>
   <li>展開先に同じ名前のファイルがあるときは、設定にしたがって、新しいファイルの名前に (2) を付けます（既定）。</li>
 </ol>
+<figure class="shot"><img src="/assets/vault-zip/main.png" alt="右側の「展開」から選べます。「何のファイルか調べる」もここにあります" loading="lazy"><figcaption>右側の「展開」から選べます。「何のファイルか調べる」もここにあります</figcaption></figure>
 
 <h2>パスワードを確かめる（台帳）</h2>
 <p>「台帳」を開くと、作った ZIP の一覧が出ます。名前や日付で探せます。パスワードを見るときやコピーするときは、本人確認が求められることがあります。コピーしたパスワードは、しばらくするとクリップボードから消えます。</p>
+<figure class="shot"><img src="/assets/vault-zip/ledger.png" alt="パスワードの台帳。パスワードは、見る操作をするまで伏せ字です" loading="lazy"><figcaption>パスワードの台帳。パスワードは、見る操作をするまで伏せ字です</figcaption></figure>
 
 <h2>台帳の備え</h2>
 <p>「設定」から、回復キーの作成と、自動バックアップの保存先を決められます。PC を替えるときは、バックアップを新しい PC で読み込みます。</p>
+<figure class="shot"><img src="/assets/vault-zip/backup.png" alt="「パスワードを失わないための準備」。回復キーと自動バックアップを設定できます" loading="lazy"><figcaption>「パスワードを失わないための準備」。回復キーと自動バックアップを設定できます</figcaption></figure>
 
 <h2>PDF にパスワードを付ける</h2>
 <p>PDF を画面にドラッグするか、右クリックで「Vault-ZIPでPDFを暗号化」を選びます。パスワードは台帳に記録されます。</p>
+<figure class="shot"><img src="/assets/vault-zip/pdf.png" alt="PDF の画面。ここにドロップするか、ボタンで選びます" loading="lazy"><figcaption>PDF の画面。ここにドロップするか、ボタンで選びます</figcaption></figure>
 
 <h2>何のファイルか調べる</h2>
 <p>右クリックで「Vault-ZIPで何のファイルか調べる」を選ぶと、結果だけの小さな画面が開きます。中身から推定した種類と、ふつう開くアプリが出ます。安全かどうかの判定ではありません。</p>
+<figure class="shot"><img src="/assets/vault-zip/identify.png" alt="結果だけの小さな画面。拡張子が .dat でも、中身から PNG だと分かります" loading="lazy"><figcaption>結果だけの小さな画面。拡張子が .dat でも、中身から PNG だと分かります</figcaption></figure>
 
 <h2>コマンドライン版</h2>
 <p>インストール先に <code>vault-zip-cli.exe</code> があります。パスワードはコマンドラインに書かず、標準入力から渡します。</p>

@@ -1,6 +1,6 @@
 <!-- {"title": "How to use - Vault-ZIP", "description": "How to use Vault-ZIP: compress, extract, the ledger, the right-click menu and the command line.", "nav": "software", "section": "vault-zip", "page": "guide"} -->
 <h1>How to use</h1>
-<p class="lead">The common tasks, step by step. The app's screens are in Japanese for now. <span class="ph">screenshots for each step to be added</span></p>
+<p class="lead">The common tasks, step by step. The app's screens are in Japanese for now.</p>
 
 <h2>Make a ZIP</h2>
 <ol>
@@ -9,6 +9,8 @@
   <li>Press compress. The ZIP is written and its password is recorded in the ledger.</li>
 </ol>
 <p class="note">To make one ZIP per item, use "個別に圧縮" (compress each).</p>
+<figure class="shot"><img src="/assets/vault-zip/main.png" alt="Main window: drag onto the left card, "圧縮" (compress), or use the buttons" loading="lazy"><figcaption>Main window: drag onto the left card, "圧縮" (compress), or use the buttons</figcaption></figure>
+<figure class="shot"><img src="/assets/vault-zip/quick.png" alt="The small panel after compressing from a right-click. The password is copied and cleared after a while" loading="lazy"><figcaption>The small panel after compressing from a right-click. The password is copied and cleared after a while</figcaption></figure>
 
 <h2>Open a ZIP (extract)</h2>
 <ol>
@@ -16,18 +18,23 @@
   <li>ZIP files made by Vault-ZIP open with the ledger's password. For other archives, type the password.</li>
   <li>If a file with the same name already exists, the new file gets " (2)" added by default (this is a setting).</li>
 </ol>
+<figure class="shot"><img src="/assets/vault-zip/main.png" alt="The right card, "展開" (extract). "何のファイルか調べる" (what is this file) is here too" loading="lazy"><figcaption>The right card, "展開" (extract). "何のファイルか調べる" (what is this file) is here too</figcaption></figure>
 
 <h2>Look up a password (the ledger)</h2>
 <p>The ledger lists the ZIP files you made; search by name or date. You may be asked to confirm it is you before a password is shown or copied. A copied password is cleared from the clipboard after a while.</p>
+<figure class="shot"><img src="/assets/vault-zip/ledger.png" alt="The password ledger. Passwords stay hidden until you reveal one" loading="lazy"><figcaption>The password ledger. Passwords stay hidden until you reveal one</figcaption></figure>
 
 <h2>Keep the ledger safe</h2>
 <p>In the settings, make a recovery key and choose a folder for automatic backups. On a new PC, import a backup.</p>
+<figure class="shot"><img src="/assets/vault-zip/backup.png" alt="Getting ready not to lose passwords: a recovery key and automatic backups" loading="lazy"><figcaption>Getting ready not to lose passwords: a recovery key and automatic backups</figcaption></figure>
 
 <h2>Add a password to a PDF</h2>
 <p>Drag a PDF onto the window, or right-click it and choose "Vault-ZIPでPDFを暗号化". The password is recorded in the ledger.</p>
+<figure class="shot"><img src="/assets/vault-zip/pdf.png" alt="The PDF screen: drop a PDF here or use the button" loading="lazy"><figcaption>The PDF screen: drop a PDF here or use the button</figcaption></figure>
 
 <h2>What is this file?</h2>
 <p>Right-click a file and choose "Vault-ZIPで何のファイルか調べる". A small window shows the type guessed from the content and which apps usually open it. It is not a safety verdict.</p>
+<figure class="shot"><img src="/assets/vault-zip/identify.png" alt="The small result window. The file is named .dat, but its content says PNG" loading="lazy"><figcaption>The small result window. The file is named .dat, but its content says PNG</figcaption></figure>
 
 <h2>Command line</h2>
 <p><code>vault-zip-cli.exe</code> is in the install folder. Passwords are never written on the command line; pass them through standard input.</p>
