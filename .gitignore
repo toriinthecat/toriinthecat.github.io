@@ -1,1 +1,13 @@
 preview/
+
+# Secrets: never committed, never pushed (Vault_zip docs/KEEP_FILES.md)
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.secret
+*.key
+keys/
