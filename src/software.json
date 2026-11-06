@@ -37,7 +37,7 @@
       "name": "let Rust CODING RPG",
       "featured": false,
       "status": "available",
-      "platforms": { "ja": "モバイルアプリ（Android）", "en": "Mobile app (Android)" },
+      "platforms": { "ja": "モバイルアプリ（Android ・ iOS は準備中）", "en": "Mobile app (Android · iOS coming)" },
       "tagline": {
         "ja": "Rust / Go プログラミングを、RPG形式のバトルや章立て学習、フラッシュカードで学べる教育アプリ。",
         "en": "An educational app for learning Rust and Go through RPG-style battles, chaptered lessons and flashcards."
