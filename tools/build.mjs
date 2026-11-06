@@ -113,7 +113,7 @@ function softwareCards(lang, onlyFeatured) {
       (s.featured && !onlyFeatured ? `<span class="badge badge-featured">${t.featured}</span>` : "") +
       `<span class="badge badge-${s.status}">${t.status[s.status]}</span>`;
     return `  <li${s.featured ? ' class="featured"' : ""}>
-    <div class="name"><a href="${base}">${esc(s.name)}</a>${badges}</div>
+    <div class="name">${s.icon ? `<img class="app-icon" src="${esc(s.icon)}" alt="" width="48" height="48" loading="lazy">` : ""}<a href="${base}">${esc(s.name)}</a>${badges}</div>
     <div class="meta">${esc(s.platforms[lang])}</div>
     <p>${esc((onlyFeatured ? s.summary : s.tagline)[lang])}</p>
     <p>${links}</p>
@@ -234,13 +234,15 @@ function layout({ lang, meta, body, url, otherUrl }) {
 <meta name="description" content="${esc(meta.description ?? "")}">
 <link rel="canonical" href="https://toriinthecat.com${url}">${altLink}
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/icons/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 </head>
 <body>
 <a class="skip" href="#main">${t.skip}</a>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="logo" href="${prefix}/">Tori<span>in</span>thecat</a>
+    <a class="logo" href="${prefix}/"><img src="/assets/icons/toriinthecat-mark.png" alt="" width="32" height="32"><b>Tori<span>in</span>thecat</b></a>
     ${alt}
   </div>
   <nav class="wrap topnav" aria-label="${t.site}"><ul>${nav}</ul></nav>

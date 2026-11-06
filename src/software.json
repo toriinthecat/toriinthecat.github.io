@@ -3,6 +3,7 @@
   "software": [
     {
       "id": "vault-zip",
+      "icon": "/assets/icons/vault-zip.png",
       "name": "Vault-ZIP",
       "featured": true,
       "status": "coming",
@@ -32,6 +33,7 @@
     },
     {
       "id": "let-rust-coding-rpg",
+      "icon": "/assets/icons/let-rust.png",
       "name": "let Rust CODING RPG",
       "featured": false,
       "status": "available",
