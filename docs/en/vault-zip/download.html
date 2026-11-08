@@ -64,18 +64,35 @@ be0895f562d5672a8c1f1fc9fe98f37be14b6b7f47abfc5f4c29496c82d0bcd7  Vault-ZIP_0.1.
 <p class="note">Every package includes a list of its components (SBOM, CycloneDX) and the full licence text of each.</p>
 
 <h2>Install from the command line</h2>
-<p>You can also install without a browser. The scripts connect to <code>dl.toriinthecat.com</code> only when you run them, and check the signature and SHA-256 before installing.</p>
+<p>Press "Copy" and paste into PowerShell or a terminal. The scripts connect to <code>dl.toriinthecat.com</code> only when you run them, and check the signature and SHA-256 before installing.</p>
+<div class="cmd">
+  <div class="cmd-head"><span>Windows (PowerShell, no administrator)</span><button type="button" class="cmd-copy" data-copy="irm https://dl.toriinthecat.com/install/install.ps1 -OutFile &quot;$env:TEMP\vz-install.ps1&quot;; powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$env:TEMP\vz-install.ps1&quot;" data-done="Copied">Copy</button></div>
+  <pre><code>irm https://dl.toriinthecat.com/install/install.ps1 -OutFile &quot;$env:TEMP\vz-install.ps1&quot;; powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$env:TEMP\vz-install.ps1&quot;</code></pre>
+</div>
+<div class="cmd">
+  <div class="cmd-head"><span>Linux (apt: Debian, Ubuntu, Linux Mint; asks for your sudo password)</span><button type="button" class="cmd-copy" data-copy="curl -fsSL https://dl.toriinthecat.com/apt/vault-zip.gpg | sudo tee /usr/share/keyrings/vault-zip.gpg &gt;/dev/null &amp;&amp; echo &quot;deb [signed-by=/usr/share/keyrings/vault-zip.gpg] https://dl.toriinthecat.com/apt stable main&quot; | sudo tee /etc/apt/sources.list.d/vault-zip.list &gt;/dev/null &amp;&amp; sudo apt update &amp;&amp; sudo apt install -y vault-zip" data-done="Copied">Copy</button></div>
+  <pre><code>curl -fsSL https://dl.toriinthecat.com/apt/vault-zip.gpg | sudo tee /usr/share/keyrings/vault-zip.gpg &gt;/dev/null &amp;&amp; echo &quot;deb [signed-by=/usr/share/keyrings/vault-zip.gpg] https://dl.toriinthecat.com/apt stable main&quot; | sudo tee /etc/apt/sources.list.d/vault-zip.list &gt;/dev/null &amp;&amp; sudo apt update &amp;&amp; sudo apt install -y vault-zip</code></pre>
+</div>
+<div class="cmd">
+  <div class="cmd-head"><span>Linux (other distributions; no sudo, under ~/.local)</span><button type="button" class="cmd-copy" data-copy="curl -fsSL https://dl.toriinthecat.com/install/install.sh | sh -s -- --user" data-done="Copied">Copy</button></div>
+  <pre><code>curl -fsSL https://dl.toriinthecat.com/install/install.sh | sh -s -- --user</code></pre>
+</div>
+<details class="cmd-more">
+<summary>More (list versions, check the script before running it)</summary>
+<p>You can also save the script and read it before running it.</p>
 <h3>Windows (PowerShell)</h3>
 <pre><code>iwr https://dl.toriinthecat.com/install/install.ps1 -OutFile install.ps1
 .\install.ps1            # latest version (current user, no administrator)
 .\install.ps1 -List      # list versions</code></pre>
-<h3>Linux (apt: Debian, Ubuntu, Linux Mint)</h3>
+<h3>Linux (apt)</h3>
 <pre><code>curl -fsSL https://dl.toriinthecat.com/apt/vault-zip.gpg | sudo tee /usr/share/keyrings/vault-zip.gpg >/dev/null
 echo "deb [signed-by=/usr/share/keyrings/vault-zip.gpg] https://dl.toriinthecat.com/apt stable main" | sudo tee /etc/apt/sources.list.d/vault-zip.list
 sudo apt update &amp;&amp; sudo apt install vault-zip</code></pre>
 <h3>Linux (script)</h3>
 <pre><code>curl -fsSLO https://dl.toriinthecat.com/install/install.sh
-sh install.sh --user      # no sudo: AppImage and CLI under ~/.local</code></pre>
+sh install.sh --user      # no sudo: AppImage and CLI under ~/.local
+sh install.sh --list      # list versions</code></pre>
+</details>
 
 <h3>The right-click menu on Linux</h3>
 <p>Items such as "Vault-ZIPで圧縮" (compress) appear in the file manager's right-click menu. Nemo (Linux Mint Cinnamon), Dolphin (KDE), Nautilus (GNOME) and Thunar (Xfce) are supported. Caja (MATE) is not supported yet.</p>
@@ -106,6 +123,8 @@ sh install.sh --user      # no sudo: AppImage and CLI under ~/.local</code></pre
 
 <h2>Uninstalling</h2>
 <p>Uninstall Vault-ZIP from Settings → Apps → Installed apps. Uninstalling keeps your password ledger and settings (there is no screen asking whether to delete them), so a reinstall carries on where you left off. To remove the ledger too, delete its folder (<code>%APPDATA%\VaultZip</code>) yourself after uninstalling. This cannot be undone.</p>
+
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".cmd-copy");if(!b)return;var t=b.getAttribute("data-copy"),l=b.textContent;function ok(){b.textContent=b.getAttribute("data-done");setTimeout(function(){b.textContent=l;},2000);}function sel(){var c=b.closest(".cmd").querySelector("code"),r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r);}if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,sel);}else{sel();}});</script>
 
 <a class="lightbox" id="zoom-1" href="#_" aria-label="Close"><img src="/assets/vault-zip/smartscreen1.png" alt="1. The first screen. Click "詳細情報" (More info)" loading="lazy"></a>
 <a class="lightbox" id="zoom-2" href="#_" aria-label="Close"><img src="/assets/vault-zip/smartscreen2.png" alt="2. After "More info", the Run button appears. The publisher shows as unknown because there is no signature" loading="lazy"></a>

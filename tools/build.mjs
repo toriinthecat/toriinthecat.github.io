@@ -192,6 +192,10 @@ function expand(body, lang) {
       zoomLayers.push(`<a class="lightbox" id="${id}" href="#_" aria-label="${lang === "en" ? "Close" : "閉じる"}"><img src="${src}"${rest}></a>`);
       return `<a class="zoom" href="#${id}" title="${lang === "en" ? "Click to enlarge" : "クリックで拡大"}"><img src="${src}"${rest}></a>`;
     })
+    // Copy buttons of the install commands (SITE_COPY_PLAN): the page's own text, no outside script.
+    + (body.includes("data-copy=")
+      ? "\n<script>document.addEventListener(\"click\",function(e){var b=e.target.closest(\".cmd-copy\");if(!b)return;var t=b.getAttribute(\"data-copy\"),l=b.textContent;function ok(){b.textContent=b.getAttribute(\"data-done\");setTimeout(function(){b.textContent=l;},2000);}function sel(){var c=b.closest(\".cmd\").querySelector(\"code\"),r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r);}if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,sel);}else{sel();}});</script>\n"
+      : "")
     // Esc closes the enlarged screenshot (the overlay itself works without the script).
     + (zoomLayers.length
       ? "\n" + zoomLayers.join("\n") + "\n<script>document.addEventListener(\"keydown\",function(e){if(e.key===\"Escape\"&&location.hash.indexOf(\"#zoom-\")===0){location.hash=\"_\";}});</script>\n"

@@ -7,28 +7,96 @@
       "name": "Vault-ZIP",
       "featured": true,
       "status": "coming",
-      "platforms": { "ja": "Windows ・ Android（準備中） ・ 個人は無料", "en": "Windows · Android (coming) · free for individuals" },
+      "platforms": {
+        "ja": "Windows ・ Android（準備中） ・ 個人は無料",
+        "en": "Windows · Android (coming) · free for individuals"
+      },
       "tagline": {
-        "ja": "AI 時代に対応する、Rust で書かれたセキュアな圧縮・展開ソフト。パスワードを忘れても、Vault-ZIP は覚えている。",
-        "en": "A secure compression and extraction tool written in Rust, built for the AI era. It keeps each ZIP password in an encrypted ledger."
+        "ja": "シンプルだから、迷わない。普段使いから社内用途まで手が届く。パスワードを忘れても、Vault-ZIP は覚えている。",
+        "en": "Simple, so you never get lost. From everyday files to office work, it has you covered. Forget the password; Vault-ZIP won't."
       },
       "summary": {
-        "ja": "AI 時代に対応する、Rust で書かれたセキュアな圧縮・展開ソフトです。パスワードを忘れても、Vault-ZIP は覚えている。大切なファイルにそっと鍵をかけて、そのパスワードを暗号化した台帳に記録しておけます。勝手に通信もしません。いつでも、どこでも、同じ操作で。ZIP・7z・RAR などを開いたり、PDF にパスワードを付けたりもできます。",
-        "en": "Forget the password; Vault-ZIP won't. A secure compression and extraction tool written in Rust, built for the AI era, with no connection you did not ask for. Anytime, anywhere, the same way. It makes AES-256 ZIP files and records each password in a ledger, extracts ZIP, 7z, RAR and more, and encrypts PDFs."
+        "ja": "シンプルだから、迷わない。普段使いから社内用途まで手が届く。AI 時代に対応する、Rust で書かれたセキュアな圧縮・展開ソフトです。パスワードを忘れても、Vault-ZIP は覚えている。大切なファイルにそっと鍵をかけて、そのパスワードを暗号化した台帳に記録しておけます。勝手に通信もしません。いつでも、どこでも、同じ操作で。ZIP・7z・RAR などを開いたり、PDF にパスワードを付けたりもできます。",
+        "en": "Simple, so you never get lost. From everyday files to office work, it has you covered. Forget the password; Vault-ZIP won't. A secure compression and extraction tool written in Rust, built for the AI era, with no connection you did not ask for. Anytime, anywhere, the same way. It makes AES-256 ZIP files and records each password in a ledger, extracts ZIP, 7z, RAR and more, and encrypts PDFs."
       },
-      "links": [["index", "概要", "Overview"], ["robust", "安心の工夫", "Built with care"], ["compare", "くらべてみる", "Comparison"], ["download", "ダウンロード", "Download"]],
+      "links": [
+        [
+          "index",
+          "概要",
+          "Overview"
+        ],
+        [
+          "robust",
+          "安心の工夫",
+          "Built with care"
+        ],
+        [
+          "compare",
+          "くらべてみる",
+          "Comparison"
+        ],
+        [
+          "download",
+          "ダウンロード",
+          "Download"
+        ]
+      ],
       "menu": [
-        ["index", "概要", "Overview"],
-        ["specs", "機能と仕様", "Features and specs"],
-        ["robust", "安心の工夫", "Built with care"],
-        ["compare", "くらべてみる", "Comparison"],
-        ["download", "ダウンロード", "Download"],
-        ["guide", "使い方", "How to use"],
-        ["cli", "コマンドライン版", "Command line"],
-        ["faq", "よくある質問", "FAQ"],
-        ["history", "更新履歴", "Release notes"],
-        ["license", "ライセンス", "Licence"],
-        ["privacy", "プライバシー", "Privacy"]
+        [
+          "index",
+          "概要",
+          "Overview"
+        ],
+        [
+          "specs",
+          "機能と仕様",
+          "Features and specs"
+        ],
+        [
+          "robust",
+          "安心の工夫",
+          "Built with care"
+        ],
+        [
+          "compare",
+          "くらべてみる",
+          "Comparison"
+        ],
+        [
+          "download",
+          "ダウンロード",
+          "Download"
+        ],
+        [
+          "guide",
+          "使い方",
+          "How to use"
+        ],
+        [
+          "cli",
+          "コマンドライン版",
+          "Command line"
+        ],
+        [
+          "faq",
+          "よくある質問",
+          "FAQ"
+        ],
+        [
+          "history",
+          "更新履歴",
+          "Release notes"
+        ],
+        [
+          "license",
+          "ライセンス",
+          "Licence"
+        ],
+        [
+          "privacy",
+          "プライバシー",
+          "Privacy"
+        ]
       ]
     },
     {
@@ -37,7 +105,10 @@
       "name": "let Rust CODING RPG",
       "featured": false,
       "status": "available",
-      "platforms": { "ja": "モバイルアプリ（Android ・ iOS は準備中）", "en": "Mobile app (Android · iOS coming)" },
+      "platforms": {
+        "ja": "モバイルアプリ（Android ・ iOS は準備中）",
+        "en": "Mobile app (Android · iOS coming)"
+      },
       "tagline": {
         "ja": "Rust / Go プログラミングを、RPG形式のバトルや章立て学習、フラッシュカードで学べる教育アプリ。",
         "en": "An educational app for learning Rust and Go through RPG-style battles, chaptered lessons and flashcards."
@@ -46,9 +117,27 @@
         "ja": "Rust / Go プログラミングを、RPG形式のバトルや章立て学習、フラッシュカードで学べる教育アプリ。",
         "en": "An educational app for learning Rust and Go through RPG-style battles, chaptered lessons and flashcards."
       },
-      "links": [["index", "概要", "Overview"]],
-      "stores": [["Google Play", "Google Play", "https://play.google.com/store/apps/details?id=com.letrust.app"]],
-      "menu": [["index", "概要", "Overview"]]
+      "links": [
+        [
+          "index",
+          "概要",
+          "Overview"
+        ]
+      ],
+      "stores": [
+        [
+          "Google Play",
+          "Google Play",
+          "https://play.google.com/store/apps/details?id=com.letrust.app"
+        ]
+      ],
+      "menu": [
+        [
+          "index",
+          "概要",
+          "Overview"
+        ]
+      ]
     }
   ]
 }
