@@ -8,6 +8,7 @@
 // page is linked when it exists.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync, existsSync, copyFileSync, statSync } from "node:fs";
 import { dirname, join, relative, sep } from "node:path";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -176,12 +177,26 @@ function devlogBlock(lang) {
 </div>`;
 }
 
-// A program's platforms: a plain string, or a list of parts where `{ "text", "soon": true }` is
-// shown faint (not available yet).
+// A program's platforms: a plain string, or a list of parts where `{ "text", "on": true }` is
+// shown strong (available now) and `{ "text", "soon": true }` faint (not available yet).
+// The stylesheet's version in its URL: a browser that kept an older copy loads the new one.
+const CSS_VERSION = createHash("sha256")
+  .update(readFileSync(join(fileURLToPath(new URL("..", import.meta.url)), "src", "static", "assets", "site.css")))
+  .digest("hex")
+  .slice(0, 10);
+
 function platformsHtml(p, lang) {
   if (!Array.isArray(p)) return esc(p);
   return p
-    .map((x) => (typeof x === "string" ? esc(x) : x.soon ? `<span class="soon">${esc(x.text)}</span>` : esc(x.text)))
+    .map((x) =>
+      typeof x === "string"
+        ? esc(x)
+        : x.soon
+          ? `<span class="soon">${esc(x.text)}</span>`
+          : x.on
+            ? `<b class="on">${esc(x.text)}</b>`
+            : esc(x.text),
+    )
     .join(lang === "en" ? " · " : " ・ ");
 }
 
@@ -258,7 +273,7 @@ function layout({ lang, meta, body, url, otherUrl }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(meta.description ?? "")}">
 <link rel="canonical" href="https://toriinthecat.com${url}">${altLink}
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v=${CSS_VERSION}">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/assets/icons/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/assets/icons/icon-192.png" type="image/png" sizes="192x192">
@@ -323,7 +338,7 @@ for (const file of walk(staticDir)) {
 let broken = 0;
 for (const file of walk(out).filter((p) => p.endsWith(".html"))) {
   const html = readFileSync(file, "utf8");
-  for (const [, href] of html.matchAll(/(?:href|src)="(\/[^"#]*)/g)) {
+  for (const [, href] of html.matchAll(/(?:href|src)="(\/[^"#?]*)/g)) {
     const path = join(out, href.endsWith("/") ? href + "index.html" : href);
     if (!existsSync(path)) {
       console.error(`broken link in ${relative(out, file)}: ${href}`);

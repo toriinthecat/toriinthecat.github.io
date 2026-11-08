@@ -9,8 +9,14 @@
       "status": "available",
       "platforms": {
         "ja": [
-          "Windows",
-          "Linux",
+          {
+            "text": "Windows",
+            "on": true
+          },
+          {
+            "text": "Linux",
+            "on": true
+          },
           {
             "text": "Android（準備中）",
             "soon": true
@@ -22,8 +28,14 @@
           "個人は無料"
         ],
         "en": [
-          "Windows",
-          "Linux",
+          {
+            "text": "Windows",
+            "on": true
+          },
+          {
+            "text": "Linux",
+            "on": true
+          },
           {
             "text": "Android (coming)",
             "soon": true
