@@ -1,8 +1,8 @@
 <!-- {"title": "Privacy - Vault-ZIP", "description": "How Vault-ZIP handles information.", "nav": "software", "section": "vault-zip", "page": "privacy"} -->
 <h1>Vault-ZIP privacy</h1>
-<p class="updated">Last updated: November 5, 2026</p>
+<p class="updated">Last updated: November 8, 2026</p>
 
-<p>This page explains how Vault-ZIP (Windows, Linux and the command-line tool; Android is coming) handles information. As our <a href="/privacy-policy.html#en">privacy policy</a> provides, this page takes precedence for Vault-ZIP.</p>
+<p>This page explains how Vault-ZIP (Windows, Linux, the command-line tool and Android) handles information. As our <a href="/privacy-policy.html#en">privacy policy</a> provides, this page takes precedence for Vault-ZIP.</p>
 
 <h2>1. What is not sent</h2>
 <p>Vault-ZIP never sends your files, passwords or ledger anywhere without your action. We run no servers and there is no account. Vault-ZIP contains no analytics, advertising or tracking tools, and does not check for updates by itself. Page views and download counts on this website and the download server are counted without cookies and without tracking individuals (section 6 of the <a href="/privacy-policy.html">privacy policy</a>); none of this is inside Vault-ZIP.</p>
@@ -14,12 +14,14 @@
   <li>Settings and a record of the work done.</li>
 </ul>
 <p>Data is stored in <code>%APPDATA%\VaultZip</code> (installed version) or inside the portable version's folder.</p>
+<p>On Android, the ledger and settings are stored in the app's private area. They are excluded from Android's automatic backup and device-to-device transfer; to move to another device, use the full backup you create yourself. The identity check before the ledger opens (fingerprint, face or screen lock) is done by the Android system, and Vault-ZIP receives no fingerprint or face data.</p>
 
 <h2>3. What goes out only when you act</h2>
 <ul>
   <li>Links, such as guides on how to open a file, open in your browser.</li>
   <li>If you choose a cloud-synced folder for backups, the encrypted backups are sent to that service.</li>
   <li>When you use mail or share, the app you pick receives the content.</li>
+  <li>On Android, a file received from another app through "Share" is copied into the app's area for the time of the work and removed afterwards (a copy of a PDF within a day at the latest). Vault-ZIP reads and writes only the files and folders you choose.</li>
   <li>When you use the install scripts (<code>install.sh</code>, <code>install.ps1</code>), only at the moment you run the command, they fetch the signed list of versions and the file you chose from the download site, and check the signature and SHA-256 before installing. This is not part of the app itself.</li>
   <li>If you enable an external tool (such as 7-Zip) in the settings, files are handed to that tool to extract. Vault-ZIP asks it for no connection.</li>
 </ul>
@@ -28,5 +30,8 @@
 <h2>4. Licence check</h2>
 <p>Licences for organisations are checked on the PC only; nothing is sent.</p>
 
-<h2>5. Contact</h2>
+<h2>5. Support purchases (Android)</h2>
+<p>On Android you can make a purchase from Settings to support development. The purchase is handled by the Google Play app; Vault-ZIP never receives payment details such as card numbers, and only learns that a purchase was completed. Nothing is added or changed by purchasing. We do not use a billing intermediary such as RevenueCat. Purchase records are kept by Google to the extent Google defines.</p>
+
+<h2>6. Contact</h2>
 <p>Toriinthecat <a href="mailto:support@toriinthecat.com">support@toriinthecat.com</a></p>
