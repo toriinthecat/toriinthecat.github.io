@@ -8,8 +8,32 @@
       "featured": true,
       "status": "coming",
       "platforms": {
-        "ja": "Windows ・ Android（準備中） ・ 個人は無料",
-        "en": "Windows · Android (coming) · free for individuals"
+        "ja": [
+          "Windows",
+          "Linux",
+          {
+            "text": "Android（準備中）",
+            "soon": true
+          },
+          {
+            "text": "macOS・iOS（準備中）",
+            "soon": true
+          },
+          "個人は無料"
+        ],
+        "en": [
+          "Windows",
+          "Linux",
+          {
+            "text": "Android (coming)",
+            "soon": true
+          },
+          {
+            "text": "macOS · iOS (coming)",
+            "soon": true
+          },
+          "free for individuals"
+        ]
       },
       "tagline": {
         "ja": "シンプルだから、迷わない。普段使いから社内用途まで手が届く。パスワードを忘れても、Vault-ZIP は覚えている。",

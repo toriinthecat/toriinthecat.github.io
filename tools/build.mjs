@@ -114,7 +114,7 @@ function softwareCards(lang, onlyFeatured) {
       `<span class="badge badge-${s.status}">${t.status[s.status]}</span>`;
     return `  <li${s.featured ? ' class="featured"' : ""}>
     <div class="name">${s.icon ? `<img class="app-icon" src="${esc(s.icon)}" alt="" width="48" height="48" loading="lazy">` : ""}<a href="${base}">${esc(s.name)}</a>${badges}</div>
-    <div class="meta">${esc(s.platforms[lang])}</div>
+    <div class="meta">${platformsHtml(s.platforms[lang], lang)}</div>
     <p>${esc((onlyFeatured ? s.summary : s.tagline)[lang])}</p>
     <p>${links}</p>
   </li>`;
@@ -174,6 +174,15 @@ function devlogBlock(lang) {
   <p>${t.devlogText}</p>
   <p>${link}</p>
 </div>`;
+}
+
+// A program's platforms: a plain string, or a list of parts where `{ "text", "soon": true }` is
+// shown faint (not available yet).
+function platformsHtml(p, lang) {
+  if (!Array.isArray(p)) return esc(p);
+  return p
+    .map((x) => (typeof x === "string" ? esc(x) : x.soon ? `<span class="soon">${esc(x.text)}</span>` : esc(x.text)))
+    .join(lang === "en" ? " · " : " ・ ");
 }
 
 function expand(body, lang) {
