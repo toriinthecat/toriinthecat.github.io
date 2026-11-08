@@ -223,5 +223,9 @@ a.zoom:hover img, a.zoom:focus-visible img { box-shadow: var(--shadow); }
 .cmd-more { margin: 16px 0; }
 .cmd-more summary { cursor: pointer; color: var(--accent); }
 /* A platform that is not available yet, in the program cards. */
-.meta .soon { opacity: 0.45; }
-.meta .on { color: var(--text); font-weight: 700; }
+/* Platforms as pills in the program cards: available strong, coming faint and dashed. */
+.apps .meta.chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 6px 0 10px; }
+.meta .chip { display: inline-block; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line); font-size: 0.8rem; line-height: 1.5; }
+.meta .chip.on { color: var(--accent); border-color: var(--accent); background: var(--bg); font-weight: 700; }
+.meta .chip.soon { border-style: dashed; border-color: var(--muted); opacity: 0.6; }
+.meta .plain { font-size: 0.8rem; margin-left: 2px; }

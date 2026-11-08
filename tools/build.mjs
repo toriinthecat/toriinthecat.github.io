@@ -115,7 +115,7 @@ function softwareCards(lang, onlyFeatured) {
       `<span class="badge badge-${s.status}">${t.status[s.status]}</span>`;
     return `  <li${s.featured ? ' class="featured"' : ""}>
     <div class="name">${s.icon ? `<img class="app-icon" src="${esc(s.icon)}" alt="" width="48" height="48" loading="lazy">` : ""}<a href="${base}">${esc(s.name)}</a>${badges}</div>
-    <div class="meta">${platformsHtml(s.platforms[lang], lang)}</div>
+    <div class="meta${Array.isArray(s.platforms[lang]) ? " chips" : ""}">${platformsHtml(s.platforms[lang], lang)}</div>
     <p>${esc((onlyFeatured ? s.summary : s.tagline)[lang])}</p>
     <p>${links}</p>
   </li>`;
@@ -187,17 +187,18 @@ const CSS_VERSION = createHash("sha256")
 
 function platformsHtml(p, lang) {
   if (!Array.isArray(p)) return esc(p);
+  // Each platform in a pill (available strong, coming faint and dashed); plain text as it is.
   return p
     .map((x) =>
       typeof x === "string"
-        ? esc(x)
+        ? `<span class="plain">${esc(x)}</span>`
         : x.soon
-          ? `<span class="soon">${esc(x.text)}</span>`
+          ? `<span class="chip soon">${esc(x.text)}</span>`
           : x.on
-            ? `<b class="on">${esc(x.text)}</b>`
-            : esc(x.text),
+            ? `<span class="chip on">${esc(x.text)}</span>`
+            : `<span class="chip">${esc(x.text)}</span>`,
     )
-    .join(lang === "en" ? " · " : " ・ ");
+    .join("");
 }
 
 function expand(body, lang) {
