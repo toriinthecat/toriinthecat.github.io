@@ -104,9 +104,9 @@ tbody th { width: 30%; font-weight: 600; }
 .badge-available { border-color: var(--accent); color: var(--text); }
 .badge-ended { opacity: 0.7; }
 
-/* Catchphrase, three pillars, comparison table */
+/* Catchphrase, four pillars, comparison table */
 .catch { font-size: 1.45rem; font-weight: 700; line-height: 1.5; margin: 4px 0 6px; color: var(--accent); }
-.pillars { list-style: none; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin: 16px 0; }
+.pillars { list-style: none; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 16px 0; }
 .pillars li { margin: 0; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); font-size: 0.92rem; }
 .pillars li:nth-child(even) { background: var(--accent-2-soft); border-color: transparent; }
 .pillars li:nth-child(odd) { background: var(--accent-soft); border-color: transparent; }

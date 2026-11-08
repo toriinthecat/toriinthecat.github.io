@@ -7,7 +7,7 @@
 <meta name="description" content="シンプルだから、迷わない。普段使いから社内用途まで手が届く。AI 時代に対応する、Rust で書かれたセキュアな圧縮・展開ソフト。パスワードを忘れても、Vault-ZIP は覚えている。パスワード付きの ZIP を作って、そのパスワードを暗号化した台帳にそっと記録しておく Windows 用ソフトです。個人は無料で使えます。">
 <link rel="canonical" href="https://toriinthecat.com/vault-zip/">
 <link rel="alternate" hreflang="en" href="https://toriinthecat.com/en/vault-zip/">
-<link rel="stylesheet" href="/assets/site.css?v=cb8c806466">
+<link rel="stylesheet" href="/assets/site.css?v=f18f832fde">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/assets/icons/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/assets/icons/icon-192.png" type="image/png" sizes="192x192">
@@ -42,9 +42,10 @@
 
 <h2>Vault-ZIP がしてくれること</h2>
 <ul class="pillars">
-  <li><b>ちゃんと覚えています</b>作った ZIP のパスワードを、暗号化した台帳に自動で記録します。自分の ZIP は、入力しなくても開けます。</li>
-  <li><b>ていねいに確かめます</b>作った ZIP を最後まで読み直して、全部のファイルが元どおり取り出せることを確かめてから完成にします。</li>
-  <li><b>外には出しません</b>更新の自動確認も、使い方の送信もありません。計測で、外への接続が 0 件だったことを確かめています。</li>
+  <li><b>シンプル</b>右クリックから 1 回で圧縮。パスワードは自動で台帳に記録されるので、設定しなくてもすぐ使えます。自分の ZIP は、入力しなくても開けます。</li>
+  <li><b>セキュア</b>AES-256 で暗号化し、台帳も暗号化して保存します。作った ZIP は最後まで読み直して、全部のファイルが元どおり取り出せることを確かめます。Rust で書かれています。</li>
+  <li><b>勝手に通信しない</b>更新の自動確認も、使い方の送信もありません。計測では、外への接続は 0 件でした。</li>
+  <li><b>広告なし</b>広告も、利用者を追跡する仕組みも入っていません。</li>
 </ul>
 <p><a href="/vault-zip/robust.html">安心して使ってもらうための工夫 →</a> ・ <a href="/vault-zip/compare.html">ほかの方法とくらべてみると →</a></p>
 
@@ -71,8 +72,8 @@
 <h2>動作環境と料金</h2>
 <table>
   <tbody>
-    <tr><th>最新版</th><td>0.1.0（2026年11月6日）</td></tr>
-    <tr><th>対応 OS</th><td>Windows 10 以上（64 ビット、x64）<br>Android（準備中）</td></tr>
+    <tr><th>最新版</th><td>0.1.0（2026年11月8日、ビルド 4）</td></tr>
+    <tr><th>対応 OS</th><td>Windows 10 以上（64 ビット、x64）<br>Linux（64 ビット、x64。Debian・Ubuntu・Linux Mint など）<br>Android（準備中）</td></tr>
     <tr><th>料金</th><td>個人（お仕事での利用も）と学校は無料です。企業・官公庁・非営利法人などの組織は 1 台につき 1,000 円です（<a href="/vault-zip/license.html">ライセンス</a>）。</td></tr>
     <tr><th>言語</th><td>日本語（英語は準備中）</td></tr>
   </tbody>
