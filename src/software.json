@@ -6,7 +6,7 @@
       "icon": "/assets/icons/vault-zip.png",
       "name": "Vault-ZIP",
       "featured": true,
-      "status": "coming",
+      "status": "available",
       "platforms": {
         "ja": [
           "Windows",
