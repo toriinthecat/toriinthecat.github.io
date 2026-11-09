@@ -1,4 +1,4 @@
-<!-- {"title": "Features and specs - Vault-ZIP", "description": "What Vault-ZIP does in detail: encryption, formats, file names, network behaviour, tested compatibility and performance, management for organisations.", "nav": "software", "section": "vault-zip", "page": "specs"} -->
+<!-- {"title": "Features and specs - Vault-ZIP", "description": "What Vault-ZIP does in detail: encryption, formats, file names, network behavior, tested compatibility and performance, management for organizations.", "nav": "software", "section": "vault-zip", "page": "specs"} -->
 <h1>Features and specs</h1>
 <p class="lead">What Vault-ZIP does and how far it has been tested. Figures were measured on our own PC and will differ on yours.</p>
 
@@ -8,7 +8,7 @@
     <tr><th>Encryption</th><td>AES-256 (WinZip AES). The key is derived from the password with PBKDF2, and every file carries a value (HMAC) that reveals tampering. The old ZipCrypto method is never used for writing.</td></tr>
     <tr><th>Passwords</th><td>Generate one (length and character types set in the settings), use a preset one, type one each time, or none. The password is recorded in the ledger.</td></tr>
     <tr><th>Checked after writing</th><td>The finished ZIP is read back in full to make sure every file comes out as it went in. Its SHA-256 is recorded too.</td></tr>
-    <tr><th>File names</th><td>Written as UTF-8 (with the UTF-8 flag) and normalised to NFC, so names from a Mac look the same on Windows.</td></tr>
+    <tr><th>File names</th><td>Written as UTF-8 (with the UTF-8 flag) and normalized to NFC, so names from a Mac look the same on Windows.</td></tr>
     <tr><th>Compress separately</th><td>Turns each selected file or folder into its own ZIP.</td></tr>
     <tr><th>No overwriting</th><td>If the name is taken, " (2)" is added. An existing file is replaced only if you chose that in the settings.</td></tr>
   </tbody>
@@ -28,8 +28,8 @@
 <h2>File names</h2>
 <p>The aim: a ZIP made on any system extracts into the same folder structure on any system.</p>
 <ul>
-  <li><b>Old Japanese ZIP files</b>: names written in Shift_JIS by older Windows tools are recognised and extracted with the right Japanese names, including characters whose second byte is <code>\</code>.</li>
-  <li><b>macOS names</b>: decomposed (NFD) names are normalised to NFC.</li>
+  <li><b>Old Japanese ZIP files</b>: names written in Shift_JIS by older Windows tools are recognized and extracted with the right Japanese names, including characters whose second byte is <code>\</code>.</li>
+  <li><b>macOS names</b>: decomposed (NFD) names are normalized to NFC.</li>
   <li><b>macOS extra files</b>: the <code>__MACOSX</code> folder and <code>._</code> files are left out (can be changed in the settings), and the number left out is reported.</li>
   <li><b>Names Windows cannot hold</b>: reserved names such as <code>CON</code>, names with <code>?</code> or <code>:</code>, and trailing dots are replaced with usable names, and the result lists every change.</li>
   <li><b>Invisible characters</b>: characters that reverse text direction (used to disguise an extension, as in a name shown as <code>invoiceexe.pdf</code> that is really an .exe), zero-width characters and control characters become <code>_</code> and are shown in a visible form such as <code>\u{202E}</code>.</li>
@@ -72,7 +72,7 @@
 <p>Tells a file's type from its content, not its extension, and which apps usually open it. The file is never opened or run. About 0.1 ms per file (our PC, SSD). The result is an estimate, not a safety verdict.</p>
 
 <h2>Network</h2>
-<p><b>Vault-ZIP connects only when you ask it to.</b> There is no automatic update check, no usage reporting, no licence check over the network and no account.</p>
+<p><b>Vault-ZIP connects only when you ask it to.</b> There is no automatic update check, no usage reporting, no license check over the network and no account.</p>
 <ul>
   <li>The Microsoft component that draws the windows (WebView2) can connect to Microsoft's servers on its own. Vault-ZIP creates every window with that background traffic switched off. In our measurement, nothing left the PC in the first 100 seconds after start.</li>
   <li>Connections happen only when you click a guide link (your browser opens it), when you share a file with an app you pick, and when the installer fetches WebView2 on a PC that lacks it.</li>
@@ -112,18 +112,18 @@
   <li>Starts in about 14 ms.</li>
 </ul>
 
-<h2>Management for organisations (licence required)</h2>
+<h2>Management for organizations (license required)</h2>
 <ul>
   <li>Per-machine MSI for deployment tools.</li>
   <li>Rules users cannot change: no ZIP without a password, password method and minimum length, checking always on, passwords kept out of screen captures, a fixed folder for automatic ledger backups, no external tools, and more.</li>
-  <li>Rules are deployed from the app, an organisation settings file, Group Policy (ADMX) or Intune.</li>
-  <li>Licences are checked on the PC only. There is no licence server.</li>
+  <li>Rules are deployed from the app, an organization settings file, Group Policy (ADMX) or Intune.</li>
+  <li>Licenses are checked on the PC only. There is no license server.</li>
 </ul>
 
 <h2>Packages</h2>
 <ul>
   <li>The SHA-256 of every package is listed on the download page.</li>
-  <li>Every package includes a list of its components (SBOM, CycloneDX) and the full licence text of each.</li>
+  <li>Every package includes a list of its components (SBOM, CycloneDX) and the full license text of each.</li>
   <li>How to report a vulnerability: see <a href="/en/security.html">Security</a>.</li>
 </ul>
 
@@ -132,6 +132,6 @@
   <tbody>
     <tr><th>Windows</th><td>Windows 10 or later (64-bit, x64). On Windows 11, Vault-ZIP also appears in the new right-click menu. Not tested on Windows on ARM.</td></tr>
     <tr><th>Android</th><td><a href="https://play.google.com/store/apps/details?id=com.vaultzip.app" rel="noopener">Google Play</a></td></tr>
-    <tr><th>Language</th><td>Japanese (English is planned)</td></tr>
+    <tr><th>Language</th><td>Japanese and English (switch in the settings)</td></tr>
   </tbody>
 </table>

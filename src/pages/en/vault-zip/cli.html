@@ -20,7 +20,7 @@ vault-zip-cli identify file... --json                    # what a file is, from 
 vault-zip-cli search term --json                         # search the ledger
 vault-zip-cli reveal &lt;ID&gt;                                # show a password from the ledger
 vault-zip-cli status --json                              # state of the ledger and backups</code></pre>
-<p>There are also commands for backups (<code>backup</code>), the recovery key (<code>recovery-key</code>), settings (<code>settings</code>), licences (<code>license</code>) and administrator policies (<code>policy</code>). <code>vault-zip-cli --help</code> lists them all.</p>
+<p>There are also commands for backups (<code>backup</code>), the recovery key (<code>recovery-key</code>), settings (<code>settings</code>), licenses (<code>license</code>) and administrator policies (<code>policy</code>). <code>vault-zip-cli --help</code> lists them all.</p>
 
 <h2>Choosing the password yourself</h2>
 <pre><code>echo your-password| vault-zip-cli compress -i memo.txt --pass-stdin --json</code></pre>
@@ -47,16 +47,16 @@ vault-zip-cli status --json                              # state of the ledger a
     <tr><td>23</td><td>Rejected by the safety checks</td></tr>
     <tr><td>24</td><td>Not an archive, or an unsupported feature</td></tr>
     <tr><td>25</td><td>The archive is damaged</td></tr>
-    <tr><td>26</td><td>A recognised format that Vault-ZIP does not read</td></tr>
+    <tr><td>26</td><td>A recognized format that Vault-ZIP does not read</td></tr>
     <tr><td>29</td><td>More than 100,000 entries (needs <code>--allow-many-entries</code>)</td></tr>
     <tr><td>30</td><td>Ledger database error</td></tr>
     <tr><td>31</td><td>The ledger exists but its key is missing</td></tr>
     <tr><td>32</td><td>OS keystore error</td></tr>
     <tr><td>33</td><td>Portable copy: wrong passphrase</td></tr>
     <tr><td>40</td><td>Backup error</td></tr>
-    <tr><td>41</td><td>Not a valid licence file</td></tr>
+    <tr><td>41</td><td>Not a valid license file</td></tr>
     <tr><td>42</td><td>Not allowed by an administrator policy</td></tr>
-    <tr><td>50</td><td>Cancelled</td></tr>
+    <tr><td>50</td><td>Canceled</td></tr>
     <tr><td>60</td><td>A PDF was refused (already encrypted, signed, and so on)</td></tr>
     <tr><td>70</td><td>Unexpected internal error</td></tr>
   </tbody>

@@ -63,7 +63,7 @@ const T = {
     devlogTitle: "A development journal on note",
     devlogText: "On note (in Japanese) we write about how the software comes together: how it was designed, where it got stuck, how it was tested and why things were decided, including what did not work.",
     devlogButton: "Read the journal on note",
-    socialNote: "For enquiries, please use email. Messages on social media may go unanswered.",
+    socialNote: "For inquiries, please use email. Messages on social media may go unanswered.",
     supportTitle: "If you'd like to support me",
     supportText: "Vault-ZIP is free for individuals. If you enjoy it, I would be very happy if you supported my work.",
     supportMore: "How to support →",

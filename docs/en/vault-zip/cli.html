@@ -34,7 +34,7 @@
   <nav class="wrap topnav" aria-label="Toriinthecat"><ul><li><a href="/en/">Home</a></li><li><a href="/en/software/" aria-current="page">Software</a></li><li><a href="/privacy-policy.html#en">Privacy policy</a></li><li><a href="/tokushoho.html">Legal notice (Japanese)</a></li><li><a href="/en/security.html">Security</a></li><li><a href="/en/support.html">Support</a></li><li><a href="/en/about.html">About</a></li></ul></nav>
 </header>
 <div class="wrap page with-sub">
-<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/en/vault-zip/">Overview</a></li><li><a href="/en/vault-zip/specs.html">Features and specs</a></li><li><a href="/en/vault-zip/robust.html">Built with care</a></li><li><a href="/en/vault-zip/compare.html">Comparison</a></li><li><a href="/en/vault-zip/download.html">Download</a></li><li><a href="/en/vault-zip/guide.html">How to use</a></li><li><a href="/en/vault-zip/cli.html" aria-current="page">Command line</a></li><li><a href="/en/vault-zip/faq.html">FAQ</a></li><li><a href="/en/vault-zip/history.html">Release notes</a></li><li><a href="/en/vault-zip/license.html">Licence</a></li><li><a href="/en/vault-zip/privacy.html">Privacy</a></li></ul></nav><main id="main">
+<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/en/vault-zip/">Overview</a></li><li><a href="/en/vault-zip/specs.html">Features and specs</a></li><li><a href="/en/vault-zip/robust.html">Built with care</a></li><li><a href="/en/vault-zip/compare.html">Comparison</a></li><li><a href="/en/vault-zip/download.html">Download</a></li><li><a href="/en/vault-zip/guide.html">How to use</a></li><li><a href="/en/vault-zip/cli.html" aria-current="page">Command line</a></li><li><a href="/en/vault-zip/faq.html">FAQ</a></li><li><a href="/en/vault-zip/history.html">Release notes</a></li><li><a href="/en/vault-zip/license.html">License</a></li><li><a href="/en/vault-zip/privacy.html">Privacy</a></li></ul></nav><main id="main">
 <h1>Command line</h1>
 <p class="lead">A guide to <code>vault-zip-cli</code>, made for automation (RPA and the like). It uses the same ledger as the app, and both can run at the same time.</p>
 
@@ -56,7 +56,7 @@ vault-zip-cli identify file... --json                    # what a file is, from 
 vault-zip-cli search term --json                         # search the ledger
 vault-zip-cli reveal &lt;ID&gt;                                # show a password from the ledger
 vault-zip-cli status --json                              # state of the ledger and backups</code></pre>
-<p>There are also commands for backups (<code>backup</code>), the recovery key (<code>recovery-key</code>), settings (<code>settings</code>), licences (<code>license</code>) and administrator policies (<code>policy</code>). <code>vault-zip-cli --help</code> lists them all.</p>
+<p>There are also commands for backups (<code>backup</code>), the recovery key (<code>recovery-key</code>), settings (<code>settings</code>), licenses (<code>license</code>) and administrator policies (<code>policy</code>). <code>vault-zip-cli --help</code> lists them all.</p>
 
 <h2>Choosing the password yourself</h2>
 <pre><code>echo your-password| vault-zip-cli compress -i memo.txt --pass-stdin --json</code></pre>
@@ -83,16 +83,16 @@ vault-zip-cli status --json                              # state of the ledger a
     <tr><td>23</td><td>Rejected by the safety checks</td></tr>
     <tr><td>24</td><td>Not an archive, or an unsupported feature</td></tr>
     <tr><td>25</td><td>The archive is damaged</td></tr>
-    <tr><td>26</td><td>A recognised format that Vault-ZIP does not read</td></tr>
+    <tr><td>26</td><td>A recognized format that Vault-ZIP does not read</td></tr>
     <tr><td>29</td><td>More than 100,000 entries (needs <code>--allow-many-entries</code>)</td></tr>
     <tr><td>30</td><td>Ledger database error</td></tr>
     <tr><td>31</td><td>The ledger exists but its key is missing</td></tr>
     <tr><td>32</td><td>OS keystore error</td></tr>
     <tr><td>33</td><td>Portable copy: wrong passphrase</td></tr>
     <tr><td>40</td><td>Backup error</td></tr>
-    <tr><td>41</td><td>Not a valid licence file</td></tr>
+    <tr><td>41</td><td>Not a valid license file</td></tr>
     <tr><td>42</td><td>Not allowed by an administrator policy</td></tr>
-    <tr><td>50</td><td>Cancelled</td></tr>
+    <tr><td>50</td><td>Canceled</td></tr>
     <tr><td>60</td><td>A PDF was refused (already encrypted, signed, and so on)</td></tr>
     <tr><td>70</td><td>Unexpected internal error</td></tr>
   </tbody>

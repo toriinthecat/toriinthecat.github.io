@@ -134,6 +134,10 @@ sh install.sh --list      # 版の一覧</code></pre>
 
 <h2>アンインストール</h2>
 <p>「設定」→「アプリ」→「インストールされているアプリ」から Vault-ZIP をアンインストールします。アンインストールしても、パスワードの台帳と設定は残ります（消すかどうかを選ぶ画面はありません）。入れ直せば、そのまま続けて使えます。台帳ごと消したいときは、アンインストールのあとに、台帳のフォルダ（<code>%APPDATA%\VaultZip</code>）を自分で削除してください。削除は元に戻せません。</p>
+<ul>
+  <li><b>Linux</b>：deb は <code>sudo apt remove vault-zip</code>、スクリプトで入れたときは <code>sh install.sh --uninstall</code> で削除します。どちらも台帳（<code>~/.local/share/VaultZip</code>）は残ります。</li>
+  <li><b>Android</b>：アプリをアンインストールすると、台帳も一緒に消えます（台帳は Google のバックアップや機種変更の引き継ぎに含めません）。残したいときは、先に設定の「台帳とバックアップ」→「台帳を丸ごとバックアップ」で書き出し、デバイスの外に保存してください。</li>
+</ul>
 
 <script>document.addEventListener("click",function(e){var b=e.target.closest(".cmd-copy");if(!b)return;var t=b.getAttribute("data-copy"),l=b.textContent;function ok(){b.textContent=b.getAttribute("data-done");setTimeout(function(){b.textContent=l;},2000);}function sel(){var c=b.closest(".cmd").querySelector("code"),r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r);}if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,sel);}else{sel();}});</script>
 

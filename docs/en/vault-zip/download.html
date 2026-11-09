@@ -34,7 +34,7 @@
   <nav class="wrap topnav" aria-label="Toriinthecat"><ul><li><a href="/en/">Home</a></li><li><a href="/en/software/" aria-current="page">Software</a></li><li><a href="/privacy-policy.html#en">Privacy policy</a></li><li><a href="/tokushoho.html">Legal notice (Japanese)</a></li><li><a href="/en/security.html">Security</a></li><li><a href="/en/support.html">Support</a></li><li><a href="/en/about.html">About</a></li></ul></nav>
 </header>
 <div class="wrap page with-sub">
-<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/en/vault-zip/">Overview</a></li><li><a href="/en/vault-zip/specs.html">Features and specs</a></li><li><a href="/en/vault-zip/robust.html">Built with care</a></li><li><a href="/en/vault-zip/compare.html">Comparison</a></li><li><a href="/en/vault-zip/download.html" aria-current="page">Download</a></li><li><a href="/en/vault-zip/guide.html">How to use</a></li><li><a href="/en/vault-zip/cli.html">Command line</a></li><li><a href="/en/vault-zip/faq.html">FAQ</a></li><li><a href="/en/vault-zip/history.html">Release notes</a></li><li><a href="/en/vault-zip/license.html">Licence</a></li><li><a href="/en/vault-zip/privacy.html">Privacy</a></li></ul></nav><main id="main">
+<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/en/vault-zip/">Overview</a></li><li><a href="/en/vault-zip/specs.html">Features and specs</a></li><li><a href="/en/vault-zip/robust.html">Built with care</a></li><li><a href="/en/vault-zip/compare.html">Comparison</a></li><li><a href="/en/vault-zip/download.html" aria-current="page">Download</a></li><li><a href="/en/vault-zip/guide.html">How to use</a></li><li><a href="/en/vault-zip/cli.html">Command line</a></li><li><a href="/en/vault-zip/faq.html">FAQ</a></li><li><a href="/en/vault-zip/history.html">Release notes</a></li><li><a href="/en/vault-zip/license.html">License</a></li><li><a href="/en/vault-zip/privacy.html">Privacy</a></li></ul></nav><main id="main">
 <h1>Download</h1>
 <p class="lead">An installer and a portable version. Both contain the same program.</p>
 
@@ -55,7 +55,7 @@
   <tbody>
     <tr><td>Installer (Windows)</td><td><a href="https://dl.toriinthecat.com/releases/0.1.0/Vault-ZIP_0.1.0_x64-setup.exe">Vault-ZIP_0.1.0_x64-setup.exe</a></td><td>15.3 MB</td><td>Recommended. Adds the right-click menu and lets Vault-ZIP open archives by double-click.</td></tr>
     <tr><td>Portable (Windows)</td><td><a href="https://dl.toriinthecat.com/releases/0.1.0/Vault-ZIP-0.1.0-portable-win-x64.zip">Vault-ZIP-0.1.0-portable-win-x64.zip</a></td><td>22.3 MB</td><td>Runs inside its own folder, with the ledger kept there and protected by a passphrase. No right-click menu.</td></tr>
-    <tr><td>MSI for organisations (Windows)</td><td><a href="https://dl.toriinthecat.com/releases/0.1.0/Vault-ZIP_0.1.0_x64_ja-JP.msi">Vault-ZIP_0.1.0_x64_ja-JP.msi</a></td><td>22.3 MB</td><td>Per-machine installs and deployment tools.</td></tr>
+    <tr><td>MSI for organizations (Windows)</td><td><a href="https://dl.toriinthecat.com/releases/0.1.0/Vault-ZIP_0.1.0_x64_ja-JP.msi">Vault-ZIP_0.1.0_x64_ja-JP.msi</a></td><td>22.3 MB</td><td>Per-machine installs and deployment tools.</td></tr>
     <tr><td>Linux (.deb)</td><td><a href="https://dl.toriinthecat.com/releases/0.1.0/Vault-ZIP_0.1.0_amd64.deb">Vault-ZIP_0.1.0_amd64.deb</a></td><td>24.1 MB</td><td>Debian, Ubuntu, Linux Mint and the like.</td></tr>
     <tr><td>Linux (AppImage)</td><td><a href="https://dl.toriinthecat.com/releases/0.1.0/Vault-ZIP_0.1.0_amd64.AppImage">Vault-ZIP_0.1.0_amd64.AppImage</a></td><td>97.0 MB</td><td>Runs without installing.</td></tr>
     <tr><td>Command line (Linux)</td><td><a href="https://dl.toriinthecat.com/releases/0.1.0/vault-zip-cli-0.1.0-linux-x64.tar.gz">vault-zip-cli-0.1.0-linux-x64.tar.gz</a></td><td>10.0 MB</td><td>Only the windowless <code>vault-zip-cli</code>, for automation.</td></tr>
@@ -72,7 +72,7 @@ be0895f562d5672a8c1f1fc9fe98f37be14b6b7f47abfc5f4c29496c82d0bcd7  Vault-ZIP_0.1.
 9c508e002ef456d32fadb76ae7ce606118e2cc0217178f4dd7774712dc94f18a  Vault-ZIP_0.1.0_amd64.AppImage
 0bbfa29555822f4bda858e8d13f8b14b799ac98227ba626c5e39158c2f2e8892  vault-zip-cli-0.1.0-linux-x64.tar.gz</code></pre>
 <p class="note">To check a download, compare the value shown by PowerShell's <code>Get-FileHash file-name</code> with the value above.</p>
-<p class="note">Every package includes a list of its components (SBOM, CycloneDX) and the full licence text of each.</p>
+<p class="note">Every package includes a list of its components (SBOM, CycloneDX) and the full license text of each.</p>
 
 <h2>Install from the command line</h2>
 <p>Press "Copy" and paste into PowerShell or a terminal. The scripts connect to <code>dl.toriinthecat.com</code> only when you run them, and check the signature and SHA-256 before installing.</p>
@@ -134,6 +134,10 @@ sh install.sh --list      # list versions</code></pre>
 
 <h2>Uninstalling</h2>
 <p>Uninstall Vault-ZIP from Settings → Apps → Installed apps. Uninstalling keeps your password ledger and settings (there is no screen asking whether to delete them), so a reinstall carries on where you left off. To remove the ledger too, delete its folder (<code>%APPDATA%\VaultZip</code>) yourself after uninstalling. This cannot be undone.</p>
+<ul>
+  <li><b>Linux</b>: remove the deb with <code>sudo apt remove vault-zip</code>, or a script install with <code>sh install.sh --uninstall</code>. Either way the ledger (<code>~/.local/share/VaultZip</code>) is kept.</li>
+  <li><b>Android</b>: uninstalling the app deletes the ledger with it (the ledger is never included in Google backups or device transfers). To keep it, first export it under Settings → "Ledger and backups" → "Back up the whole ledger" and save the file off the device.</li>
+</ul>
 
 <script>document.addEventListener("click",function(e){var b=e.target.closest(".cmd-copy");if(!b)return;var t=b.getAttribute("data-copy"),l=b.textContent;function ok(){b.textContent=b.getAttribute("data-done");setTimeout(function(){b.textContent=l;},2000);}function sel(){var c=b.closest(".cmd").querySelector("code"),r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r);}if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,sel);}else{sel();}});</script>
 

@@ -34,12 +34,12 @@
   <nav class="wrap topnav" aria-label="Toriinthecat"><ul><li><a href="/en/">Home</a></li><li><a href="/en/software/" aria-current="page">Software</a></li><li><a href="/privacy-policy.html#en">Privacy policy</a></li><li><a href="/tokushoho.html">Legal notice (Japanese)</a></li><li><a href="/en/security.html">Security</a></li><li><a href="/en/support.html">Support</a></li><li><a href="/en/about.html">About</a></li></ul></nav>
 </header>
 <div class="wrap page with-sub">
-<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/en/vault-zip/">Overview</a></li><li><a href="/en/vault-zip/specs.html">Features and specs</a></li><li><a href="/en/vault-zip/robust.html">Built with care</a></li><li><a href="/en/vault-zip/compare.html">Comparison</a></li><li><a href="/en/vault-zip/download.html">Download</a></li><li><a href="/en/vault-zip/guide.html">How to use</a></li><li><a href="/en/vault-zip/cli.html">Command line</a></li><li><a href="/en/vault-zip/faq.html" aria-current="page">FAQ</a></li><li><a href="/en/vault-zip/history.html">Release notes</a></li><li><a href="/en/vault-zip/license.html">Licence</a></li><li><a href="/en/vault-zip/privacy.html">Privacy</a></li></ul></nav><main id="main">
+<nav class="subnav" aria-label="Vault-ZIP"><p class="subnav-name">Vault-ZIP</p><ul><li><a href="/en/vault-zip/">Overview</a></li><li><a href="/en/vault-zip/specs.html">Features and specs</a></li><li><a href="/en/vault-zip/robust.html">Built with care</a></li><li><a href="/en/vault-zip/compare.html">Comparison</a></li><li><a href="/en/vault-zip/download.html">Download</a></li><li><a href="/en/vault-zip/guide.html">How to use</a></li><li><a href="/en/vault-zip/cli.html">Command line</a></li><li><a href="/en/vault-zip/faq.html" aria-current="page">FAQ</a></li><li><a href="/en/vault-zip/history.html">Release notes</a></li><li><a href="/en/vault-zip/license.html">License</a></li><li><a href="/en/vault-zip/privacy.html">Privacy</a></li></ul></nav><main id="main">
 <h1>FAQ</h1>
 
 <dl class="faq">
   <dt>Is it free?</dt>
-  <dd>Free for individuals, including work use (sole traders and side jobs). Schools and other educational institutions use it free without applying. Companies, government offices, incorporated non-profits and other organisations need a licence: 1,000 yen per PC (<a href="/en/vault-zip/license.html">licence</a>).</dd>
+  <dd>Free for individuals, including work use (sole traders and side jobs). Schools and other educational institutions use it free without applying. Companies, government offices, incorporated non-profits and other organizations need a license: 1,000 yen per PC (<a href="/en/vault-zip/license.html">license</a>).</dd>
 
   <dt>Can a ZIP made by Vault-ZIP be opened on a PC without Vault-ZIP?</dt>
   <dd>Yes. Any tool that supports AES-256 encrypted ZIP files (WinZip AES) opens it with the password. We have checked 7-Zip and Windows 11 File Explorer. A ZIP made without a password opens anywhere.</dd>
@@ -59,10 +59,10 @@
   <dd>Vault-ZIP is not code-signed yet, so Windows may warn. The steps are on the <a href="/en/vault-zip/download.html">download</a> page. Check that the SHA-256 of the file matches the value listed there before running it.</dd>
 
   <dt>Which formats can it extract?</dt>
-  <dd>ZIP, 7z, RAR, tar, gz, bz2, xz, zst, CAB and MSI, recognised by content rather than extension. Some other formats can be extracted with an external tool you set up (<a href="/en/vault-zip/specs.html">features and specs</a>).</dd>
+  <dd>ZIP, 7z, RAR, tar, gz, bz2, xz, zst, CAB and MSI, recognized by content rather than extension. Some other formats can be extracted with an external tool you set up (<a href="/en/vault-zip/specs.html">features and specs</a>).</dd>
 
   <dt>File names from an old ZIP come out garbled.</dt>
-  <dd>Vault-ZIP recognises old Japanese ZIP files whose names are in Shift_JIS and extracts them with the right names. It also makes macOS's decomposed names consistent and leaves out the <code>__MACOSX</code> folder and <code>._</code> files (this can be changed in the settings).</dd>
+  <dd>Vault-ZIP recognizes old Japanese ZIP files whose names are in Shift_JIS and extracts them with the right names. It also makes macOS's decomposed names consistent and leaves out the <code>__MACOSX</code> folder and <code>._</code> files (this can be changed in the settings).</dd>
 
   <dt>Some files were extracted under a different name.</dt>
   <dd>Names Windows cannot hold (<code>CON</code>, names with <code>?</code> or <code>:</code> and so on) and names with invisible characters used to disguise an extension are replaced with usable names. The result of the extraction lists every name that was changed.</dd>
@@ -74,7 +74,7 @@
   <dd>Yes: Windows 10 or later, 64-bit (x64). The new right-click menu is Windows 11 only; on Windows 10 Vault-ZIP appears in the classic menu. Windows on ARM has not been tested.</dd>
 
   <dt>Can I show a password while sharing my screen?</dt>
-  <dd>With "Keep passwords out of screen sharing and captures" turned on in the settings, a window showing a password does not appear in screen sharing, recordings or screenshots (Windows 10 version 2004 or later). It is off by default; an organisation's administrator can turn it on for good.</dd>
+  <dd>With "Keep passwords out of screen sharing and captures" turned on in the settings, a window showing a password does not appear in screen sharing, recordings or screenshots (Windows 10 version 2004 or later). It is off by default; an organization's administrator can turn it on for good.</dd>
 
   <dt>Can RPA tools use it?</dt>
   <dd>Yes, with the command-line tool <code>vault-zip-cli.exe</code>. It reports results as JSON and success or failure through exit codes. Passwords go through standard input.</dd>
