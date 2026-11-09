@@ -244,6 +244,94 @@ function esc(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+// Search engines and link previews (SEO): canonical, the language pair (hreflang, both pages and
+// x-default = Japanese), robots, Open Graph, and structured data (JSON-LD). Every URL is absolute.
+const SITE_URL = "https://toriinthecat.com";
+
+/** The Japanese and English URLs of a page that exists in both languages (null otherwise). */
+function langPair(lang, url, otherUrl) {
+  if (!otherUrl || otherUrl.includes("#")) return null; // one page holding both languages
+  return lang === "ja" ? { ja: url, en: otherUrl } : { ja: otherUrl, en: url };
+}
+
+/** The image shown when a page is shared: the program's icon, else the trade name's. */
+function shareImage(url) {
+  const id = url.replace(/^\/en/, "").split("/")[1];
+  const s = SOFTWARE.find((x) => x.id === id);
+  return s?.icon ?? "/assets/icons/toriinthecat.png";
+}
+
+function jsonLd(data) {
+  return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
+}
+
+function structuredData({ lang, meta, url }) {
+  const org = {
+    "@type": "Organization",
+    name: "Toriinthecat",
+    url: `${SITE_URL}/`,
+    logo: `${SITE_URL}/assets/icons/toriinthecat.png`,
+    email: CONTACT,
+    sameAs: SOCIAL.filter((s) => s.url).map((s) => s.url),
+  };
+  if (url === "/" || url === "/en/") {
+    return [
+      jsonLd({ "@context": "https://schema.org", "@type": "WebSite", name: "Toriinthecat", url: `${SITE_URL}${url}`, inLanguage: lang }),
+      jsonLd({ "@context": "https://schema.org", ...org }),
+    ];
+  }
+  const s = meta.section && meta.page === "index" ? SOFTWARE.find((x) => x.id === meta.section) : null;
+  if (!s) return [];
+  const platforms = Array.isArray(s.platforms.en) ? s.platforms.en.filter((x) => x.on).map((x) => x.text) : [];
+  return [
+    jsonLd({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: s.name,
+      description: meta.description ?? "",
+      url: `${SITE_URL}${url}`,
+      inLanguage: lang,
+      applicationCategory: "UtilitiesApplication",
+      ...(platforms.length ? { operatingSystem: platforms.join(", ") } : {}),
+      ...(s.icon ? { image: `${SITE_URL}${s.icon}` } : {}),
+      publisher: org,
+    }),
+  ];
+}
+
+function seoHead({ lang, meta, title, url, otherUrl }) {
+  const t = T[lang];
+  const description = meta.description ?? "";
+  const lines = [`<meta name="description" content="${esc(description)}">`];
+  if (meta.noindex) {
+    // A page that must not be listed (the 404 page): no canonical, no pair, no preview data.
+    lines.push(`<meta name="robots" content="noindex">`);
+    return lines.join("\n");
+  }
+  lines.push(`<link rel="canonical" href="${SITE_URL}${url}">`);
+  const pair = langPair(lang, url, otherUrl);
+  if (pair) {
+    lines.push(
+      `<link rel="alternate" hreflang="ja" href="${SITE_URL}${pair.ja}">`,
+      `<link rel="alternate" hreflang="en" href="${SITE_URL}${pair.en}">`,
+      `<link rel="alternate" hreflang="x-default" href="${SITE_URL}${pair.ja}">`,
+    );
+  }
+  lines.push(
+    `<meta property="og:type" content="${url === "/" || url === "/en/" ? "website" : "article"}">`,
+    `<meta property="og:site_name" content="${t.site}">`,
+    `<meta property="og:title" content="${esc(title)}">`,
+    `<meta property="og:description" content="${esc(description)}">`,
+    `<meta property="og:url" content="${SITE_URL}${url}">`,
+    `<meta property="og:image" content="${SITE_URL}${shareImage(url)}">`,
+    `<meta property="og:locale" content="${lang === "ja" ? "ja_JP" : "en_US"}">`,
+    ...(pair ? [`<meta property="og:locale:alternate" content="${lang === "ja" ? "en_US" : "ja_JP"}">`] : []),
+    `<meta name="twitter:card" content="summary">`,
+    ...structuredData({ lang, meta, url }),
+  );
+  return lines.join("\n");
+}
+
 function layout({ lang, meta, body, url, otherUrl }) {
   const t = T[lang];
   const prefix = lang === "en" ? "/en" : "";
@@ -265,15 +353,13 @@ function layout({ lang, meta, body, url, otherUrl }) {
   const alt = otherUrl
     ? `<a class="lang" href="${otherUrl}" hreflang="${lang === "ja" ? "en" : "ja"}" lang="${lang === "ja" ? "en" : "ja"}">${t.other}</a>`
     : "";
-  const altLink = otherUrl ? `\n<link rel="alternate" hreflang="${lang === "ja" ? "en" : "ja"}" href="https://toriinthecat.com${otherUrl}">` : "";
   return `<!doctype html>
 <html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(meta.description ?? "")}">
-<link rel="canonical" href="https://toriinthecat.com${url}">${altLink}
+${seoHead({ lang, meta, title, url, otherUrl })}
 <link rel="stylesheet" href="/assets/site.css?v=${CSS_VERSION}">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/assets/icons/favicon-32.png" type="image/png" sizes="32x32">
@@ -311,6 +397,7 @@ mkdirSync(out, { recursive: true });
 
 const pages = walk(pagesDir).filter((p) => p.endsWith(".html"));
 const urls = new Set(pages.map((p) => urlOf(relative(pagesDir, p))));
+const sitemap = [];
 for (const file of pages) {
   const rel = relative(pagesDir, file);
   const src = readFileSync(file, "utf8");
@@ -327,8 +414,30 @@ for (const file of pages) {
   const target = join(out, rel);
   mkdirSync(dirname(target), { recursive: true });
   if (meta.section && !T[lang].sections[meta.section]) throw new Error(`${rel}: section ${meta.section} is not in software.json`);
-  writeFileSync(target, layout({ lang, meta, body: expand(src.slice(m[0].length), lang), url, otherUrl: urls.has(otherUrl.split("#")[0]) ? otherUrl : null }));
+  const shownOther = urls.has(otherUrl.split("#")[0]) ? otherUrl : null;
+  writeFileSync(target, layout({ lang, meta, body: expand(src.slice(m[0].length), lang), url, otherUrl: shownOther }));
+  if (!meta.noindex) sitemap.push({ url, pair: langPair(lang, url, shownOther) });
 }
+
+// sitemap.xml (every listed page with its language pair) and robots.txt pointing to it.
+sitemap.sort((a, b) => a.url.localeCompare(b.url));
+const sitemapEntries = sitemap.map(({ url, pair }) => {
+  const alts = pair
+    ? [["ja", pair.ja], ["en", pair.en], ["x-default", pair.ja]]
+        .map(([h, u]) => `\n    <xhtml:link rel="alternate" hreflang="${h}" href="${SITE_URL}${u}"/>`)
+        .join("")
+    : "";
+  return `  <url>\n    <loc>${SITE_URL}${url}</loc>${alts}\n  </url>`;
+});
+writeFileSync(
+  join(out, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${sitemapEntries.join("\n")}
+</urlset>
+`,
+);
+writeFileSync(join(out, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 for (const file of walk(staticDir)) {
   const target = join(out, relative(staticDir, file));
   mkdirSync(dirname(target), { recursive: true });
@@ -348,4 +457,4 @@ for (const file of walk(out).filter((p) => p.endsWith(".html"))) {
   }
 }
 if (broken > 0) process.exit(1);
-console.log(`built ${pages.length} pages into docs/`);
+console.log(`built ${pages.length} pages into docs/ (${sitemap.length} in sitemap.xml)`);
