@@ -53,6 +53,19 @@
   <li>A ZIP that holds a single item is extracted without a folder named after it (you can turn this off in the settings).</li>
 </ul>
 
+<h3>Update of November 22, 2026 (build 6)</h3>
+<ul>
+  <li>When extraction goes to a fixed folder or a folder you choose each time, an archive holding a single folder no longer ends up as "reporteport". Accessory files such as Thumbs.db are not counted.</li>
+  <li>When a folder with the same name already exists, extraction now follows the "When a file with the same name exists" setting (number the new one, rename the old one, or overwrite).</li>
+  <li>The right-click and right-drag menus say where files go: "Extract to "archive name"" and "Extract here". "Compress each" is not shown for a single file, nor "Find out what the file is" for folders only (Windows 11).</li>
+  <li>Android: with "All files access" turned on in the settings, files on the internal storage are extracted and compressed in place and saved next to the original, with no folder to choose each time.</li>
+  <li>Android: Vault-ZIP now appears under "Open with" in file apps. An archive opened this way is not written anywhere until you tap Extract.</li>
+</ul>
+<p>Other fixes:</p>
+<ul>
+  <li>An extraction request that arrived just as the app was closing could be dropped without running. Fixed.</li>
+</ul>
+
 <h3>Update of November 19, 2026 (build 5)</h3>
 <p>The screens were reviewed from top to bottom.</p>
 <ul>
