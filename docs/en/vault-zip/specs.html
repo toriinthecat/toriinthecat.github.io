@@ -90,7 +90,7 @@
     <tr><th>Contents</th><td>Names of the ZIP and PDF files, dates, passwords, notes and the list of original files.</td></tr>
     <tr><th>Showing and copying</th><td>A password appears only when you press "Show", after an identity check such as Windows Hello. A copied password is kept out of the Windows clipboard history (Win+V) and cloud clipboard and is cleared after a while, unless you have copied something else meanwhile.</td></tr>
     <tr><th>Screen captures</th><td>An option keeps a window showing a password out of screen sharing, recordings and screenshots (off by default; Windows 10 version 2004 or later).</td></tr>
-    <tr><th>Safeguards</th><td>Recovery key, encrypted backup export and import, automatic backups. A failed import leaves the current ledger and key untouched.</td></tr>
+    <tr><th>Safeguards</th><td>A ledger key copy (the key alone) paired with automatic ledger copies (the contents alone), and a backup with key (both in one file) to write and restore. A failed import leaves the current ledger and key untouched.</td></tr>
     <tr><th>Across versions</th><td>A copy is made before the ledger format is upgraded. Data written by a newer version is not changed by an older one, which stops and says so.</td></tr>
   </tbody>
 </table>
@@ -151,7 +151,7 @@
 <h2>Management for organizations (license required)</h2>
 <ul>
   <li>Per-machine MSI for deployment tools.</li>
-  <li>Rules users cannot change: no ZIP without a password, password method and minimum length, checking always on, passwords kept out of screen captures, a fixed folder for automatic ledger backups, no external tools, and more.</li>
+  <li>Rules users cannot change: no ZIP without a password, password method and minimum length, checking always on, passwords kept out of screen captures, a fixed folder for automatic ledger copies, no external tools, and more.</li>
   <li>Rules are deployed from the app, an organization settings file, Group Policy (ADMX) or Intune.</li>
   <li>Licenses are checked on the PC only. There is no license server.</li>
 </ul>

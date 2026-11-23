@@ -8,6 +8,7 @@
   <li>Add <code>--json</code> when a program reads the result: each run prints one JSON object.</li>
   <li>Existing files are never overwritten.</li>
 </ul>
+<p class="note">Before 1.0.0, the ledger's saved format and the commands' names and output may change without keeping compatibility with earlier versions. Writing a backup with key before you update is a good idea. If you use the commands in scripts, check them after each update.</p>
 
 <h2>Main commands</h2>
 <pre><code>vault-zip-cli compress -i folder --json                  # create (a password is generated and kept in the ledger)
@@ -19,8 +20,8 @@ vault-zip-cli pdf check   -i report.pdf --json           # look at a PDF (change
 vault-zip-cli identify file... --json                    # what a file is, from its content
 vault-zip-cli search term --json                         # search the ledger
 vault-zip-cli reveal &lt;ID&gt;                                # show a password from the ledger
-vault-zip-cli status --json                              # state of the ledger and backups</code></pre>
-<p>There are also commands for backups (<code>backup</code>), the recovery key (<code>recovery-key</code>), settings (<code>settings</code>), licenses (<code>license</code>) and administrator policies (<code>policy</code>). <code>vault-zip-cli --help</code> lists them all.</p>
+vault-zip-cli status --json                              # state of the ledger and its key copy and automatic copies</code></pre>
+<p>There are also commands for the backup with key (<code>backup</code>), the ledger key copy (<code>key-copy</code>), restoring from automatic ledger copies (<code>auto-copy</code>), settings (<code>settings</code>), licenses (<code>license</code>) and administrator policies (<code>policy</code>). <code>vault-zip-cli --help</code> lists them all.</p>
 
 <h2>Choosing the password yourself</h2>
 <pre><code>echo your-password| vault-zip-cli compress -i memo.txt --pass-stdin --json</code></pre>

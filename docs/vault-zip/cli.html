@@ -44,6 +44,7 @@
   <li>結果を機械で読むときは <code>--json</code> を付けます。1 回の実行で JSON が 1 つ出ます。</li>
   <li>すでにあるファイルは上書きしません。</li>
 </ul>
+<p class="note">1.0.0 より前の版では、改良のために、台帳の保存の形式やコマンドの名前・出力を、前の版との互換を保たずに変えることがあります。新しい版に入れ替える前に「鍵ごとバックアップ」を書き出しておくと安心です。コマンドを組み込んで使うときは、版を上げたあとに動きを確かめてください。</p>
 
 <h2>主なコマンド</h2>
 <pre><code>vault-zip-cli compress -i 資料フォルダ --json              # 作る（パスワードは自動で作り、台帳に記録）
@@ -55,8 +56,8 @@ vault-zip-cli pdf check   -i 報告書.pdf --json            # PDF の状態を�
 vault-zip-cli identify ファイル... --json                 # 何のファイルか、中身から調べる
 vault-zip-cli search 検索語 --json                        # 台帳から探す
 vault-zip-cli reveal &lt;ID&gt;                                 # 台帳のパスワードを表示する
-vault-zip-cli status --json                               # 台帳とバックアップの状態</code></pre>
-<p>ほかに、バックアップ（<code>backup</code>）、回復キー（<code>recovery-key</code>）、設定（<code>settings</code>）、ライセンス（<code>license</code>）、管理者のポリシー（<code>policy</code>）のコマンドがあります。<code>vault-zip-cli --help</code> で一覧を見られます。</p>
+vault-zip-cli status --json                               # 台帳と備え（鍵の控え・自動コピー）の状態</code></pre>
+<p>ほかに、鍵ごとバックアップ（<code>backup</code>）、台帳の鍵の控え（<code>key-copy</code>）、台帳の自動コピーからの復元（<code>auto-copy</code>）、設定（<code>settings</code>）、ライセンス（<code>license</code>）、管理者のポリシー（<code>policy</code>）のコマンドがあります。<code>vault-zip-cli --help</code> で一覧を見られます。</p>
 
 <h2>パスワードを自分で決めるとき</h2>
 <pre><code>echo 自分で決めたパスワード| vault-zip-cli compress -i memo.txt --pass-stdin --json</code></pre>

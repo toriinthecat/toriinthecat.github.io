@@ -100,5 +100,5 @@ sh install.sh --list      # list versions</code></pre>
 <p>Uninstall Vault-ZIP from Settings → Apps → Installed apps. Uninstalling keeps your password ledger and settings (there is no screen asking whether to delete them), so a reinstall carries on where you left off. To remove the ledger too, delete its folder (<code>%APPDATA%\VaultZip</code>) yourself after uninstalling. This cannot be undone.</p>
 <ul>
   <li><b>Linux</b>: remove the deb with <code>sudo apt remove vault-zip</code>, or a script install with <code>sh install.sh --uninstall</code>. Either way the ledger (<code>~/.local/share/VaultZip</code>) is kept.</li>
-  <li><b>Android</b>: uninstalling the app deletes the ledger with it (the ledger is never included in Google backups or device transfers). To keep it, first export it under Settings → "Ledger and backups" → "Back up the whole ledger" and save the file off the device.</li>
+  <li><b>Android</b>: uninstalling the app deletes the ledger with it (the ledger is never included in Google backups or device transfers). To keep it, first write it under Settings → "Ledger and backups" → "Backup with key" and save the file off the device.</li>
 </ul>
