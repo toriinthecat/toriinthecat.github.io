@@ -38,6 +38,17 @@
 <h1>Release notes</h1>
 <p class="lead">Newest first.</p>
 
+<h2>0.2.0 <small class="updated">November 23, 2026</small></h2>
+<ul>
+  <li><b>Android: fixed saving backups and other files.</b> The save screen did not show its list of places (the ☰ at the top left) and stayed in Downloads; on a device without a Downloads folder, writing failed. You can now save anywhere in internal storage.</li>
+  <li>The ledger's safeguards and their settings are easier to understand: the "ledger key copy" (the key alone; formerly the recovery key) and the "automatic ledger copies" (the contents alone; formerly automatic backups) work as a pair, and the "backup with key" (both in one file; formerly the full backup) restores on its own. The settings are now three cards: keep it safe automatically, backup with key, and restore.</li>
+  <li>Renamed commands: <code>recovery-key export</code> is now <code>key-copy export</code>, and <code>backup restore</code> is now <code>auto-copy restore --key-copy … --copy …</code>. JSON warnings and <code>status</code> fields follow (<code>KEY_COPY_MISSING</code> and so on).</li>
+  <li>Android: "All files access" shows its real state with a button instead of a switch.</li>
+  <li>Android: the bottom bar no longer has "Search". Search the ledger in the ledger tab, and the settings with "Search settings".</li>
+  <li>Android: the mail template preview no longer runs off the right edge.</li>
+  <li>Before 1.0.0, the ledger's format and the commands may change without compatibility. 0.1.0 is no longer offered.</li>
+</ul>
+
 <h2>0.1.0 <small class="updated">November 6, 2026</small></h2>
 <ul>
   <li>The Android version is now on Google Play.</li>
